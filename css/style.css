@@ -548,7 +548,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .tarot-card .phase { font-size: 11px; color: #7E57C2; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
-.tarot-card img { width: 100%; border-radius: 12px; padding: 4px; object-fit: cover; overflow: hidden; box-shadow: 0 4px 12px rgba(126, 87, 194, 0.15); border: 1px solid rgba(184, 147, 95, 0.4); }
+.tarot-card img { width: 100%; border-radius: 12px; padding: 4px; object-fit: cover; overflow: hidden; box-shadow: 0 4px 12px rgba(126, 87, 194, 0.15); }
 .tarot-card .name-en { font-size: 14px; color: #3D2A5C; font-weight: 600; text-align: center; }
 
 @keyframes flipIn { from { opacity: 0; transform: rotateY(90deg); } to { opacity: 1; transform: rotateY(0); } }
