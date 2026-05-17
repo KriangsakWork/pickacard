@@ -13,8 +13,11 @@ function showReading(pile) {
   let html = '';
 
   html += '<div class="reading-intro">';
-  html += '  <div class="label">✦ คำทำนายสำหรับคุณ ✦</div>';
-  html += '  <h2>' + reading.intro + '</h2>';
+  html += '  <img src="/images/mascot-reveal.png" alt="Pick a Card mascot" class="intro-mascot">';
+  html += '  <div class="intro-text">';
+  html += '    <div class="label">✦ คำทำนายสำหรับคุณ ✦</div>';
+  html += '    <h2>' + reading.intro + '</h2>';
+  html += '  </div>';
   html += '</div>';
 
   html += '<div class="tarot-cards">';
