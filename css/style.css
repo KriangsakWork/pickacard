@@ -541,7 +541,26 @@ img { max-width: 100%; height: auto; display: block; }
 .reading-section { padding: 40px 0 60px; animation: fadeIn 0.6s ease-out; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-.reading-intro { text-align: center; margin-bottom: 36px; }
+.reading-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 36px;
+  text-align: left;
+}
+.intro-mascot {
+  width: 160px;
+  height: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 16px rgba(126, 87, 194, 0.25));
+  animation: float 3s ease-in-out infinite;
+}
+.intro-text { max-width: 400px; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 .reading-intro .label { font-size: 13px; color: #7E57C2; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
 .reading-intro h2 { font-size: 22px; color: #3D2A5C; font-style: italic; font-weight: 500; }
 
@@ -715,6 +734,13 @@ img { max-width: 100%; height: auto; display: block; }
 
   .mascot-img { width: 160px; }
   .mascot-section { padding: 24px 0 12px; }
+
+  .reading-intro {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .intro-mascot { width: 120px; }
   
   .universe-message { padding: 24px 20px; }
   .universe-message p { font-size: 15px; }
