@@ -1,0 +1,582 @@
+/* ===== RESET & BASE ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Sans Thai', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #F5F0FA 0%, #EDE4F7 40%, #F5F0FA 100%);
+  background-attachment: fixed;
+  color: #3D2A5C;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(126, 87, 194, 0.1);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  color: #5B3F8A;
+}
+
+.nav-logo img {
+  width: 36px;
+  height: 36px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-link {
+  font-size: 14px;
+  color: #6B5B7A;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link:hover { color: #7E57C2; }
+
+.nav-link.active {
+  color: #7E57C2;
+  border-bottom: 2px solid #7E57C2;
+  padding-bottom: 2px;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #7E57C2;
+  cursor: pointer;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 60px 0;
+}
+
+.hero-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #3D2A5C;
+  line-height: 1.3;
+  margin-bottom: 18px;
+}
+
+.hero-text h1 .accent { color: #7E57C2; }
+
+.hero-desc {
+  font-size: 15px;
+  color: #6B5B7A;
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+.btn-primary {
+  background: #7E57C2;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(126, 87, 194, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(126, 87, 194, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ===== AD SLOTS ===== */
+.ad-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 32px;
+}
+
+.ad-slot {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px dashed rgba(126, 87, 194, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9B8AB5;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.ad-728x90 { height: 90px; }
+.ad-300x250 { height: 250px; max-width: 300px; margin: 0 auto; }
+
+/* ===== PICK SECTION ===== */
+.pick-section {
+  padding: 24px 0 60px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #3D2A5C;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: #6B5B7A;
+  margin-bottom: 40px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 640px;
+  margin: 0 auto 32px;
+}
+
+.pile {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pile img {
+  width: 100%;
+  filter: drop-shadow(0 10px 20px rgba(126, 87, 194, 0.25));
+  transition: filter 0.3s;
+}
+
+.pile:hover {
+  transform: translateY(-12px);
+}
+
+.pile:hover img {
+  filter: drop-shadow(0 18px 28px rgba(126, 87, 194, 0.4));
+}
+
+.pile-num {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #7E57C2;
+  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.2);
+}
+
+.hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  color: #6B5B7A;
+  font-style: italic;
+  margin-top: 24px;
+}
+
+/* ===== READING SECTION ===== */
+.reading-section {
+  padding: 40px 0 60px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reading-intro {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.reading-intro .label {
+  font-size: 13px;
+  color: #7E57C2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.reading-intro h2 {
+  font-size: 22px;
+  color: #3D2A5C;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.tarot-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 560px;
+  margin: 0 auto 36px;
+}
+
+.tarot-card {
+  aspect-ratio: 2/3.2;
+  background: white;
+  border: 1px solid rgba(126, 87, 194, 0.2);
+  border-radius: 12px;
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 16px rgba(126, 87, 194, 0.12);
+  animation: flipIn 0.8s ease-out backwards;
+}
+
+.tarot-card .phase {
+  font-size: 11px;
+  color: #7E57C2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tarot-card .emoji {
+  font-size: 44px;
+}
+
+.tarot-card .name-thai {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3D2A5C;
+  text-align: center;
+}
+
+.tarot-card .name-en {
+  font-size: 11px;
+  color: #9B8AB5;
+  font-style: italic;
+  text-align: center;
+}
+
+@keyframes flipIn {
+  from { opacity: 0; transform: rotateY(90deg); }
+  to { opacity: 1; transform: rotateY(0); }
+}
+
+.reading-card {
+  background: white;
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(126, 87, 194, 0.08);
+  animation: fadeUp 0.6s ease-out backwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reading-card .header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.reading-card .badge {
+  background: #E8DEF7;
+  color: #5B3F8A;
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.reading-card .name-thai {
+  font-size: 17px;
+  font-weight: 700;
+  color: #3D2A5C;
+}
+
+.reading-card .name-en {
+  font-size: 13px;
+  color: #9B8AB5;
+  font-style: italic;
+}
+
+.reading-card .meaning {
+  font-size: 13px;
+  color: #7E57C2;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.reading-card .text {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #3D2A5C;
+}
+
+.universe-message {
+  margin-top: 36px;
+  padding: 32px;
+  background: linear-gradient(135deg, #7E57C2 0%, #5B3F8A 100%);
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(126, 87, 194, 0.3);
+}
+
+.universe-message .label {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  margin-bottom: 14px;
+  opacity: 0.85;
+}
+
+.universe-message p {
+  font-size: 18px;
+  line-height: 1.75;
+  font-style: italic;
+}
+
+.reset-btn-container {
+  text-align: center;
+  margin-top: 36px;
+}
+
+.btn-reset {
+  background: white;
+  border: 1px solid rgba(126, 87, 194, 0.3);
+  padding: 12px 32px;
+  border-radius: 28px;
+  font-size: 14px;
+  color: #7E57C2;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.btn-reset:hover {
+  background: #7E57C2;
+  color: white;
+  border-color: #7E57C2;
+}
+
+/* ===== FEATURES ===== */
+.features {
+  padding: 24px 0 48px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(126, 87, 194, 0.08);
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #E8DEF7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  font-size: 24px;
+}
+
+.feature-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3D2A5C;
+  margin-bottom: 6px;
+}
+
+.feature-card p {
+  font-size: 13px;
+  color: #6B5B7A;
+  line-height: 1.6;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 40px 0 28px;
+  border-top: 1px solid rgba(126, 87, 194, 0.1);
+  margin-top: 24px;
+}
+
+.footer-quote {
+  font-size: 14px;
+  color: #7E57C2;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: #6B5B7A;
+}
+
+.footer-links a:hover { color: #7E57C2; }
+
+.footer-copy {
+  font-size: 12px;
+  color: #9B8AB5;
+}
+
+/* ===== RESPONSIVE (MOBILE) ===== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 32px 0 24px;
+  }
+  
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+  
+  .hero-text h1 { font-size: 28px; }
+  .hero-desc { font-size: 14px; }
+  
+  .hero-image img { max-width: 280px; }
+  
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    gap: 16px;
+    box-shadow: 0 4px 12px rgba(126, 87, 194, 0.1);
+  }
+  
+  .nav-menu.open { display: flex; }
+  .nav-toggle { display: block; }
+  
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 16px;
+    max-width: 340px;
+  }
+  
+  .section-title { font-size: 22px; }
+  
+  .tarot-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .tarot-card { padding: 10px 6px; }
+  .tarot-card .emoji { font-size: 32px; }
+  .tarot-card .name-thai { font-size: 12px; }
+  .tarot-card .name-en { font-size: 10px; }
+  
+  .reading-card { padding: 18px 20px; }
+  .reading-card .text { font-size: 14px; }
+  
+  .universe-message { padding: 24px 20px; }
+  .universe-message p { font-size: 15px; }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  .footer-links { gap: 16px; }
+}
