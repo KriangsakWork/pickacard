@@ -32,7 +32,6 @@ function showReading(pile) {
     html += '<div class="reading-card" style="animation-delay: ' + (1 + i * 0.3) + 's;">';
     html += '  <div class="header">';
     html += '    <span class="badge">' + card.phase + '</span>';
-    html += '    <span class="name-thai">' + card.thai + '</span>';
     html += '    <span class="name-en">' + card.name + '</span>';
     html += '  </div>';
     html += '  <p class="meaning">' + card.meaning + '</p>';
