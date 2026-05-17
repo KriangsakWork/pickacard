@@ -517,6 +517,26 @@ img { max-width: 100%; height: auto; display: block; }
   margin-top: 24px;
 }
 
+/* MASCOT */
+.mascot-section {
+  text-align: center;
+  padding: 40px 0 20px;
+}
+.mascot-img {
+  width: 220px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 8px 24px rgba(126, 87, 194, 0.25));
+}
+.mascot-message {
+  margin-top: 16px;
+  font-size: 15px;
+  color: #7E57C2;
+  font-style: italic;
+  font-weight: 500;
+}
+
 /* READING CONTENT */
 .reading-section { padding: 40px 0 60px; animation: fadeIn 0.6s ease-out; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -692,6 +712,9 @@ img { max-width: 100%; height: auto; display: block; }
   
   .reading-card { padding: 18px 20px; }
   .reading-card .text { font-size: 14px; }
+
+  .mascot-img { width: 160px; }
+  .mascot-section { padding: 24px 0 12px; }
   
   .universe-message { padding: 24px 20px; }
   .universe-message p { font-size: 15px; }
