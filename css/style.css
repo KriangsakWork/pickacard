@@ -156,10 +156,13 @@ img { max-width: 100%; height: auto; display: block; }
 
 .topics-header {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 40px;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
   align-items: center;
   margin-bottom: 40px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .topics-mascot { text-align: center; }
 .topics-mascot img {
