@@ -2,7 +2,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'IBM Plex Sans Thai', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: linear-gradient(180deg, #F5F0FA 0%, #EDE4F7 40%, #F5F0FA 100%);
   background-attachment: fixed;
   color: #3D2A5C;
@@ -264,9 +264,21 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
+  /* fallback: pastel purple placeholder shown if image missing */
+  background: linear-gradient(135deg, #E8DEF7 0%, #D9C8F0 50%, #EDE4F7 100%);
 }
 
+/* emoji = fallback visual behind the image */
+.banner-emoji {
+  font-size: 52px;
+  opacity: 0.65;
+  filter: drop-shadow(0 4px 8px rgba(126, 87, 194, 0.18));
+}
+
+/* real banner image covers the placeholder; removed via onerror if missing */
 .topic-banner img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -275,15 +287,10 @@ img { max-width: 100%; height: auto; display: block; }
 
 .topic-card:hover .topic-banner img { transform: scale(1.05); }
 
-/* PLACEHOLDER (no real image yet) */
-.topic-banner.placeholder {
-  background: linear-gradient(135deg, #E8DEF7 0%, #D9C8F0 50%, #EDE4F7 100%);
-}
-
-.topic-banner.placeholder .banner-emoji {
-  font-size: 52px;
-  opacity: 0.65;
-  filter: drop-shadow(0 4px 8px rgba(126, 87, 194, 0.18));
+/* COMING SOON: faint/grayscale banner */
+.topic-card.disabled .topic-banner img {
+  filter: grayscale(100%);
+  opacity: 0.7;
 }
 
 /* CARD BODY */
