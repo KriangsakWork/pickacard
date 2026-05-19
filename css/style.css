@@ -115,7 +115,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  min-height: 96vh;
+  min-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -181,10 +181,10 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 0 24px;
   display: flex;
   align-items: center;
-  min-height: 96vh;
+  min-height: 100vh;
 }
 
-.hero-text { max-width: 530px; padding: 48px 0; }
+.hero-text { max-width: 500px; padding: 48px 0; }
 
 .hero-badge {
   display: inline-block;
@@ -310,12 +310,17 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-avatars span:nth-child(4) { background: linear-gradient(135deg, #F0D9A8, #C2A157); }
 .hero-proof { font-size: 14px; color: rgba(255,255,255,0.75); }
 
+/* anchored to the whole .hero (not the 1100px container) so it can be big.
+   object-position:bottom right keeps the rabbit hugging the right edge, so a
+   wide box never visually collides with the left text (its left side is
+   transparent + pointer-events:none). */
 .hero-image {
   position: absolute;
   right: 0;
-  top: 24%;               /* head/hat lands roughly at the "Pick" line */
-  bottom: 0;              /* sits on hero bottom -> fully inside, no overflow */
-  width: 52%;             /* right side only -> never overlaps left text */
+  bottom: 0;
+  top: 4vh;               /* taller box -> bigger rabbit; lower number = bigger */
+  width: 62vw;            /* generous; rabbit stays pinned right */
+  max-width: 1100px;
   z-index: 2;
   pointer-events: none;
 }
@@ -936,7 +941,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ===== RESPONSIVE (MOBILE) ===== */
 @media (max-width: 768px) {
-  .hero { min-height: auto; padding: 96px 0 40px; }
+  .hero { min-height: auto; padding: 96px 0 40px; flex-direction: column; }
   .hero-container {
     flex-direction: column;
     align-items: center;
@@ -954,7 +959,9 @@ img { max-width: 100%; height: auto; display: block; }
     top: auto;
     right: auto;
     bottom: auto;
+    max-width: none;
     margin-top: 10px;
+    align-self: center;
   }
   .hero-mascot {
     width: auto;
