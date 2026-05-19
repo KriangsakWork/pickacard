@@ -268,13 +268,6 @@ img { max-width: 100%; height: auto; display: block; }
   background: linear-gradient(135deg, #E8DEF7 0%, #D9C8F0 50%, #EDE4F7 100%);
 }
 
-/* emoji = fallback visual behind the image */
-.banner-emoji {
-  font-size: 52px;
-  opacity: 0.65;
-  filter: drop-shadow(0 4px 8px rgba(126, 87, 194, 0.18));
-}
-
 /* real banner image covers the placeholder; removed via onerror if missing */
 .topic-banner img {
   position: absolute;
@@ -791,7 +784,6 @@ img { max-width: 100%; height: auto; display: block; }
   
   .topic-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .topic-body { padding: 14px 14px 18px; }
-  .topic-banner.placeholder .banner-emoji { font-size: 38px; }
   .topic-soon { font-size: 9px; padding: 4px 9px; top: 8px; right: 8px; }
   .topic-card h3 { font-size: 14px; }
   .topic-card p { font-size: 12px; }
