@@ -17,10 +17,10 @@
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="home">
 
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -42,16 +42,45 @@
 
   <!-- HERO BANNER -->
   <section class="hero">
+    <!-- L1: background video (poster = graceful fallback) -->
+    <video class="hero-video" autoplay loop muted playsinline poster="/images/hero-bg.jpg">
+      <source src="/images/hero-bg.mp4" type="video/mp4">
+    </video>
+
+    <!-- L2: overlay for text contrast -->
+    <div class="hero-overlay"></div>
+
+    <!-- L4: floating sparkles -->
+    <div class="hero-sparkles" aria-hidden="true">
+      <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
+      <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
+      <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
+      <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
+      <span class="sparkle"></span><span class="sparkle"></span>
+    </div>
+
+    <!-- L3: content -->
     <div class="hero-container">
       <div class="hero-text">
-        <h1>Pick a Card<br><span class="accent">ดูดวงจากใจสู่ใจ</span></h1>
-        <p class="hero-desc">เลือกหัวข้อที่อยากรู้ · เลือกไพ่ที่ดึงดูดคุณ<br>รับคำทำนายจากจักรวาลในไม่กี่วินาที</p>
-        <button class="btn-primary" onclick="scrollToTopics()">
-          <span>✦</span> เลือกหัวข้อดูดวง
-        </button>
+        <span class="hero-badge">✨ The Universe Has a Message For You</span>
+        <h1 class="hero-title">
+          <span class="line-1">Pick Your</span>
+          <span class="line-2">Destiny</span>
+        </h1>
+        <p class="hero-desc">Choose a card intuitively and uncover hidden messages about love, destiny, and your future.</p>
+        <div class="hero-cta">
+          <button class="btn-primary" onclick="scrollToTopics()">🔮 Start Reading</button>
+          <button class="btn-secondary" disabled title="เร็วๆ นี้">🌙 Daily Tarot</button>
+        </div>
+        <div class="hero-social">
+          <div class="hero-avatars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <span class="hero-proof">✨ 12,483 people picked a card today</span>
+        </div>
       </div>
       <div class="hero-image">
-        <img src="/images/hero.png" alt="ไพ่ทาโรต์สีม่วงพร้อมคริสตัล" width="500" height="500">
+        <img class="hero-mascot" src="/images/mascot-hero.png" alt="Pick a Card magical rabbit mascot" loading="eager">
       </div>
     </div>
   </section>

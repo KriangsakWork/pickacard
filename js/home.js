@@ -10,6 +10,13 @@ function toggleMenu() {
   document.querySelector('.nav-menu').classList.toggle('open');
 }
 
+// Solidify the transparent hero navbar once scrolled past the hero
+window.addEventListener('scroll', function () {
+  const nav = document.querySelector('.navbar');
+  if (!nav) return;
+  nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7);
+});
+
 // Tab filtering
 document.addEventListener('DOMContentLoaded', function() {
   const tabButtons = document.querySelectorAll('.tab-btn');
