@@ -316,11 +316,11 @@ img { max-width: 100%; height: auto; display: block; }
    transparent + pointer-events:none). */
 .hero-image {
   position: absolute;
-  right: 0;
+  right: -3vw;            /* nudge right so the tarot cards clear the headline */
   bottom: 0;
-  top: 20vh;              /* smaller rabbit; raise number = smaller */
-  width: 42vw;            /* narrower box so it clears the headline */
-  max-width: 680px;
+  top: 10vh;              /* ~1.5x bigger than before; lower = bigger */
+  width: 52vw;
+  max-width: 900px;
   z-index: 2;
   pointer-events: none;
 }
