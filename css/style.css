@@ -87,24 +87,30 @@ img { max-width: 100%; height: auto; display: block; }
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   border-bottom: none;
+  box-shadow: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+.home .navbar .nav-logo,
+.home .navbar .nav-link,
+.home .navbar .nav-toggle { transition: color 0.3s ease, border-color 0.3s ease; }
 .home .navbar .nav-logo { color: #ffffff; }
 .home .navbar .nav-link { color: rgba(255, 255, 255, 0.85); }
 .home .navbar .nav-link:hover { color: #ffffff; }
 .home .navbar .nav-link.active { color: #ffffff; border-bottom-color: #ffffff; }
 .home .navbar .nav-toggle { color: #ffffff; }
 
-.home .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.9);
+.home .navbar.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(126, 87, 194, 0.1);
+  box-shadow: 0 2px 14px rgba(126, 87, 194, 0.14);
 }
-.home .navbar.scrolled .nav-logo { color: #5B3F8A; }
-.home .navbar.scrolled .nav-link { color: #6B5B7A; }
-.home .navbar.scrolled .nav-link:hover { color: #7E57C2; }
-.home .navbar.scrolled .nav-link.active { color: #7E57C2; border-bottom-color: #7E57C2; }
-.home .navbar.scrolled .nav-toggle { color: #7E57C2; }
+.home .navbar.navbar-scrolled .nav-logo { color: #5B3F8A; }
+.home .navbar.navbar-scrolled .nav-link { color: #6B5B7A; }
+.home .navbar.navbar-scrolled .nav-link:hover { color: #7E57C2; }
+.home .navbar.navbar-scrolled .nav-link.active { color: #7E57C2; border-bottom-color: #7E57C2; }
+.home .navbar.navbar-scrolled .nav-toggle { color: #7E57C2; }
 
 /* ===== HERO ===== */
 .hero {
@@ -174,7 +180,7 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 auto;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 0.85fr 1.15fr;
   gap: 32px;
   align-items: end;
 }
@@ -299,8 +305,9 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero-image { display: flex; align-items: flex-end; justify-content: center; height: 100%; }
 .hero-mascot {
-  width: 100%;
-  max-width: 640px;
+  width: auto;
+  max-width: 100%;
+  max-height: 70vh;
   align-self: end;
   display: block;
   animation: float 3.5s ease-in-out infinite;
@@ -922,7 +929,7 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-desc { font-size: 14px; margin-left: auto; margin-right: auto; }
   .hero-cta, .hero-social { justify-content: center; }
   .hero-image { justify-content: center; }
-  .hero-mascot { max-width: 320px; margin: 0 auto; }
+  .hero-mascot { max-width: 320px; max-height: none; margin: 0 auto; }
 
   /* mobile dropdown is a white panel — keep links readable on home too */
   .home .nav-menu .nav-link { color: #6B5B7A; }

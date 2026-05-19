@@ -10,11 +10,11 @@ function toggleMenu() {
   document.querySelector('.nav-menu').classList.toggle('open');
 }
 
-// Solidify the transparent hero navbar once scrolled past the hero
+// Fade the transparent hero navbar to solid white once the user starts scrolling
 window.addEventListener('scroll', function () {
   const nav = document.querySelector('.navbar');
   if (!nav) return;
-  nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7);
+  nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
 });
 
 // Tab filtering
