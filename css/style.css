@@ -318,9 +318,9 @@ img { max-width: 100%; height: auto; display: block; }
   position: absolute;
   right: 0;
   bottom: 0;
-  top: 4vh;               /* taller box -> bigger rabbit; lower number = bigger */
-  width: 62vw;            /* generous; rabbit stays pinned right */
-  max-width: 1100px;
+  top: 20vh;              /* smaller rabbit; raise number = smaller */
+  width: 42vw;            /* narrower box so it clears the headline */
+  max-width: 680px;
   z-index: 2;
   pointer-events: none;
 }
