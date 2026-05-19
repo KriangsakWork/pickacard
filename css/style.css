@@ -179,13 +179,12 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 32px;
-  align-items: end;
+  display: flex;
+  align-items: center;
+  min-height: 92vh;
 }
 
-.hero-text { padding: 48px 0 64px; }
+.hero-text { max-width: 540px; padding: 48px 0; }
 
 .hero-badge {
   display: inline-block;
@@ -287,6 +286,14 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .btn-secondary[disabled] { cursor: not-allowed; opacity: 0.8; }
 
+/* Thai vowels/tone marks need breathing room on the hero CTAs */
+.hero .btn-primary,
+.hero .btn-secondary {
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
 .hero-social { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .hero-avatars { display: flex; }
 .hero-avatars span {
@@ -303,15 +310,22 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-avatars span:nth-child(4) { background: linear-gradient(135deg, #F0D9A8, #C2A157); }
 .hero-proof { font-size: 14px; color: rgba(255,255,255,0.75); }
 
-.hero-image { display: flex; align-items: flex-end; justify-content: center; height: 100%; }
+.hero-image {
+  position: absolute;
+  right: -10px;
+  bottom: -12vh;          /* overflows hero bottom, clipped by .hero overflow:hidden */
+  width: 56%;             /* right half only -> never overlaps left text */
+  height: 116vh;          /* large focal point (~80-90% visible) */
+  z-index: 2;
+  pointer-events: none;
+}
 .hero-mascot {
-  width: auto;
-  max-width: 100%;
-  max-height: 70vh;
-  align-self: end;
-  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
   animation: float 3.5s ease-in-out infinite;
-  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.4));
+  filter: drop-shadow(0 18px 36px rgba(0,0,0,0.45));
 }
 
 /* ===== SECTION TITLES ===== */
@@ -922,14 +936,32 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ===== RESPONSIVE (MOBILE) ===== */
 @media (max-width: 768px) {
-  .hero { min-height: auto; padding: 90px 0 48px; }
-  .hero-container { grid-template-columns: 1fr; gap: 24px; text-align: center; }
-  .hero-text { padding: 0; }
+  .hero { min-height: auto; padding: 96px 0 40px; }
+  .hero-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 0;
+  }
+  .hero-text { max-width: 100%; padding: 0; }
   .hero-title { font-size: clamp(40px, 12vw, 60px); }
   .hero-desc { font-size: 14px; margin-left: auto; margin-right: auto; }
   .hero-cta, .hero-social { justify-content: center; }
-  .hero-image { justify-content: center; }
-  .hero-mascot { max-width: 320px; max-height: none; margin: 0 auto; }
+  .hero-image {
+    position: static;
+    width: auto;
+    height: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 10px;
+  }
+  .hero-mascot {
+    width: auto;
+    height: auto;
+    max-width: 300px;
+    object-fit: initial;
+    margin: 0 auto;
+  }
 
   /* mobile dropdown is a white panel — keep links readable on home too */
   .home .nav-menu .nav-link { color: #6B5B7A; }
