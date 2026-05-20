@@ -734,11 +734,9 @@ img { max-width: 100%; height: auto; display: block; }
 .pile {
   cursor: pointer;
   position: relative;
-  /* ใช้ Keyframe dealCard พร้อมใส่ backwards เพื่อให้ไพ่ซ่อนตัวก่อนถึงเวลาแจก */
   animation: dealCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
 }
 
-/* ตั้งค่า Delay ให้ไพ่แต่ละใบตกลงมาไม่พร้อมกัน (ทีละใบ) */
 .pile:nth-child(1) { animation-delay: 0.1s; }
 .pile:nth-child(2) { animation-delay: 0.25s; }
 .pile:nth-child(3) { animation-delay: 0.4s; }
@@ -748,83 +746,49 @@ img { max-width: 100%; height: auto; display: block; }
   0% { 
     opacity: 0; 
     transform: translateY(100px) scale(0.8); 
-    /* ลบ filter: drop-shadow ออกไปเลยครับ */
   }
   100% { 
     opacity: 1; 
     transform: translateY(0) scale(1); 
-    /* ลบ filter: drop-shadow ออกไปเลยครับ */
   }
 }
 
-/* 2. สภาวะปกติ: ไพ่ลอยตัวและมีออร่าเรืองแสง (Idle Floating & Aura) */
+/* 2. สภาวะปกติ: ไพ่ลอยตัว (ตัดออร่าเรืองแสงออกเพื่อความลื่นไหล) */
 .pile img {
   width: 100%;
   position: relative; 
   z-index: 1; 
-  
-  /* เติม 2 บรรทัดนี้: เปิดระบบ Hardware Acceleration ช่วยแก้กระตุกและแสงแว้บใน iOS */
-  -webkit-backface-visibility: hidden;
-  will-change: transform, filter;
-
-  /* เล่น 2 แอนิเมชันพร้อมกันแบบวนลูป */
-  animation: idleFloat 3.5s ease-in-out infinite, magicalAura 3.5s ease-in-out infinite;
-  transition: transform 0.3s, filter 0.3s;
+  /* เหลือแค่แอนิเมชันลอยตัวอย่างเดียว */
+  animation: idleFloat 3.5s ease-in-out infinite;
+  transition: transform 0.3s;
 }
 
-/* ปรับหน่วงเวลาให้ไพ่แต่ละใบลอยขึ้นลงสลับจังหวะกัน จะได้ดูเป็นธรรมชาติ */
-.pile:nth-child(1) img { animation-delay: 0s, 0s; }
-.pile:nth-child(2) img { animation-delay: 0.8s, 0.8s; }
-.pile:nth-child(3) img { animation-delay: 1.6s, 1.6s; }
-.pile:nth-child(4) img { animation-delay: 2.4s, 2.4s; }
+.pile:nth-child(1) img { animation-delay: 0s; }
+.pile:nth-child(2) img { animation-delay: 0.8s; }
+.pile:nth-child(3) img { animation-delay: 1.6s; }
+.pile:nth-child(4) img { animation-delay: 2.4s; }
 
 @keyframes idleFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 
-@keyframes magicalAura {
-  0%, 100% { filter: drop-shadow(0 8px 16px rgba(126, 87, 194, 0.25)); }
-  50% { filter: drop-shadow(0 14px 28px rgba(180, 136, 240, 0.65)); }
-}
-
-/* 3. เมื่อเอาเมาส์ชี้ (Hover สำหรับคอมพิวเตอร์) */
+/* 3. เมื่อเอาเมาส์ชี้ (Hover) */
 .pile:hover img {
-  animation: none; /* หยุดแอนิเมชันลอยตัว */
-  transform: translateY(-16px) scale(1.05); /* ดันไพ่เด้งขึ้นและขยาย */
-  filter: drop-shadow(0 20px 36px rgba(180, 136, 240, 0.9)); /* ออร่าสว่างวาบ */
+  animation: none; 
+  transform: translateY(-16px) scale(1.05); 
 }
 
-/* 4. เมื่อใช้นิ้วแตะ (Tap Feedback สำหรับมือถือ) */
+/* 4. เมื่อใช้นิ้วแตะ (Tap) และสถานะถูกเลือก (Selected) */
 .pile:active img {
-  animation: none; /* หยุดทุกแอนิเมชันชั่วคราว */
-  transform: scale(0.92) !important; /* ย่อขนาดลงเหมือนโดนกดปุ่มจริงๆ */
-  filter: drop-shadow(0 4px 8px rgba(126, 87, 194, 0.5)); /* ลดแสงเงาลง */
-  transition: all 0.1s; /* ตอบสนองทันทีที่นิ้วแตะ */
+  animation: none; 
+  transform: scale(0.92) !important; 
+  transition: all 0.1s; 
 }
+
 .pile.selected img {
   transform: translateY(-16px) scale(1.05) !important;
-  filter: drop-shadow(0 20px 36px rgba(180, 136, 240, 0.9)) !important;
-  animation: none; /* สั่งให้หยุดลอยตอนที่ถูกเลือก */
-}
-
-.pile-num {
-  position: absolute;
-  bottom: -32px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 32px;
-  height: 32px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
-  color: #7E57C2;
-  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.2);
-  z-index: 10; /* เพิ่มบรรทัดนี้: ดันตัวเลขให้อยู่เลเยอร์บนสุดเสมอ */
+  animation: none; 
 }
 .hint {
   display: inline-flex;
