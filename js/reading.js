@@ -75,3 +75,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+
+let selectedCard = null; // ตัวแปรสำหรับจำว่าตอนนี้เลือกไพ่ใบไหนอยู่
+
+function handleCardClick(cardId, element) {
+  // แตะครั้งที่ 2: ถ้ากดใบเดิมซ้ำ ให้พาไปหน้าผลทำนายทันที
+  if (selectedCard === cardId) {
+    // ปรับลิงก์ด้านล่างนี้ให้ตรงกับระบบเปลี่ยนหน้าของคุณนะครับ
+    window.location.href = `?result=${cardId}`; 
+  } 
+  // แตะครั้งแรก: เลือกล็อกเป้าหมายไว้ก่อน
+  else {
+    // ล้างคลาส selected จากไพ่ใบอื่นออกให้หมด
+    document.querySelectorAll('.pile').forEach(pile => pile.classList.remove('selected'));
+    
+    // ตั้งค่าไพ่ใบนี้เป็นใบที่ถูกเลือก แล้วใส่คลาส .selected ให้มันเด้งค้างไว้
+    selectedCard = cardId;
+    element.classList.add('selected');
+  }
+}

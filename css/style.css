@@ -753,8 +753,16 @@ img { max-width: 100%; height: auto; display: block; }
 .pile:nth-child(4) { animation-delay: 0.55s; }
 
 @keyframes dealCard {
-  0% { opacity: 0; transform: translateY(-80px) scale(0.8); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+  0% { 
+    opacity: 0; 
+    transform: translateY(100px) scale(0.8); /* เปลี่ยนจากติดลบเป็น 100px เพื่อให้ลอยจากล่างขึ้นบน */
+    filter: drop-shadow(0 0 0 rgba(126, 87, 194, 0)); /* เริ่มต้นแบบไม่มีเงา */
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+    filter: drop-shadow(0 8px 16px rgba(126, 87, 194, 0.25)); /* จบด้วยเงาปกติ เพื่อไม่ให้กระตุก */
+  }
 }
 
 /* 2. สภาวะปกติ: ไพ่ลอยตัวและมีออร่าเรืองแสง (Idle Floating & Aura) */
@@ -795,6 +803,11 @@ img { max-width: 100%; height: auto; display: block; }
   filter: drop-shadow(0 4px 8px rgba(126, 87, 194, 0.5)); /* ลดแสงเงาลง */
   transition: all 0.1s; /* ตอบสนองทันทีที่นิ้วแตะ */
 }
+.pile.selected img {
+  transform: translateY(-16px) scale(1.05) !important;
+  filter: drop-shadow(0 20px 36px rgba(180, 136, 240, 0.9)) !important;
+  animation: none; /* สั่งให้หยุดลอยตอนที่ถูกเลือก */
+}
 
 .pile-num {
   position: absolute;
@@ -812,8 +825,8 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 700;
   color: #7E57C2;
   box-shadow: 0 4px 12px rgba(126, 87, 194, 0.2);
+  z-index: 10; /* เพิ่มบรรทัดนี้: ดันตัวเลขให้อยู่เลเยอร์บนสุดเสมอ */
 }
-
 .hint {
   display: inline-flex;
   align-items: center;
