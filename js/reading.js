@@ -68,30 +68,26 @@ function resetReading() {
   document.getElementById('pick-section').scrollIntoView({ behavior: 'smooth' });
 }
 
+let selectedCard = null; // ตัวแปรสำหรับจำไพ่ที่เลือก
+
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.pile').forEach(pile => {
     pile.addEventListener('click', function() {
-      showReading(this.getAttribute('data-pile'));
+      const cardId = this.getAttribute('data-pile');
+
+      // แตะครั้งที่ 2: ถ้าไพ่ที่กดคือไพ่ใบเดิมที่ล็อกเป้าไว้แล้ว ให้แสดงคำทำนาย
+      if (selectedCard === cardId) {
+        showReading(cardId); 
+      } 
+      // แตะครั้งแรก: เลือกล็อกเป้าหมายไพ่ใบนี้
+      else {
+        // ล้างสถานะไพ่ใบอื่นที่เคยเลือกไว้
+        document.querySelectorAll('.pile').forEach(p => p.classList.remove('selected'));
+        
+        // จำใบที่เพิ่งกด และใส่คลาส selected ให้มันเด้งค้างไว้
+        selectedCard = cardId;
+        this.classList.add('selected');
+      }
     });
   });
 });
-
-
-let selectedCard = null; // ตัวแปรสำหรับจำว่าตอนนี้เลือกไพ่ใบไหนอยู่
-
-function handleCardClick(cardId, element) {
-  // แตะครั้งที่ 2: ถ้ากดใบเดิมซ้ำ ให้พาไปหน้าผลทำนายทันที
-  if (selectedCard === cardId) {
-    // ปรับลิงก์ด้านล่างนี้ให้ตรงกับระบบเปลี่ยนหน้าของคุณนะครับ
-    window.location.href = `?result=${cardId}`; 
-  } 
-  // แตะครั้งแรก: เลือกล็อกเป้าหมายไว้ก่อน
-  else {
-    // ล้างคลาส selected จากไพ่ใบอื่นออกให้หมด
-    document.querySelectorAll('.pile').forEach(pile => pile.classList.remove('selected'));
-    
-    // ตั้งค่าไพ่ใบนี้เป็นใบที่ถูกเลือก แล้วใส่คลาส .selected ให้มันเด้งค้างไว้
-    selectedCard = cardId;
-    element.classList.add('selected');
-  }
-}
