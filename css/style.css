@@ -256,9 +256,10 @@ img { max-width: 100%; height: auto; display: block; }
   background: linear-gradient(135deg, #B488F0 0%, #7E57C2 100%);
   padding: 16px 40px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500; /* แก้ไข: ลดน้ำหนักฟอนต์จาก 600 เป็น 500 ให้เส้นบางลง */
   border-radius: 40px;
   box-shadow: 0 0 28px rgba(180,136,240,0.55), 0 10px 28px rgba(126,87,194,0.4);
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2); /* เพิ่ม: ใส่เงาบางๆ ดันข้อความให้ลอยและคมชัดขึ้น */
 }
 .hero .btn-primary:hover {
   transform: translateY(-2px);
@@ -285,6 +286,14 @@ img { max-width: 100%; height: auto; display: block; }
   border-color: rgba(255,255,255,0.8);
 }
 .btn-secondary[disabled] { cursor: not-allowed; opacity: 0.8; }
+
+/* Thai vowels/tone marks need breathing room on the hero CTAs */
+.hero .btn-primary,
+.hero .btn-secondary {
+  line-height: 1.6;
+  letter-spacing: 0.6px; /* แก้ไข: เพิ่มระยะห่างระหว่างตัวอักษร (จากเดิม 0.02em) */
+  font-weight: 500; /* แก้ไข: ลดน้ำหนักฟอนต์จาก 600 เป็น 500 */
+}
 
 /* Thai vowels/tone marks need breathing room on the hero CTAs */
 .hero .btn-primary,
