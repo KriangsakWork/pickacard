@@ -295,14 +295,6 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 500; /* แก้ไข: ลดน้ำหนักฟอนต์จาก 600 เป็น 500 */
 }
 
-/* Thai vowels/tone marks need breathing room on the hero CTAs */
-.hero .btn-primary,
-.hero .btn-secondary {
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-  font-weight: 600;
-}
-
 .hero-social { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .hero-avatars { display: flex; }
 .hero-avatars span {
