@@ -66,6 +66,10 @@ function resetReading() {
   document.getElementById('reading-content').innerHTML = '';
   document.getElementById('pick-section').style.display = 'block';
   document.getElementById('pick-section').scrollIntoView({ behavior: 'smooth' });
+  
+  // เพิ่ม 2 บรรทัดนี้: เพื่อรีเซ็ตไพ่ให้กลับมาปกติ เตรียมพร้อมสำหรับเลือกใหม่
+  selectedCard = null; 
+  document.querySelectorAll('.pile').forEach(p => p.classList.remove('selected'));
 }
 
 let selectedCard = null; // ตัวแปรสำหรับจำไพ่ที่เลือก
