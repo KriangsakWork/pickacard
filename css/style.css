@@ -747,19 +747,26 @@ img { max-width: 100%; height: auto; display: block; }
 @keyframes dealCard {
   0% { 
     opacity: 0; 
-    transform: translateY(100px) scale(0.8); /* เปลี่ยนจากติดลบเป็น 100px เพื่อให้ลอยจากล่างขึ้นบน */
-    filter: drop-shadow(0 0 0 rgba(126, 87, 194, 0)); /* เริ่มต้นแบบไม่มีเงา */
+    transform: translateY(100px) scale(0.8); 
+    /* ลบ filter: drop-shadow ออกไปเลยครับ */
   }
   100% { 
     opacity: 1; 
     transform: translateY(0) scale(1); 
-    filter: drop-shadow(0 8px 16px rgba(126, 87, 194, 0.25)); /* จบด้วยเงาปกติ เพื่อไม่ให้กระตุก */
+    /* ลบ filter: drop-shadow ออกไปเลยครับ */
   }
 }
 
 /* 2. สภาวะปกติ: ไพ่ลอยตัวและมีออร่าเรืองแสง (Idle Floating & Aura) */
 .pile img {
   width: 100%;
+  position: relative; 
+  z-index: 1; 
+  
+  /* เติม 2 บรรทัดนี้: เปิดระบบ Hardware Acceleration ช่วยแก้กระตุกและแสงแว้บใน iOS */
+  -webkit-backface-visibility: hidden;
+  will-change: transform, filter;
+
   /* เล่น 2 แอนิเมชันพร้อมกันแบบวนลูป */
   animation: idleFloat 3.5s ease-in-out infinite, magicalAura 3.5s ease-in-out infinite;
   transition: transform 0.3s, filter 0.3s;
