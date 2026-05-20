@@ -736,20 +736,65 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 auto 32px;
 }
 
+/* ===== แอนิเมชันลูกเล่นไพ่ (Card Effects) ===== */
+
+/* 1. ตอนโหลดหน้า: แอนิเมชันแจกไพ่สไลด์ลงมา */
 .pile {
   cursor: pointer;
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* ใช้ Keyframe dealCard พร้อมใส่ backwards เพื่อให้ไพ่ซ่อนตัวก่อนถึงเวลาแจก */
+  animation: dealCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
 }
 
+/* ตั้งค่า Delay ให้ไพ่แต่ละใบตกลงมาไม่พร้อมกัน (ทีละใบ) */
+.pile:nth-child(1) { animation-delay: 0.1s; }
+.pile:nth-child(2) { animation-delay: 0.25s; }
+.pile:nth-child(3) { animation-delay: 0.4s; }
+.pile:nth-child(4) { animation-delay: 0.55s; }
+
+@keyframes dealCard {
+  0% { opacity: 0; transform: translateY(-80px) scale(0.8); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 2. สภาวะปกติ: ไพ่ลอยตัวและมีออร่าเรืองแสง (Idle Floating & Aura) */
 .pile img {
   width: 100%;
-  filter: drop-shadow(0 10px 20px rgba(126, 87, 194, 0.25));
-  transition: filter 0.3s;
+  /* เล่น 2 แอนิเมชันพร้อมกันแบบวนลูป */
+  animation: idleFloat 3.5s ease-in-out infinite, magicalAura 3.5s ease-in-out infinite;
+  transition: transform 0.3s, filter 0.3s;
 }
 
-.pile:hover { transform: translateY(-12px); }
-.pile:hover img { filter: drop-shadow(0 18px 28px rgba(126, 87, 194, 0.4)); }
+/* ปรับหน่วงเวลาให้ไพ่แต่ละใบลอยขึ้นลงสลับจังหวะกัน จะได้ดูเป็นธรรมชาติ */
+.pile:nth-child(1) img { animation-delay: 0s, 0s; }
+.pile:nth-child(2) img { animation-delay: 0.8s, 0.8s; }
+.pile:nth-child(3) img { animation-delay: 1.6s, 1.6s; }
+.pile:nth-child(4) img { animation-delay: 2.4s, 2.4s; }
+
+@keyframes idleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes magicalAura {
+  0%, 100% { filter: drop-shadow(0 8px 16px rgba(126, 87, 194, 0.25)); }
+  50% { filter: drop-shadow(0 14px 28px rgba(180, 136, 240, 0.65)); }
+}
+
+/* 3. เมื่อเอาเมาส์ชี้ (Hover สำหรับคอมพิวเตอร์) */
+.pile:hover img {
+  animation: none; /* หยุดแอนิเมชันลอยตัว */
+  transform: translateY(-16px) scale(1.05); /* ดันไพ่เด้งขึ้นและขยาย */
+  filter: drop-shadow(0 20px 36px rgba(180, 136, 240, 0.9)); /* ออร่าสว่างวาบ */
+}
+
+/* 4. เมื่อใช้นิ้วแตะ (Tap Feedback สำหรับมือถือ) */
+.pile:active img {
+  animation: none; /* หยุดทุกแอนิเมชันชั่วคราว */
+  transform: scale(0.92) !important; /* ย่อขนาดลงเหมือนโดนกดปุ่มจริงๆ */
+  filter: drop-shadow(0 4px 8px rgba(126, 87, 194, 0.5)); /* ลดแสงเงาลง */
+  transition: all 0.1s; /* ตอบสนองทันทีที่นิ้วแตะ */
+}
 
 .pile-num {
   position: absolute;
