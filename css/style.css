@@ -819,6 +819,27 @@ img { max-width: 100%; height: auto; display: block; }
   transform: scale(0.95);
 }
 
+/* เลขใต้ไพ่: mystical badge วงกลมเล็ก ชิดใต้การ์ด */
+.pile-num {
+  width: 32px;
+  height: 32px;
+  margin: 10px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EDE4F7;
+  color: #5B3F8A;
+  border: 1px solid rgba(126, 87, 194, 0.22);
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(126, 87, 194, 0.12);
+  transition: opacity 0.3s ease;
+}
+
+.pile.dimmed .pile-num { opacity: 0.55; }
+
 /* 7. Badge บนไพ่ที่ถูกเลือก */
 .pile-badge {
   position: absolute;
