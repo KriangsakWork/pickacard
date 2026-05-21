@@ -862,8 +862,24 @@ img { max-width: 100%; height: auto; display: block; }
 .reveal-overlay.visible { opacity: 1; }
 
 .reveal-overlay-icon {
+  position: relative;
   font-size: 44px;
   animation: overlayPulse 1.2s ease-in-out infinite;
+}
+
+/* glow pulse เบา ๆ รอบลูกแก้ว */
+.reveal-overlay-icon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 132px;
+  height: 132px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(157, 128, 214, 0.55) 0%, rgba(157, 128, 214, 0) 70%);
+  animation: orbGlow 2.6s ease-in-out infinite;
 }
 
 .reveal-overlay-text {
@@ -873,16 +889,30 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.04em;
 }
 
+/* mascot กระต่ายสายเวทย์ — supporting visual */
+.reveal-overlay-mascot {
+  width: 140px;
+  height: auto;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
 @keyframes overlayPulse {
   0%, 100% { opacity: 0.55; transform: scale(0.96); }
   50%      { opacity: 1; transform: scale(1); }
+}
+
+@keyframes orbGlow {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.7; }
 }
 
 /* 9. เคารพการตั้งค่าลดการเคลื่อนไหวของผู้ใช้ */
 @media (prefers-reduced-motion: reduce) {
   .pile img,
   .pile.selected img,
-  .reveal-overlay-icon {
+  .reveal-overlay-icon,
+  .reveal-overlay-icon::before {
     animation: none !important;
   }
   .pile.selected img {

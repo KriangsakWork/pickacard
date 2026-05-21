@@ -93,7 +93,8 @@ function createOverlay() {
   overlay.className = 'reveal-overlay';
   overlay.innerHTML =
     '<div class="reveal-overlay-icon">🔮</div>' +
-    '<div class="reveal-overlay-text">กำลังเปิดคำทำนาย...</div>';
+    '<div class="reveal-overlay-text">กำลังเปิดคำทำนาย...</div>' +
+    '<img class="reveal-overlay-mascot" src="/images/fortune-rabbit-loading-mascot.png" alt="" aria-hidden="true">';
   document.body.appendChild(overlay);
   return overlay;
 }
