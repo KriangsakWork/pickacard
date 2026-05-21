@@ -890,8 +890,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
-.reading-card .header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
-.reading-card .badge { background: #E8DEF7; color: #5B3F8A; font-size: 11px; padding: 4px 12px; border-radius: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+.reading-card .header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.reading-card .badge { background: #E8DEF7; color: #3D2A5C; font-size: 12px; padding: 4px 12px; border-radius: 12px; font-weight: 600; }
 .reading-card .name-thai { font-size: 17px; font-weight: 700; color: #3D2A5C; }
 .reading-card .name-en { font-size: 17px; font-weight: 700; color: #3D2A5C; }
 .reading-card .meaning { font-size: 13px; color: #7E57C2; font-style: italic; margin-bottom: 12px; }
