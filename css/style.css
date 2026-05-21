@@ -198,15 +198,15 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 30px;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
-  margin-bottom: 22px;
+  margin-bottom: 28px;
 }
 
 .hero-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 800;
-  font-size: clamp(56px, 8vw, 104px);
-  line-height: 1.02;
-  margin-bottom: 22px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 4.6vw, 48px);
+  line-height: 1.32;
+  margin-bottom: 26px;
 }
 .hero-title .line-1,
 .hero-title .line-2 { display: block; }
@@ -216,16 +216,16 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-desc {
   font-size: 16px;
   line-height: 1.85;
-  color: rgba(255,255,255,0.85);
-  max-width: 430px;
-  margin-bottom: 30px;
+  color: rgba(255,255,255,0.88);
+  max-width: 420px;
+  margin-bottom: 38px;
 }
 
 .hero-cta {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 /* base .btn-primary — also used by blog article pages, keep intact */
@@ -317,11 +317,11 @@ img { max-width: 100%; height: auto; display: block; }
    transparent + pointer-events:none). */
 .hero-image {
   position: absolute;
-  right: -3vw;            /* nudge right so the tarot cards clear the headline */
+  right: -1vw;            /* nudge right so the tarot cards clear the headline */
   bottom: 0;
-  top: 10vh;              /* ~1.5x bigger than before; lower = bigger */
-  width: 52vw;
-  max-width: 900px;
+  top: 14vh;              /* supporting guide — sits beside content, never over it */
+  width: 44vw;
+  max-width: 660px;
   z-index: 2;
   pointer-events: none;
 }
@@ -1196,8 +1196,8 @@ img { max-width: 100%; height: auto; display: block; }
     min-height: 0;
   }
   .hero-text { max-width: 100%; padding: 0; }
-  .hero-title { font-size: clamp(40px, 12vw, 60px); }
-  .hero-desc { font-size: 14px; margin-left: auto; margin-right: auto; }
+  .hero-title { font-size: clamp(26px, 7.2vw, 33px); }
+  .hero-desc { font-size: 15px; max-width: 340px; margin-left: auto; margin-right: auto; }
   .hero-cta, .hero-social { justify-content: center; }
   .hero-image {
     position: static;
@@ -1213,7 +1213,7 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-mascot {
     width: auto;
     height: auto;
-    max-width: 300px;
+    max-width: 250px;
     object-fit: initial;
     margin: 0 auto;
   }
