@@ -439,7 +439,8 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 16px;
   padding: 0;
   overflow: hidden;
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   box-shadow: 0 4px 16px rgba(126, 87, 194, 0.08);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -459,6 +460,7 @@ img { max-width: 100%; height: auto; display: block; }
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  flex-shrink: 0;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -486,7 +488,12 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* CARD BODY */
-.topic-body { padding: 20px 22px 24px; }
+.topic-body {
+  padding: 20px 22px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 .topic-card h3 {
   font-size: 16px;
@@ -494,6 +501,10 @@ img { max-width: 100%; height: auto; display: block; }
   color: #3D2A5C;
   margin-bottom: 8px;
   line-height: 1.4;
+  min-height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .topic-card p {
@@ -504,7 +515,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .topic-cta {
-  display: inline-block;
+  align-self: center;
+  margin-top: auto;
   color: #7E57C2;
   font-size: 13px;
   font-weight: 600;
