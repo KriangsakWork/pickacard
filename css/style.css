@@ -872,7 +872,6 @@ img { max-width: 100%; height: auto; display: block; }
 .rc-media img {
   width: 100%;
   border-radius: 14px;
-  box-shadow: 0 10px 24px rgba(61, 42, 92, 0.3);
   display: block;
 }
 .rc-num {
