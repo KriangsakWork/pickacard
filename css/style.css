@@ -852,7 +852,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .tarot-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   max-width: 560px;
   margin: 0 auto 36px;
@@ -1048,7 +1048,7 @@ img { max-width: 100%; height: auto; display: block; }
 
   .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; max-width: 340px; }
   
-  .tarot-cards { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tarot-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .tarot-card { padding: 10px 6px; }
   .tarot-card .emoji { font-size: 32px; }
   .tarot-card .name-thai { font-size: 12px; }
