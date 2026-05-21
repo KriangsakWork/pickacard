@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>เขารู้สึกยังไงกับคุณ? ดูดวงด้วยไพ่ทาโรต์ฟรี | Pick a Card</title>
+  <meta name="description" content="เลือกไพ่ 1 ใบเพื่อสำรวจความรู้สึกที่แท้จริงในใจของอีกฝ่าย ว่าเขารู้สึกยังไงกับคุณกันแน่ ดูดวงความรักออนไลน์ฟรีจากไพ่ทาโรต์">
+  <meta name="keywords" content="เขารู้สึกยังไงกับคุณ, เขาคิดยังไงกับเรา, ดูดวงความรัก, pick a card ความรัก, ไพ่ทาโรต์ความรัก, ทำนายความรู้สึกของเขา">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="เขารู้สึกยังไงกับคุณ? ดูดวงด้วยไพ่ทาโรต์ฟรี">
+  <meta property="og:description" content="เลือกไพ่ 1 ใบเพื่อสำรวจความรู้สึกที่แท้จริงในใจของเขา">
+  <meta property="og:image" content="/images/og-image.jpg">
+
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo.png" alt="Pick a Card logo" width="36" height="36">
+        <span>PICK A CARD</span>
+      </a>
+      <div class="nav-menu">
+        <a href="/" class="nav-link">หน้าแรก</a>
+        <a href="/blog/" class="nav-link">บทความ</a>
+        <a href="/about.html" class="nav-link">เกี่ยวกับเรา</a>
+        <a href="/how-to.html" class="nav-link">วิธีการใช้งาน</a>
+        <a href="/faq.html" class="nav-link">คำถามที่พบบ่อย</a>
+      </div>
+      <button class="nav-toggle" aria-label="เมนู" onclick="toggleMenu()">☰</button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- PICK SECTION -->
+    <section class="reading-page" id="pick-section">
+      <a href="/" class="back-link">← กลับหน้าเลือกหัวข้อ</a>
+
+      <h1 class="section-title">เขารู้สึกยังไงกับคุณ?</h1>
+      <p class="section-subtitle">ตั้งใจนึกถึงเขาคนนั้น แล้วเลือกไพ่ที่ดึงดูดคุณ 1 ใบ</p>
+
+      <div class="cards-grid">
+        <div class="pile" data-pile="1">
+          <img src="/images/card-back.png" alt="ไพ่ที่ 1" loading="lazy">
+          <div class="pile-num">1</div>
+        </div>
+        <div class="pile" data-pile="2">
+          <img src="/images/card-back.png" alt="ไพ่ที่ 2" loading="lazy">
+          <div class="pile-num">2</div>
+        </div>
+        <div class="pile" data-pile="3">
+          <img src="/images/card-back.png" alt="ไพ่ที่ 3" loading="lazy">
+          <div class="pile-num">3</div>
+        </div>
+        <div class="pile" data-pile="4">
+          <img src="/images/card-back.png" alt="ไพ่ที่ 4" loading="lazy">
+          <div class="pile-num">4</div>
+        </div>
+      </div>
+
+      <div class="hint">💡 ไม่ต้องคิดนานเกินไป เลือกจากความรู้สึกแรกที่ดึงดูดคุณ</div>
+
+      <section class="mascot-section">
+        <img src="/images/mascot-pick.png" alt="Pick a Card mascot" class="mascot-img">
+        <p class="mascot-message">ขอบคุณที่ใช้ Pick a Card ✨</p>
+      </section>
+    </section>
+
+    <!-- READING SECTION (hidden) -->
+    <section class="reading-section" id="reading-section" style="display: none;">
+      <div id="reading-content"></div>
+    </section>
+
+  </main>
+
+  <!-- AD BANNER (BOTTOM) -->
+  <div class="ad-container">
+    <div class="ad-slot ad-728x90">
+      <span>📢 พื้นที่โฆษณา 728 × 90</span>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-quote">✦ ทุกการเลือก คือก้าวเล็กๆ ที่พาเราไปสู่สิ่งที่ดีกว่า ✦</p>
+      <div class="footer-links">
+        <a href="/blog/">บทความ</a>
+        <a href="/about.html">เกี่ยวกับเรา</a>
+        <a href="/how-to.html">วิธีการใช้งาน</a>
+        <a href="/faq.html">คำถามที่พบบ่อย</a>
+      </div>
+      <p class="footer-copy">© 2026 Pick a Card. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/readings-his-feelings.js"></script>
+  <script src="/js/reading.js"></script>
+</body>
+</html>

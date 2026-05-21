@@ -25,12 +25,17 @@ function showReading(pile) {
     html += '<article class="reveal-card" style="animation-delay: ' + (i * 0.15) + 's;">';
     html += '  <div class="rc-media">';
     html += '    <span class="rc-num">' + (i + 1) + '</span>';
-    html += '    <img src="/images/tarot/' + imgSlug + '.png" alt="' + card.name + '" loading="lazy">';
+    if (card.hasImage === false) {
+      html += '    <div class="rc-placeholder"><span>' + card.name + '</span></div>';
+    } else {
+      html += '    <img src="/images/tarot/' + imgSlug + '.png" alt="' + card.name + '" loading="lazy">';
+    }
     html += '  </div>';
     html += '  <div class="rc-info">';
     html += '    <div class="rc-heading">';
     html += '      <span class="rc-phase">' + card.phase + '</span>';
     html += '      <h3 class="rc-name">' + card.name + '</h3>';
+    if (card.thai) { html += '      <span class="rc-thai">' + card.thai + '</span>'; }
     html += '    </div>';
     html += '    <ul class="rc-keywords">';
     keywords.forEach(kw => { html += '<li>' + kw + '</li>'; });
