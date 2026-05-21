@@ -1,54 +1,48 @@
 // ============================================
-// HOME PAGE JS - Tab filtering + navigation
+// HOME PAGE JS — navigation + category filtering
 // ============================================
 
-function scrollToTopics() {
-  document.getElementById('topics-section').scrollIntoView({ behavior: 'smooth' });
-}
-
+// Mobile menu toggle
 function toggleMenu() {
-  document.querySelector('.nav-menu').classList.toggle('open');
+  const menu = document.querySelector('.nav-menu');
+  const toggle = document.querySelector('.nav-toggle');
+  if (!menu) return;
+  const open = menu.classList.toggle('open');
+  if (toggle) toggle.setAttribute('aria-expanded', String(open));
 }
 
-// Fade the transparent hero navbar to solid white once the user starts scrolling
+// Fade the transparent hero navbar to solid white once the user scrolls
 window.addEventListener('scroll', function () {
   const nav = document.querySelector('.navbar');
   if (!nav) return;
   nav.classList.toggle('navbar-scrolled', window.scrollY > 50);
 });
 
-// Tab filtering
-document.addEventListener('DOMContentLoaded', function() {
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const topicCards = document.querySelectorAll('.topic-card');
+// Category chip filtering for the popular readings rail
+document.addEventListener('DOMContentLoaded', function () {
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.reading-card');
+  const rail = document.getElementById('reading-rail');
+  const empty = document.getElementById('reading-empty');
 
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // เปลี่ยน active tab
-      tabButtons.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
+  if (!chips.length) return;
 
-      const category = this.getAttribute('data-category');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (c) { c.classList.remove('is-active'); });
+      chip.classList.add('is-active');
 
-      // กรองการ์ด
-      topicCards.forEach(card => {
-        if (category === 'all') {
-          card.classList.remove('hidden');
-        } else {
-          if (card.getAttribute('data-category') === category) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        }
+      const cat = chip.getAttribute('data-cat');
+      let visible = 0;
+
+      cards.forEach(function (card) {
+        const match = cat === 'all' || card.getAttribute('data-cat') === cat;
+        card.classList.toggle('is-hidden', !match);
+        if (match) visible++;
       });
-    });
-  });
 
-  // ป้องกันการคลิกที่การ์ด disabled
-  document.querySelectorAll('.topic-card.disabled').forEach(card => {
-    card.addEventListener('click', function(e) {
-      e.preventDefault();
+      if (empty) empty.hidden = visible > 0;
+      if (rail) rail.scrollTo({ left: 0, behavior: 'smooth' });
     });
   });
 });
