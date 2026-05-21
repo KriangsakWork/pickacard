@@ -43,165 +43,156 @@
   <!-- ============ HERO ============ -->
   <header class="hero">
     <div class="hero-bg" aria-hidden="true">
-      <img src="/images/hero-bg.jpg" alt="" fetchpriority="high">
+      <video class="hero-video" autoplay loop muted playsinline poster="/images/hero-bg.jpg">
+        <source src="/images/hero-bg.mp4" type="video/mp4">
+      </video>
       <div class="hero-overlay"></div>
     </div>
 
+    <img class="hero-float hero-float-1" src="/images/card-back.png" alt="" aria-hidden="true">
+    <img class="hero-float hero-float-2" src="/images/card-back.png" alt="" aria-hidden="true">
+
     <div class="hero-inner">
       <div class="hero-content">
-        <span class="hero-badge">✨ จักรวาลมีข้อความถึงคุณ</span>
+        <span class="hero-badge">✨ จักรวาลมีคำตอบรอคุณอยู่</span>
         <h1 class="hero-title">
           <span class="hero-title-line">Pick Your</span>
           <span class="hero-title-line hero-title-accent">Destiny</span>
         </h1>
-        <p class="hero-desc">เลือกไพ่ที่ดึงดูดคุณที่สุด แล้วค้นหาคำตอบที่ซ่อนอยู่ในใจคุณ</p>
+        <p class="hero-desc">เลือกไพ่ที่ดึงดูดใจคุณที่สุด แล้วปล่อยให้จักรวาลกระซิบคำตอบที่ซ่อนอยู่ในใจ</p>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#popular">✨ เปิดคำทำนายของคุณ</a>
+          <a class="btn btn-primary btn-lg" href="#topics">✨ เปิดไพ่ของคุณ</a>
           <button class="btn btn-secondary btn-lg" type="button" disabled title="เร็วๆ นี้">🌙 ดูดวงประจำวัน</button>
         </div>
         <div class="stat-badge">
           <span class="stat-badge-avatars" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </span>
-          <span class="stat-badge-text">วันนี้มีคนเลือกไพ่แล้ว <strong>12,483</strong> คน</span>
+          <span class="stat-badge-text">วันนี้มีคนเปิดไพ่แล้ว <strong>12,483</strong> คน</span>
         </div>
       </div>
 
       <div class="hero-art">
         <img class="hero-mascot" src="/images/mascot-hero.png" alt="กระต่ายพ่อมดนักพยากรณ์ Pick a Card" loading="eager">
-        <img class="hero-float hero-float-1" src="/images/card-back.png" alt="" aria-hidden="true">
-        <img class="hero-float hero-float-2" src="/images/card-back.png" alt="" aria-hidden="true">
       </div>
     </div>
   </header>
 
   <main>
-    <!-- ============ DISCOVERY ============ -->
-    <section class="section discovery-section">
-      <div class="container">
-        <div class="value-grid">
-          <article class="value-card">
-            <div class="value-icon">🃏</div>
-            <h3 class="value-title">เลือกไพ่ที่ดึงดูดคุณ</h3>
-            <p class="value-text">เลือกจากไพ่ที่คุณรู้สึกเชื่อมโยงด้วยใจ</p>
-          </article>
-          <article class="value-card">
-            <div class="value-icon">🌙</div>
-            <h3 class="value-title">รับข้อความจากจักรวาล</h3>
-            <p class="value-text">เปิดรับคำแนะนำที่ตรงกับช่วงเวลาของคุณ</p>
-          </article>
-          <article class="value-card">
-            <div class="value-icon">✨</div>
-            <h3 class="value-title">เข้าใจตัวเองมากขึ้น</h3>
-            <p class="value-text">ค้นพบมุมมองใหม่ ๆ ที่ซ่อนอยู่ในใจ</p>
-          </article>
-          <article class="value-card">
-            <div class="value-icon">💜</div>
-            <h3 class="value-title">ใช้ชีวิตด้วยหัวใจ</h3>
-            <p class="value-text">ตัดสินใจอย่างมั่นใจในทุกเส้นทาง</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ POPULAR READINGS ============ -->
-    <section class="section section-tint" id="popular">
+    <!-- ============ TOPIC DISCOVERY ============ -->
+    <section class="section" id="topics">
       <div class="container">
         <div class="section-head">
-          <div class="section-head-text">
-            <span class="eyebrow">✦ เลือกหัวข้อที่อยากรู้</span>
-            <h2 class="section-title">คำถามยอดนิยม</h2>
-            <p class="section-subtitle">เลือกหัวข้อจากใจคุณ แล้วเริ่มเปิดไพ่ได้ทันที</p>
-          </div>
+          <span class="eyebrow">เลือกหัวข้อที่อยากรู้</span>
+          <h2 class="section-title">เรื่องไหนที่ใจคุณอยากรู้คำตอบ</h2>
+          <p class="section-subtitle">เลือกหัวข้อที่ตรงกับใจคุณตอนนี้ แล้วเริ่มเปิดไพ่ได้ทันที</p>
         </div>
 
-        <div class="chip-row" role="tablist" aria-label="หมวดหมู่คำถาม">
-          <button class="chip is-active" type="button" data-cat="all">ทั้งหมด</button>
-          <button class="chip" type="button" data-cat="love">❤️ ความรัก</button>
-          <button class="chip" type="button" data-cat="career">💼 การงาน</button>
-          <button class="chip" type="button" data-cat="money">💰 การเงิน</button>
-          <button class="chip" type="button" data-cat="universe">✨ จักรวาล</button>
-        </div>
-
-        <div class="reading-rail" id="reading-rail">
-          <a class="reading-card" data-cat="love" href="/reading/missing-you.html">
-            <span class="reading-cat">ความรัก</span>
-            <div class="reading-icon">💗</div>
-            <h3 class="reading-title">คนๆ นั้นคิดถึงคุณอยู่มั้ย?</h3>
-            <p class="reading-text">รู้ว่าคนที่คุณคิดถึง เขาคิดถึงคุณอยู่หรือเปล่า</p>
-            <span class="reading-meta">เลือกไพ่แล้ว 6,921 ครั้ง</span>
+        <div class="topic-grid">
+          <a class="topic-card" href="/reading/his-feelings.html">
+            <div class="topic-media">
+              <img src="/images/banners/banner-his-feelings.png" alt="เขาคิดยังไงกับคุณ" loading="lazy">
+              <span class="topic-tag">ความรัก</span>
+            </div>
+            <div class="topic-body">
+              <h3 class="topic-title">เขาคิดยังไงกับคุณ</h3>
+              <p class="topic-hook">สำรวจความรู้สึกที่ซ่อนอยู่ลึก ๆ ในใจของเขา</p>
+              <span class="topic-cta">เปิดไพ่เลย →</span>
+            </div>
           </a>
 
-          <a class="reading-card" data-cat="love" href="/reading/his-feelings.html">
-            <span class="reading-cat">ความรัก</span>
-            <div class="reading-icon">🔮</div>
-            <h3 class="reading-title">เขารู้สึกยังไงกับคุณ?</h3>
-            <p class="reading-text">สำรวจความรู้สึกที่แท้จริงในใจของอีกฝ่าย</p>
-            <span class="reading-meta">เลือกไพ่แล้ว 5,244 ครั้ง</span>
+          <a class="topic-card" href="/reading/missing-you.html">
+            <div class="topic-media">
+              <img src="/images/banners/banner-missing-you.png" alt="คนนั้นยังคิดถึงคุณไหม" loading="lazy">
+              <span class="topic-tag">ความรัก</span>
+            </div>
+            <div class="topic-body">
+              <h3 class="topic-title">คนนั้นยังคิดถึงคุณไหม</h3>
+              <p class="topic-hook">รู้ว่าคนที่คุณคิดถึง เขายังมีคุณอยู่ในใจหรือเปล่า</p>
+              <span class="topic-cta">เปิดไพ่เลย →</span>
+            </div>
           </a>
 
-          <div class="reading-card is-soon" data-cat="love">
-            <span class="reading-cat">ความรัก</span>
-            <div class="reading-icon">🌹</div>
-            <h3 class="reading-title">เนื้อคู่ของคุณเป็นใคร?</h3>
-            <p class="reading-text">ค้นหาภาพคนที่จักรวาลกำลังเตรียมมาให้</p>
-            <span class="reading-badge">เร็วๆ นี้</span>
+          <div class="topic-card is-soon">
+            <div class="topic-media">
+              <img src="/images/banners/banner-love-return.png" alt="รักเก่าจะหวนคืนไหม" loading="lazy">
+              <span class="topic-tag">คนรักเก่า</span>
+              <span class="topic-soon-pill">เร็วๆ นี้</span>
+            </div>
+            <div class="topic-body">
+              <h3 class="topic-title">รักเก่าจะหวนคืนไหม</h3>
+              <p class="topic-hook">คำตอบสำหรับใจที่ยังไม่อาจลืมความรักครั้งก่อน</p>
+              <span class="topic-badge">กำลังจะเปิดให้เล่น</span>
+            </div>
           </div>
 
-          <div class="reading-card is-soon" data-cat="love">
-            <span class="reading-cat">ความรัก</span>
-            <div class="reading-icon">💞</div>
-            <h3 class="reading-title">ความรักจะกลับมามั้ย?</h3>
-            <p class="reading-text">คำตอบสำหรับคนที่ยังคิดถึงความรักครั้งเก่า</p>
-            <span class="reading-badge">เร็วๆ นี้</span>
+          <div class="topic-card is-soon">
+            <div class="topic-media">
+              <img src="/images/banners/banner-soulmate.png" alt="เนื้อคู่ของคุณคือใคร" loading="lazy">
+              <span class="topic-tag">เนื้อคู่</span>
+              <span class="topic-soon-pill">เร็วๆ นี้</span>
+            </div>
+            <div class="topic-body">
+              <h3 class="topic-title">เนื้อคู่ของคุณคือใคร</h3>
+              <p class="topic-hook">ค้นหาภาพคนที่จักรวาลกำลังเตรียมไว้ให้คุณ</p>
+              <span class="topic-badge">กำลังจะเปิดให้เล่น</span>
+            </div>
           </div>
 
-          <div class="reading-card is-soon" data-cat="career">
-            <span class="reading-cat">การงาน</span>
-            <div class="reading-icon">🧭</div>
-            <h3 class="reading-title">งานที่ใช่สำหรับคุณ</h3>
-            <p class="reading-text">ค้นหาทิศทางอาชีพที่เหมาะกับตัวตนของคุณ</p>
-            <span class="reading-badge">เร็วๆ นี้</span>
+          <div class="topic-card is-soon">
+            <div class="topic-media">
+              <img src="/images/banners/banner-future-opportunity.png" alt="อนาคต 3 เดือนข้างหน้า" loading="lazy">
+              <span class="topic-tag">อนาคต</span>
+              <span class="topic-soon-pill">เร็วๆ นี้</span>
+            </div>
+            <div class="topic-body">
+              <h3 class="topic-title">อนาคต 3 เดือนข้างหน้า</h3>
+              <p class="topic-hook">สิ่งที่กำลังจะเดินทางเข้ามาในชีวิตของคุณ</p>
+              <span class="topic-badge">กำลังจะเปิดให้เล่น</span>
+            </div>
           </div>
 
-          <div class="reading-card is-soon" data-cat="career">
-            <span class="reading-cat">การงาน</span>
-            <div class="reading-icon">🤝</div>
-            <h3 class="reading-title">เพื่อนร่วมงานคิดยังไงกับคุณ</h3>
-            <p class="reading-text">สำรวจมุมมองของคนรอบข้างในที่ทำงาน</p>
-            <span class="reading-badge">เร็วๆ นี้</span>
-          </div>
-
-          <div class="reading-card is-soon" data-cat="money">
-            <span class="reading-cat">การเงิน</span>
-            <div class="reading-icon">🪙</div>
-            <h3 class="reading-title">โชคลาภที่กำลังจะมา</h3>
-            <p class="reading-text">ทำนายดวงทรัพย์สินและโชคลาภในช่วงนี้</p>
-            <span class="reading-badge">เร็วๆ นี้</span>
-          </div>
-
-          <div class="reading-card is-soon" data-cat="universe">
-            <span class="reading-cat">จักรวาล</span>
-            <div class="reading-icon">⭐</div>
-            <h3 class="reading-title">ข้อความจากจักรวาล</h3>
-            <p class="reading-text">สิ่งที่จักรวาลอยากบอกคุณในวันนี้</p>
-            <span class="reading-badge">เร็วๆ นี้</span>
+          <div class="topic-card is-soon">
+            <div class="topic-media">
+              <img src="/images/banners/banner-luck.png" alt="เงินทองและโชคลาภ" loading="lazy">
+              <span class="topic-tag">การเงิน</span>
+              <span class="topic-soon-pill">เร็วๆ นี้</span>
+            </div>
+            <div class="topic-body">
+              <h3 class="topic-title">เงินทองและโชคลาภ</h3>
+              <p class="topic-hook">ทิศทางการเงินและโอกาสที่กำลังรออยู่ในช่วงนี้</p>
+              <span class="topic-badge">กำลังจะเปิดให้เล่น</span>
+            </div>
           </div>
         </div>
-        <p class="rail-empty" id="reading-empty" hidden>ยังไม่มีหัวข้อในหมวดนี้ เร็วๆ นี้</p>
       </div>
     </section>
 
-    <!-- ============ RECOMMENDED READINGS ============ -->
+    <!-- ============ FEATURED READER BANNER ============ -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="feature-banner">
+          <div class="feature-banner-visual">
+            <img src="/images/mascot-topics.png" alt="หมอดูแนะนำจาก Pick a Card" loading="lazy">
+          </div>
+          <div class="feature-banner-content">
+            <span class="feature-banner-tag">🔮 หมอดูแนะนำ</span>
+            <h2 class="feature-banner-title">ปรึกษาหมอดูตัวจริง แบบเจาะลึก</h2>
+            <p class="feature-banner-text">เตรียมพบกับบริการดูดวงส่วนตัวกับหมอดูที่เราคัดสรรมาเพื่อคุณ ทั้งเรื่องความรัก การงาน และเส้นทางชีวิต</p>
+            <a class="btn btn-primary" href="#topics">ดูรายละเอียด →</a>
+          </div>
+          <span class="feature-banner-badge">พื้นที่แนะนำ</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ POPULAR FORTUNES ============ -->
     <section class="section">
       <div class="container">
         <div class="section-head">
-          <div class="section-head-text">
-            <span class="eyebrow">✦ ไพ่จากสำรับ</span>
-            <h2 class="section-title">ไพ่แนะนำสำหรับคุณ</h2>
-            <p class="section-subtitle">ทำความรู้จักไพ่ทาโรต์และความหมายในแต่ละด้าน</p>
-          </div>
-          <a class="section-link" href="/blog/tarot-love-meaning.html">ดูทั้งหมด →</a>
+          <span class="eyebrow">ไพ่ยอดนิยม</span>
+          <h2 class="section-title">🌙 ไพ่ที่คนเปิดเยอะวันนี้</h2>
+          <p class="section-subtitle">ไพ่ที่คนส่วนใหญ่เปิดเจอบ่อยที่สุดในวันนี้ ลองดูว่ามีไพ่ของคุณไหม</p>
         </div>
 
         <div class="tarot-rail">
@@ -211,7 +202,8 @@
             </div>
             <div class="tarot-body">
               <h3 class="tarot-name">The Moon</h3>
-              <span class="tarot-tag">การหยั่งรู้</span>
+              <span class="tarot-tag">ความลึกลับ</span>
+              <span class="tarot-stat">🔥 เปิดวันนี้ 1,482 ครั้ง</span>
             </div>
           </article>
           <article class="tarot-card">
@@ -221,6 +213,7 @@
             <div class="tarot-body">
               <h3 class="tarot-name">The Lovers</h3>
               <span class="tarot-tag">ความรัก</span>
+              <span class="tarot-stat">🔥 เปิดวันนี้ 1,337 ครั้ง</span>
             </div>
           </article>
           <article class="tarot-card">
@@ -230,6 +223,7 @@
             <div class="tarot-body">
               <h3 class="tarot-name">The Star</h3>
               <span class="tarot-tag">ความหวัง</span>
+              <span class="tarot-stat">🔥 เปิดวันนี้ 1,209 ครั้ง</span>
             </div>
           </article>
           <article class="tarot-card">
@@ -239,6 +233,7 @@
             <div class="tarot-body">
               <h3 class="tarot-name">High Priestess</h3>
               <span class="tarot-tag">สัญชาตญาณ</span>
+              <span class="tarot-stat">🔥 เปิดวันนี้ 1,094 ครั้ง</span>
             </div>
           </article>
           <article class="tarot-card">
@@ -247,7 +242,8 @@
             </div>
             <div class="tarot-body">
               <h3 class="tarot-name">Two of Cups</h3>
-              <span class="tarot-tag">ความสัมพันธ์</span>
+              <span class="tarot-tag">ความผูกพัน</span>
+              <span class="tarot-stat">🔥 เปิดวันนี้ 988 ครั้ง</span>
             </div>
           </article>
           <article class="tarot-card">
@@ -257,8 +253,13 @@
             <div class="tarot-body">
               <h3 class="tarot-name">The Hermit</h3>
               <span class="tarot-tag">การค้นหาตัวเอง</span>
+              <span class="tarot-stat">🔥 เปิดวันนี้ 877 ครั้ง</span>
             </div>
           </article>
+        </div>
+
+        <div class="section-more">
+          <a href="/blog/tarot-love-meaning.html">เรียนรู้ความหมายไพ่ทั้งหมด →</a>
         </div>
       </div>
     </section>
@@ -267,17 +268,16 @@
     <section class="section section-tint">
       <div class="container">
         <div class="section-head">
-          <div class="section-head-text">
-            <span class="eyebrow">📚 เรื่องน่ารู้</span>
-            <h2 class="section-title">บทความล่าสุด</h2>
-            <p class="section-subtitle">ความรู้เกี่ยวกับไพ่ทาโรต์และการดูดวง</p>
-          </div>
-          <a class="section-link" href="/blog/">ดูทั้งหมด →</a>
+          <span class="eyebrow">เรื่องเล่าจากสำรับไพ่</span>
+          <h2 class="section-title">📖 บทความล่าสุด</h2>
+          <p class="section-subtitle">ความรู้และเรื่องน่ารู้เกี่ยวกับไพ่ทาโรต์และการดูดวง</p>
         </div>
 
         <div class="post-grid">
           <a class="post-card" href="/blog/how-to-pick-a-card.html">
-            <div class="post-thumb post-thumb-1" aria-hidden="true">🎴</div>
+            <div class="post-media">
+              <img src="/images/tarot/page-of-cups.png" alt="" loading="lazy">
+            </div>
             <div class="post-body">
               <h3 class="post-title">Pick a Card คืออะไร? วิธีดูดวงสไตล์ใหม่ที่กำลังฮิต</h3>
               <p class="post-text">เรียนรู้พื้นฐานของ Pick a Card และวิธีเลือกไพ่ให้แม่นยำ</p>
@@ -285,7 +285,9 @@
             </div>
           </a>
           <a class="post-card" href="/blog/tarot-love-meaning.html">
-            <div class="post-thumb post-thumb-2" aria-hidden="true">💜</div>
+            <div class="post-media">
+              <img src="/images/tarot/knight-of-cups.png" alt="" loading="lazy">
+            </div>
             <div class="post-body">
               <h3 class="post-title">ความหมายไพ่ทาโรต์ในเรื่องความรัก</h3>
               <p class="post-text">ทำความเข้าใจไพ่หลัก ๆ ที่มีผลต่อเรื่องความรัก</p>
@@ -293,13 +295,19 @@
             </div>
           </a>
           <a class="post-card" href="/blog/">
-            <div class="post-thumb post-thumb-3" aria-hidden="true">📖</div>
+            <div class="post-media">
+              <img src="/images/tarot/justice.png" alt="" loading="lazy">
+            </div>
             <div class="post-body">
-              <h3 class="post-title">ดูบทความทั้งหมด</h3>
-              <p class="post-text">อ่านเรื่องน่ารู้เพิ่มเติมเกี่ยวกับการดูดวง</p>
-              <span class="post-date">รวมบทความ →</span>
+              <h3 class="post-title">รวมบทความดูดวงทั้งหมด</h3>
+              <p class="post-text">อ่านเรื่องน่ารู้เพิ่มเติมเกี่ยวกับไพ่ทาโรต์และสายมู</p>
+              <span class="post-date">ดูทั้งหมด →</span>
             </div>
           </a>
+        </div>
+
+        <div class="section-more">
+          <a href="/blog/">อ่านบทความทั้งหมด →</a>
         </div>
       </div>
     </section>
@@ -307,28 +315,27 @@
     <!-- ============ TRUST / BENEFIT ============ -->
     <section class="section">
       <div class="container">
-        <div class="section-head section-head-center">
-          <div class="section-head-text">
-            <h2 class="section-title">ทำไมต้อง Pick a Card</h2>
-            <p class="section-subtitle">ออกแบบมาให้ใช้ง่าย ปลอดภัย และเป็นมิตรกับใจคุณ</p>
-          </div>
+        <div class="section-head">
+          <span class="eyebrow">ทำไมต้องเรา</span>
+          <h2 class="section-title">ทำไมต้องเลือก Pick a Card</h2>
+          <p class="section-subtitle">ออกแบบมาให้ใช้ง่าย ปลอดภัย และเป็นมิตรกับใจคุณ</p>
         </div>
 
-        <div class="value-grid value-grid-3">
-          <article class="value-card">
-            <div class="value-icon">💜</div>
-            <h3 class="value-title">ใช้ง่าย</h3>
-            <p class="value-text">เลือกไพ่เพียง 1 ใบ รับคำแนะนำได้ทันที</p>
+        <div class="benefit-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon">💜</div>
+            <h3 class="benefit-title">ใช้ง่าย</h3>
+            <p class="benefit-text">เลือกไพ่เพียง 1 ใบ รับคำแนะนำจากจักรวาลได้ทันที</p>
           </article>
-          <article class="value-card">
-            <div class="value-icon">🔒</div>
-            <h3 class="value-title">เป็นส่วนตัว</h3>
-            <p class="value-text">คำทำนายของคุณ เป็นความลับ 100%</p>
+          <article class="benefit-card">
+            <div class="benefit-icon">🔒</div>
+            <h3 class="benefit-title">เป็นส่วนตัว</h3>
+            <p class="benefit-text">คำทำนายของคุณ เป็นความลับเฉพาะคุณคนเดียว 100%</p>
           </article>
-          <article class="value-card">
-            <div class="value-icon">✨</div>
-            <h3 class="value-title">สร้างแรงบันดาลใจ</h3>
-            <p class="value-text">มองเห็นทางเลือกใหม่และพัฒนาตัวเอง</p>
+          <article class="benefit-card">
+            <div class="benefit-icon">✨</div>
+            <h3 class="benefit-title">สร้างแรงบันดาลใจ</h3>
+            <p class="benefit-text">มองเห็นทางเลือกใหม่ ๆ และก้าวต่อไปอย่างมั่นใจ</p>
           </article>
         </div>
       </div>
