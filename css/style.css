@@ -740,6 +740,8 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 auto 32px;
 }
 
+.cards-grid.locked { pointer-events: none; }
+
 /* ===== แอนิเมชันลูกเล่นไพ่ (Card Effects) ===== */
 
 /* 1. ตอนโหลดหน้า: แอนิเมชันแจกไพ่สไลด์ลงมา */
@@ -765,14 +767,14 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-/* 2. สภาวะปกติ: ไพ่ลอยตัว (ตัดออร่าเรืองแสงออกเพื่อความลื่นไหล) */
+/* 2. สภาวะปกติ: ไพ่ลอยตัวเบา ๆ ช้า ๆ */
 .pile img {
   width: 100%;
-  position: relative; 
-  z-index: 1; 
-  /* เหลือแค่แอนิเมชันลอยตัวอย่างเดียว */
-  animation: idleFloat 3.5s ease-in-out infinite;
-  transition: transform 0.3s;
+  position: relative;
+  z-index: 1;
+  border-radius: 10px;
+  animation: idleFloat 5.5s ease-in-out infinite;
+  transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
 }
 
 .pile:nth-child(1) img { animation-delay: 0s; }
@@ -782,25 +784,110 @@ img { max-width: 100%; height: auto; display: block; }
 
 @keyframes idleFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-6px); }
 }
 
-/* 3. เมื่อเอาเมาส์ชี้ (Hover) */
-.pile:hover img {
-  animation: none; 
-  transform: translateY(-16px) scale(1.05); 
+/* 3. เมื่อเอาเมาส์ชี้ (Hover) — เฉพาะไพ่ที่ยังไม่ถูกเลือก */
+.pile:not(.selected):not(.dimmed):hover img {
+  animation: none;
+  transform: translateY(-16px) scale(1.05);
 }
 
-/* 4. เมื่อใช้นิ้วแตะ (Tap) และสถานะถูกเลือก (Selected) */
-.pile:active img {
-  animation: none; 
-  transform: scale(0.92) !important; 
-  transition: all 0.1s; 
+/* 4. เมื่อใช้นิ้วแตะ (Tap) — เฉพาะไพ่ที่ยังไม่ถูกเลือก */
+.pile:not(.selected):not(.dimmed):active img {
+  animation: none;
+  transform: scale(0.92) !important;
+  transition: all 0.1s;
 }
 
+/* 5. ไพ่ที่ถูกเลือก: เด้งเบา ๆ + glow ม่วงอ่อน */
 .pile.selected img {
-  transform: translateY(-16px) scale(1.05) !important;
-  animation: none; 
+  animation: cardSelectBounce 0.45s ease-out forwards;
+  box-shadow: 0 0 22px rgba(126, 87, 194, 0.45);
+}
+
+@keyframes cardSelectBounce {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-14px) scale(1.06); }
+  100% { transform: translateY(-8px) scale(1.03); }
+}
+
+/* 6. ไพ่ใบอื่นเมื่อมีการเลือกแล้ว: จางลง + ย่อเล็กน้อย */
+.pile.dimmed img {
+  animation: none;
+  opacity: 0.55;
+  transform: scale(0.95);
+}
+
+/* 7. Badge บนไพ่ที่ถูกเลือก */
+.pile-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  z-index: 3;
+  transform: translateX(-50%) translateY(6px);
+  background: linear-gradient(135deg, #9D80D6, #7E57C2);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.pile.selected .pile-badge {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 8. Overlay ก่อนเข้าหน้าคำทำนาย */
+.reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: linear-gradient(160deg, #2E1A47 0%, #3D2A5C 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.reveal-overlay.visible { opacity: 1; }
+
+.reveal-overlay-icon {
+  font-size: 44px;
+  animation: overlayPulse 1.2s ease-in-out infinite;
+}
+
+.reveal-overlay-text {
+  color: #EDE4F7;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+@keyframes overlayPulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.96); }
+  50%      { opacity: 1; transform: scale(1); }
+}
+
+/* 9. เคารพการตั้งค่าลดการเคลื่อนไหวของผู้ใช้ */
+@media (prefers-reduced-motion: reduce) {
+  .pile img,
+  .pile.selected img,
+  .reveal-overlay-icon {
+    animation: none !important;
+  }
+  .pile.selected img {
+    transform: translateY(-8px) scale(1.03);
+  }
 }
 .hint {
   display: inline-flex;
@@ -873,7 +960,7 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 20px;
   padding: 30px 22px 26px;
   box-shadow: 0 12px 32px rgba(126, 87, 194, 0.1);
-  animation: fadeUp 0.6s ease-out backwards;
+  animation: fadeUp 0.5s ease-out backwards;
 }
 .rc-media {
   position: relative;
@@ -964,7 +1051,7 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 26px 28px;
   box-shadow: 0 12px 32px rgba(126, 87, 194, 0.1);
   margin-bottom: 18px;
-  animation: fadeUp 0.6s ease-out backwards;
+  animation: fadeUp 0.5s ease-out backwards;
 }
 .reveal-summary-icon {
   flex-shrink: 0;
