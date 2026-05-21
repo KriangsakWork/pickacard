@@ -824,94 +824,146 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* READING CONTENT */
-.reading-section { padding: 40px 0 60px; animation: fadeIn 0.6s ease-out; }
+.reading-section { padding: 40px 0 64px; animation: fadeIn 0.6s ease-out; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.reading-intro {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 36px;
-  text-align: left;
-}
-.intro-mascot {
-  width: 160px;
-  height: auto;
-  flex-shrink: 0;
-  filter: drop-shadow(0 6px 16px rgba(126, 87, 194, 0.25));
-  animation: float 3s ease-in-out infinite;
-}
-.intro-text { max-width: 400px; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
-.reading-intro .label { font-size: 13px; color: #7E57C2; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
-.reading-intro h2 { font-size: 22px; color: #3D2A5C; font-style: italic; font-weight: 500; }
 
-.tarot-cards {
+/* reveal header */
+.reveal-head { text-align: center; max-width: 620px; margin: 0 auto 38px; }
+.reveal-eyebrow {
+  font-size: 14px; font-weight: 600; color: #7E57C2;
+  letter-spacing: 0.12em; margin-bottom: 14px;
+}
+.reveal-title {
+  font-size: 30px; line-height: 1.45; font-weight: 700;
+  font-style: italic; color: #3D2A5C; margin-bottom: 12px;
+}
+.reveal-sub { font-size: 15px; color: #6B5B7A; }
+
+/* reveal cards */
+.reveal-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  max-width: 560px;
-  margin: 0 auto 36px;
+  gap: 22px;
+  margin-bottom: 30px;
 }
-
-.tarot-card {
-  aspect-ratio: 2/3.2;
-  background: white;
-  border: 1px solid rgba(126, 87, 194, 0.2);
-  border-radius: 12px;
-  padding: 16px 10px;
+.reveal-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 6px 16px rgba(126, 87, 194, 0.12);
-  animation: flipIn 0.8s ease-out backwards;
-}
-
-.tarot-card .phase { font-size: 11px; color: #7E57C2; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
-.tarot-card img { width: 100%; border-radius: 12px; padding: 4px; object-fit: cover; overflow: hidden; box-shadow: 0 4px 12px rgba(126, 87, 194, 0.15); }
-.tarot-card .name-en { font-size: 14px; color: #3D2A5C; font-weight: 600; text-align: center; }
-
-@keyframes flipIn { from { opacity: 0; transform: rotateY(90deg); } to { opacity: 1; transform: rotateY(0); } }
-
-.reading-card {
-  background: white;
-  border-radius: 14px;
-  padding: 24px 28px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 10px rgba(126, 87, 194, 0.08);
+  background: #fff;
+  border: 1px solid rgba(126, 87, 194, 0.13);
+  border-radius: 20px;
+  padding: 30px 22px 26px;
+  box-shadow: 0 12px 32px rgba(126, 87, 194, 0.1);
   animation: fadeUp 0.6s ease-out backwards;
+}
+.rc-media {
+  position: relative;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 18px;
+}
+.rc-media img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(61, 42, 92, 0.3);
+  display: block;
+}
+.rc-num {
+  position: absolute;
+  top: -16px; left: 50%;
+  transform: translateX(-50%);
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: #fff;
+  background: linear-gradient(135deg, #9D80D6, #7E57C2);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 5px 12px rgba(126, 87, 194, 0.45);
+}
+.rc-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rc-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+.rc-phase { font-size: 13px; font-weight: 600; color: #7E57C2; }
+.rc-name { font-size: 19px; font-weight: 700; color: #3D2A5C; }
+.rc-keywords {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 6px;
+}
+.rc-keywords li { font-size: 13px; color: #7E57C2; }
+.rc-keywords li:not(:last-child)::after {
+  content: "•";
+  margin-left: 6px;
+  color: rgba(126, 87, 194, 0.45);
+}
+.rc-text {
+  width: 100%;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(126, 87, 194, 0.12);
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: #4A3A66;
   text-align: left;
 }
 
-@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-
-.reading-card .header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
-.reading-card .badge { background: #E8DEF7; color: #5B3F8A; font-size: 11px; padding: 4px 12px; border-radius: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
-.reading-card .name-thai { font-size: 17px; font-weight: 700; color: #3D2A5C; }
-.reading-card .name-en { font-size: 17px; font-weight: 700; color: #3D2A5C; }
-.reading-card .meaning { font-size: 13px; color: #7E57C2; font-style: italic; margin-bottom: 12px; }
-.reading-card .text { font-size: 15px; line-height: 1.9; color: #3D2A5C; }
-
-.universe-message {
-  margin-top: 36px;
-  padding: 32px;
-  background: linear-gradient(135deg, #7E57C2 0%, #5B3F8A 100%);
+/* reveal summary */
+.reveal-summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: #fff;
+  border: 1px solid rgba(126, 87, 194, 0.13);
   border-radius: 20px;
-  color: white;
+  padding: 26px 28px;
+  box-shadow: 0 12px 32px rgba(126, 87, 194, 0.1);
+  margin-bottom: 18px;
+  animation: fadeUp 0.6s ease-out backwards;
+}
+.reveal-summary-icon {
+  flex-shrink: 0;
+  width: 54px; height: 54px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  background: linear-gradient(135deg, #EDE4F7, #E2D5F1);
+  border-radius: 50%;
+}
+.reveal-summary-title { font-size: 18px; font-weight: 700; color: #7E57C2; margin-bottom: 7px; }
+.reveal-summary-body p { font-size: 15px; line-height: 1.85; color: #4A3A66; }
+
+/* reveal disclaimer */
+.reveal-disclaimer {
   text-align: center;
-  box-shadow: 0 12px 32px rgba(126, 87, 194, 0.3);
+  font-size: 13px;
+  color: #9B8AB5;
+  margin: 2px 0 26px;
 }
 
-.universe-message .label { font-size: 12px; letter-spacing: 0.25em; margin-bottom: 14px; opacity: 0.85; }
-.universe-message p { font-size: 18px; line-height: 1.75; font-style: italic; }
-
-.reset-btn-container { text-align: center; margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
+/* reveal actions */
+.reveal-actions {
+  display: flex; gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .btn-reset, .btn-back-home {
   border: 1px solid rgba(126, 87, 194, 0.3);
   padding: 12px 28px;
@@ -921,13 +973,13 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 500;
   font-family: inherit;
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
 }
-
-.btn-reset { background: white; color: #7E57C2; }
-.btn-reset:hover { background: #7E57C2; color: white; border-color: #7E57C2; }
-
-.btn-back-home { background: transparent; color: #6B5B7A; }
-.btn-back-home:hover { background: rgba(255, 255, 255, 0.5); color: #7E57C2; }
+.btn-reset { background: #7E57C2; color: #fff; border-color: #7E57C2; }
+.btn-reset:hover { background: #6B47B0; border-color: #6B47B0; }
+.btn-back-home { background: #fff; color: #7E57C2; }
+.btn-back-home:hover { background: #F3EEFA; }
 
 /* ===== CONTENT PAGES (about, how-to, faq) ===== */
 .content-page { padding: 48px 0; max-width: 760px; margin: 0 auto; }
@@ -1048,27 +1100,65 @@ img { max-width: 100%; height: auto; display: block; }
 
   .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; max-width: 340px; }
   
-  .tarot-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-  .tarot-card { padding: 10px 6px; }
-  .tarot-card .emoji { font-size: 32px; }
-  .tarot-card .name-thai { font-size: 12px; }
-  .tarot-card .name-en { font-size: 10px; }
-  
-  .reading-card { padding: 18px 20px; }
-  .reading-card .text { font-size: 14px; }
+  .reveal-head { margin-bottom: 26px; }
+  .reveal-eyebrow { font-size: 13px; }
+  .reveal-title { font-size: 23px; }
+  .reveal-sub { font-size: 14px; }
+
+  .reveal-cards { grid-template-columns: 1fr; gap: 16px; }
+  .reveal-card {
+    display: grid;
+    grid-template-columns: 104px 1fr;
+    grid-template-areas:
+      "media info"
+      "text  text";
+    align-items: center;
+    column-gap: 14px;
+    padding: 22px 18px;
+  }
+  .rc-media { grid-area: media; max-width: 104px; margin-bottom: 0; }
+  .rc-media img { border-radius: 11px; }
+  .rc-num { width: 28px; height: 28px; font-size: 12px; top: -10px; left: -8px; transform: none; }
+  .rc-info { grid-area: info; align-items: flex-start; }
+  .rc-heading {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .rc-phase {
+    background: #E8DEF7;
+    color: #5B3F8A;
+    padding: 3px 11px;
+    border-radius: 11px;
+    font-size: 11px;
+  }
+  .rc-name { font-size: 17px; }
+  .rc-keywords {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .rc-keywords li { display: flex; align-items: center; gap: 8px; }
+  .rc-keywords li::before { content: "✦"; color: #7E57C2; font-size: 11px; }
+  .rc-keywords li:not(:last-child)::after { content: none; }
+  .rc-text {
+    grid-area: text;
+    margin-top: 16px;
+    padding-top: 16px;
+    font-size: 14px;
+  }
 
   .mascot-img { width: 160px; }
   .mascot-section { padding: 24px 0 12px; }
 
-  .reading-intro {
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
-  }
-  .intro-mascot { width: 120px; }
-  
-  .universe-message { padding: 24px 20px; }
-  .universe-message p { font-size: 15px; }
+  .reveal-summary { padding: 20px; gap: 14px; }
+  .reveal-summary-icon { width: 46px; height: 46px; font-size: 21px; }
+  .reveal-summary-title { font-size: 16px; }
+  .reveal-summary-body p { font-size: 14px; }
+
+  .reveal-disclaimer { font-size: 12px; }
   
   .features-grid { grid-template-columns: 1fr; gap: 14px; }
   .footer-links { gap: 16px; }

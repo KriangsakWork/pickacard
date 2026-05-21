@@ -12,44 +12,48 @@ function showReading(pile) {
 
   let html = '';
 
-  html += '<div class="reading-intro">';
-  html += '  <img src="/images/mascot-reveal.png" alt="Pick a Card mascot" class="intro-mascot">';
-  html += '  <div class="intro-text">';
-  html += '    <div class="label">✦ คำทำนายสำหรับคุณ ✦</div>';
-  html += '    <h2>' + reading.intro + '</h2>';
-  html += '  </div>';
-  html += '</div>';
+  html += '<header class="reveal-head">';
+  html += '  <div class="reveal-eyebrow">✦ คำทำนายสำหรับคุณ ✦</div>';
+  html += '  <h2 class="reveal-title">' + reading.intro + '</h2>';
+  html += '  <p class="reveal-sub">ไพ่ทั้ง 3 ใบนี้คือคำแนะนำและคำตอบที่คุณกำลังมองหา</p>';
+  html += '</header>';
 
-  html += '<div class="tarot-cards">';
+  html += '<div class="reveal-cards">';
   reading.cards.forEach((card, i) => {
     const imgSlug = card.name.toLowerCase().replace(/\s+/g, '-');
-    html += '<div class="tarot-card" style="animation-delay: ' + (i * 0.3) + 's;">';
-    html += '  <div class="phase">' + card.phase + '</div>';
-    html += '  <img src="/images/tarot/' + imgSlug + '.png" alt="' + card.name + '" loading="lazy">';
-    html += '  <div class="name-en">' + card.name + '</div>';
-    html += '</div>';
-  });
-  html += '</div>';
-
-  reading.cards.forEach((card, i) => {
-    html += '<div class="reading-card" style="animation-delay: ' + (1 + i * 0.3) + 's;">';
-    html += '  <div class="header">';
-    html += '    <span class="badge">' + card.phase + '</span>';
-    html += '    <span class="name-en">' + card.name + '</span>';
+    const keywords = card.meaning.trim().split(/\s+/);
+    html += '<article class="reveal-card" style="animation-delay: ' + (i * 0.15) + 's;">';
+    html += '  <div class="rc-media">';
+    html += '    <span class="rc-num">' + (i + 1) + '</span>';
+    html += '    <img src="/images/tarot/' + imgSlug + '.png" alt="' + card.name + '" loading="lazy">';
     html += '  </div>';
-    html += '  <p class="meaning">' + card.meaning + '</p>';
-    html += '  <p class="text">' + card.text + '</p>';
-    html += '</div>';
+    html += '  <div class="rc-info">';
+    html += '    <div class="rc-heading">';
+    html += '      <span class="rc-phase">' + card.phase + '</span>';
+    html += '      <h3 class="rc-name">' + card.name + '</h3>';
+    html += '    </div>';
+    html += '    <ul class="rc-keywords">';
+    keywords.forEach(kw => { html += '<li>' + kw + '</li>'; });
+    html += '    </ul>';
+    html += '  </div>';
+    html += '  <p class="rc-text">' + card.text + '</p>';
+    html += '</article>';
   });
-
-  html += '<div class="universe-message" style="animation: fadeUp 0.6s ease-out ' + (1 + reading.cards.length * 0.3) + 's backwards;">';
-  html += '  <div class="label">✦ ข้อความจากจักรวาล ✦</div>';
-  html += '  <p>"' + reading.message + '"</p>';
   html += '</div>';
 
-  html += '<div class="reset-btn-container">';
+  html += '<section class="reveal-summary" style="animation-delay: ' + (reading.cards.length * 0.15 + 0.1) + 's;">';
+  html += '  <div class="reveal-summary-icon">🌙</div>';
+  html += '  <div class="reveal-summary-body">';
+  html += '    <h3 class="reveal-summary-title">สรุปคำทำนาย</h3>';
+  html += '    <p>' + reading.message + '</p>';
+  html += '  </div>';
+  html += '</section>';
+
+  html += '<p class="reveal-disclaimer">* คำทำนายนี้เป็นแนวทางเพื่อการพิจารณา ไม่สามารถยืนยันผลลัพธ์ได้แน่นอน</p>';
+
+  html += '<div class="reveal-actions">';
   html += '  <button class="btn-reset" onclick="resetReading()">↺ เปิดไพ่ใหม่</button>';
-  html += '  <a href="/" class="btn-back-home" style="text-decoration:none; display:inline-flex; align-items:center;">← กลับหน้าแรก</a>';
+  html += '  <a href="/" class="btn-back-home">← กลับหน้าแรก</a>';
   html += '</div>';
 
   document.getElementById('reading-content').innerHTML = html;
