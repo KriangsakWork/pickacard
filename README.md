@@ -19,14 +19,33 @@ duangjai/
 │   ├── how-to-pick-a-card.html      (บทความ: Pick a Card คืออะไร)
 │   └── tarot-love-meaning.html      (บทความ: ความหมายไพ่ทาโรต์ความรัก)
 │
+├── quick-reading.html               (ดูดวงจากคำถาม: พิมพ์คำถาม → เปิดไพ่ 3 ใบ)
+│
+├── data/
+│   ├── tarot-meanings.json          (คลังความหมายไพ่ทาโรต์ — แยกเนื้อหาจาก UI)
+│   └── intent-keywords.json         (คีย์เวิร์ดตรวจจับหมวดคำถาม + เทมเพลตคำทำนาย)
+│
 ├── css/style.css                    (สไตล์ทั้งหมด)
 ├── js/
 │   ├── home.js                      (tabs filtering หน้าแรก)
 │   ├── reading.js                   (logic หน้า reading)
+│   ├── tarot-engine.js              (interpretation engine — ใช้ซ้ำได้ ไม่ผูกกับ DOM)
+│   ├── quick-reading.js             (page controller ของ quick-reading.html)
 │   └── readings-missing-you.js      (ข้อมูลคำทำนาย)
 │
 └── images/                          (รูปทั้งหมด)
 ```
+
+## ฟีเจอร์ "ดูดวงจากคำถาม" (Quick Reading 3 ใบ)
+
+ผู้ใช้พิมพ์คำถาม → ตรวจจับหมวด (keyword matching) → สุ่มไพ่ 3 ใบ → ประกอบคำทำนายจากความหมายที่เตรียมไว้ ไม่มีการเรียก API หรือใช้ AI ทำงานฝั่ง client ทั้งหมด
+
+**กฎสำคัญ:** ห้าม hardcode ความหมายไพ่ไว้ใน component — เก็บทุกอย่างใน `data/*.json`
+
+วิธีขยายระบบ:
+- **เพิ่มไพ่ใหม่** → เพิ่ม object ใน `cards` ของ `data/tarot-meanings.json` (ใส่ความหมายครบทุกหมวด + วางรูปใน `images/tarot/`)
+- **เพิ่มหมวดคำถาม** → เพิ่ม category ใน `data/intent-keywords.json` พร้อม `keywords` แล้วเพิ่ม key หมวดนั้นใน `meanings` ของไพ่ทุกใบ
+- **เพิ่มไพ่กลับหัว (reversed)** → เพิ่ม key `reversed` ในแต่ละหมวดของ `meanings` (schema รองรับไว้แล้ว)
 
 ## วิธีเพิ่มหัวข้อดูดวงใหม่ในอนาคต
 
