@@ -15,7 +15,7 @@ function showReading(pile) {
   html += '<header class="reveal-head">';
   html += '  <div class="reveal-eyebrow">✦ คำทำนายสำหรับคุณ ✦</div>';
   html += '  <h2 class="reveal-title">' + reading.intro + '</h2>';
-  html += '  <p class="reveal-sub">ไพ่ทั้ง 3 ใบนี้คือคำแนะนำและคำตอบที่คุณกำลังมองหา</p>';
+  html += '  <p class="reveal-sub">' + (reading.sub || 'ไพ่ทั้ง 3 ใบนี้คือคำแนะนำและคำตอบที่คุณกำลังมองหา') + '</p>';
   html += '</header>';
 
   html += '<div class="reveal-cards">';
@@ -53,6 +53,16 @@ function showReading(pile) {
   html += '    <p>' + reading.message + '</p>';
   html += '  </div>';
   html += '</section>';
+
+  if (reading.advice) {
+    html += '<section class="reveal-summary" style="animation-delay: ' + (reading.cards.length * 0.12 + 0.1) + 's;">';
+    html += '  <div class="reveal-summary-icon">🕯️</div>';
+    html += '  <div class="reveal-summary-body">';
+    html += '    <h3 class="reveal-summary-title">คำแนะนำจากจักรวาล</h3>';
+    html += '    <p>' + reading.advice + '</p>';
+    html += '  </div>';
+    html += '</section>';
+  }
 
   html += '<p class="reveal-disclaimer">* คำทำนายนี้เป็นแนวทางเพื่อการพิจารณา ไม่สามารถยืนยันผลลัพธ์ได้แน่นอน</p>';
 
