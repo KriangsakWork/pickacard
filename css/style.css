@@ -1536,3 +1536,124 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 
   .blog-list .article-card { flex-direction: column; text-align: center; }
 }
+
+/* ============================================================
+   13. ALL READINGS PAGE — toolbar, filters, search, featured tag
+   (used by /readings.html — reuses .topic-grid / .topic-card)
+   ============================================================ */
+.readings-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-5);
+}
+
+/* Search */
+.readings-search {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.readings-search input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-pill);
+  padding: 12px 18px 12px 42px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.readings-search input:focus {
+  outline: none;
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px var(--c-primary-soft);
+}
+.readings-search input::placeholder { color: var(--c-ink-mute); }
+.readings-search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* Category filter chips */
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+}
+.filter-chip {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-ink-soft);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-pill);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.filter-chip:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
+}
+.filter-chip.is-active {
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: #fff;
+}
+
+/* Result count */
+.readings-count {
+  text-align: center;
+  font-size: 13px;
+  color: var(--c-ink-mute);
+  margin-bottom: var(--sp-5);
+  min-height: 18px;
+}
+
+/* Featured tag on a topic card */
+.topic-feature-pill {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  background: linear-gradient(135deg, #F0DCA0, var(--c-accent));
+  color: var(--c-night-1);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+}
+
+/* Empty state */
+.readings-empty {
+  text-align: center;
+  padding: var(--sp-7) var(--sp-4);
+}
+.readings-empty-icon { font-size: 40px; margin-bottom: var(--sp-3); }
+.readings-empty-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 4px;
+}
+.readings-empty-text { font-size: 14px; color: var(--c-ink-soft); }
+
+@media (min-width: 760px) {
+  .readings-toolbar {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .readings-search { margin: 0; flex-shrink: 0; }
+  .filter-chips { justify-content: flex-start; }
+}
