@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ดูดวงจากคำถาม เปิดไพ่ทาโรต์ 3 ใบ ฟรี | Pick a Card</title>
+  <meta name="description" content="พิมพ์คำถามที่คุณอยากรู้ เรื่องความรัก การงาน การเงิน หรืออนาคต ระบบจะเปิดไพ่ทาโรต์ 3 ใบ พร้อมคำทำนายเฉพาะสำหรับคำถามของคุณ ฟรี ไม่ต้องสมัคร">
+  <meta name="keywords" content="ดูดวงจากคำถาม, ถามไพ่ทาโรต์, เปิดไพ่ 3 ใบ, ดูดวงความรัก, ดูดวงการงาน, ดูดวงออนไลน์ฟรี, ทาโรต์ 3 ใบ">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ดูดวงจากคำถาม เปิดไพ่ทาโรต์ 3 ใบ ฟรี | Pick a Card">
+  <meta property="og:description" content="พิมพ์คำถามที่คุณอยากรู้ แล้วให้ไพ่ทาโรต์ 3 ใบตอบคุณ">
+  <meta property="og:image" content="/images/og-image.jpg">
+  <meta property="og:locale" content="th_TH">
+
+  <link rel="canonical" href="/quick-reading.html">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo.png" alt="Pick a Card logo" width="36" height="36">
+        <span>PICK A CARD</span>
+      </a>
+      <div class="nav-menu">
+        <a href="/" class="nav-link">หน้าแรก</a>
+        <a href="/blog/" class="nav-link">บทความ</a>
+        <a href="/about.html" class="nav-link">เกี่ยวกับเรา</a>
+        <a href="/how-to.html" class="nav-link">วิธีการใช้งาน</a>
+        <a href="/faq.html" class="nav-link">คำถามที่พบบ่อย</a>
+      </div>
+      <button class="nav-toggle" aria-label="เมนู" onclick="toggleMenu()">☰</button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- ASK SECTION -->
+    <section class="reading-page" id="ask-section">
+      <a href="/" class="back-link">← กลับหน้าแรก</a>
+
+      <h1 class="section-title">พิมพ์คำถาม แล้วเปิดไพ่ 3 ใบ</h1>
+      <p class="section-subtitle">ตั้งคำถามที่อยู่ในใจคุณ แล้วให้ไพ่ทาโรต์ทั้ง 3 ใบช่วยกระซิบคำตอบ</p>
+
+      <form class="quick-ask" id="askForm" novalidate>
+        <div class="quick-deck" aria-hidden="true">
+          <img src="/images/card-back.png" alt="" loading="lazy">
+          <img src="/images/card-back.png" alt="" loading="lazy">
+          <img src="/images/card-back.png" alt="" loading="lazy">
+        </div>
+
+        <label class="quick-field-label" for="questionInput">คำถามของคุณ</label>
+        <input
+          type="text"
+          id="questionInput"
+          class="quick-input"
+          placeholder="พิมพ์คำถามที่คุณอยากรู้..."
+          autocomplete="off"
+          maxlength="120"
+          aria-describedby="askError">
+
+        <p class="quick-error" id="askError" role="alert" hidden></p>
+
+        <div class="quick-examples">
+          <span class="quick-examples-label">ลองถามแบบนี้</span>
+          <div class="quick-chips">
+            <button type="button" class="quick-chip" data-question="เขาจะกลับมามั้ย">เขาจะกลับมามั้ย</button>
+            <button type="button" class="quick-chip" data-question="เขาคิดยังไงกับเรา">เขาคิดยังไงกับเรา</button>
+            <button type="button" class="quick-chip" data-question="งานใหม่จะได้ไหม">งานใหม่จะได้ไหม</button>
+            <button type="button" class="quick-chip" data-question="อนาคตข้างหน้าจะเป็นยังไง">อนาคตจะเป็นยังไง</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" id="askSubmit">✨ เปิดไพ่ 3 ใบ</button>
+      </form>
+
+      <div class="hint">💡 ตั้งใจกับคำถามสักครู่ แล้วปล่อยให้ความรู้สึกแรกนำทางคุณ</div>
+
+      <!-- HOW IT WORKS (เนื้อหาเสริม SEO) -->
+      <section class="quick-steps">
+        <h2 class="quick-steps-title">ดูดวงจากคำถามทำงานอย่างไร</h2>
+        <div class="quick-steps-grid">
+          <article class="quick-step">
+            <span class="quick-step-num">1</span>
+            <h3>พิมพ์คำถาม</h3>
+            <p>เขียนสิ่งที่อยากรู้ ไม่ว่าจะเป็นเรื่องความรัก การงาน การเงิน หรืออนาคต</p>
+          </article>
+          <article class="quick-step">
+            <span class="quick-step-num">2</span>
+            <h3>ระบบเปิดไพ่ให้</h3>
+            <p>ไพ่ทาโรต์ 3 ใบจะถูกสุ่มขึ้นมา แทนสถานการณ์ปัจจุบัน สิ่งที่ซ่อนอยู่ และแนวโน้มข้างหน้า</p>
+          </article>
+          <article class="quick-step">
+            <span class="quick-step-num">3</span>
+            <h3>อ่านคำทำนาย</h3>
+            <p>รับคำทำนายที่เรียบเรียงให้ตรงกับหมวดหมู่คำถามของคุณโดยเฉพาะ</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="mascot-section">
+        <img src="/images/mascot-pick.png" alt="Pick a Card mascot" class="mascot-img">
+        <p class="mascot-message">ทุกคำถาม มีคำตอบรออยู่เสมอ ✨</p>
+      </section>
+    </section>
+
+    <!-- READING SECTION (hidden) -->
+    <section class="reading-section" id="reading-section" style="display: none;">
+      <div id="reading-content"></div>
+    </section>
+
+  </main>
+
+  <!-- AD BANNER (BOTTOM) -->
+  <div class="ad-container">
+    <div class="ad-slot ad-728x90">
+      <span>📢 พื้นที่โฆษณา 728 × 90</span>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-quote">✦ ทุกคำถาม คือก้าวแรกของการเข้าใจตัวเองมากขึ้น ✦</p>
+      <div class="footer-links">
+        <a href="/blog/">บทความ</a>
+        <a href="/about.html">เกี่ยวกับเรา</a>
+        <a href="/how-to.html">วิธีการใช้งาน</a>
+        <a href="/faq.html">คำถามที่พบบ่อย</a>
+      </div>
+      <p class="footer-copy">© 2026 Pick a Card. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/tarot-engine.js"></script>
+  <script src="/js/quick-reading.js"></script>
+</body>
+</html>

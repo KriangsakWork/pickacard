@@ -1657,3 +1657,260 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   .readings-search { margin: 0; flex-shrink: 0; }
   .filter-chips { justify-content: flex-start; }
 }
+
+/* ============================================
+   QUICK READING — ดูดวงจากคำถาม (3 ใบ)
+   ============================================ */
+
+/* ----- ฟอร์มถามคำถาม ----- */
+.quick-ask {
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-2);
+  padding: 30px 26px 28px;
+  text-align: left;
+}
+
+.quick-deck {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+.quick-deck img {
+  width: 58px;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(46, 33, 71, 0.18);
+}
+.quick-deck img:nth-child(1) { transform: rotate(-12deg) translateX(14px); }
+.quick-deck img:nth-child(2) { position: relative; z-index: 2; transform: translateY(-6px); }
+.quick-deck img:nth-child(3) { transform: rotate(12deg) translateX(-14px); }
+
+.quick-field-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+  margin-bottom: 8px;
+}
+
+.quick-input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 15.5px;
+  color: var(--c-ink);
+  background: var(--c-bg);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.quick-input::placeholder { color: var(--c-ink-mute); }
+.quick-input:focus {
+  outline: none;
+  background: var(--c-surface);
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 4px rgba(126, 87, 194, 0.12);
+}
+.quick-input-shake { animation: quickShake 0.4s ease; }
+@keyframes quickShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-7px); }
+  40%, 80% { transform: translateX(7px); }
+}
+
+.quick-error {
+  margin: 10px 2px 0;
+  font-size: 13px;
+  color: #C0497B;
+}
+
+.quick-examples { margin: 18px 0 22px; }
+.quick-examples-label {
+  display: block;
+  font-size: 12.5px;
+  color: var(--c-ink-mute);
+  margin-bottom: 9px;
+}
+.quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.quick-chip {
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--c-primary);
+  background: var(--c-primary-soft);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-pill);
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.1s;
+}
+.quick-chip:hover { background: #E2D5F1; }
+.quick-chip:active { transform: scale(0.95); }
+
+.quick-ask .btn {
+  width: 100%;
+  justify-content: center;
+}
+.quick-ask .btn[disabled] {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+/* ----- ขั้นตอนการใช้งาน (เนื้อหา SEO) ----- */
+.quick-steps {
+  max-width: 760px;
+  margin: 48px auto 0;
+  text-align: center;
+}
+.quick-steps-title {
+  font-size: 20px;
+  color: var(--c-ink);
+  margin-bottom: 22px;
+}
+.quick-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.quick-step {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  padding: 24px 18px 20px;
+}
+.quick-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  background: linear-gradient(135deg, #9D80D6, #7E57C2);
+}
+.quick-step h3 {
+  font-size: 15.5px;
+  color: var(--c-ink);
+  margin-bottom: 6px;
+}
+.quick-step p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--c-ink-soft);
+}
+
+/* ----- meta บนหัวคำทำนาย (คำถาม + หมวด) ----- */
+.quick-result-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.quick-qbubble {
+  font-size: 15px;
+  font-style: italic;
+  color: #4A3A66;
+  background: var(--c-primary-soft);
+  border-radius: var(--r-md);
+  padding: 10px 18px;
+  max-width: 460px;
+}
+.quick-cat-pill {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-primary);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-pill);
+  padding: 5px 14px;
+}
+
+/* ----- การ์ดโปรโมทบนหน้าแรก ----- */
+.quick-promo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--c-night-1) 0%, var(--c-night-2) 100%);
+  border-radius: var(--r-lg);
+  padding: 40px 44px;
+  box-shadow: var(--sh-3);
+}
+.quick-promo-glow {
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(157, 128, 214, 0.55) 0%, rgba(157, 128, 214, 0) 70%);
+  pointer-events: none;
+}
+.quick-promo-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+.quick-promo-tag {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-accent);
+  margin-bottom: 12px;
+}
+.quick-promo-title {
+  font-size: clamp(22px, 3.4vw, 30px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.quick-promo-text {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #CFC3E6;
+  margin-bottom: 20px;
+  max-width: 460px;
+}
+.quick-promo-cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-shrink: 0;
+}
+.quick-promo-cards img {
+  width: 74px;
+  border-radius: 9px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+}
+.quick-promo-cards img:nth-child(1) { transform: rotate(-14deg) translateX(20px); }
+.quick-promo-cards img:nth-child(2) { z-index: 2; transform: translateY(-10px); }
+.quick-promo-cards img:nth-child(3) { transform: rotate(14deg) translateX(-20px); }
+.quick-promo:hover .quick-promo-cards img:nth-child(2) {
+  transform: translateY(-16px);
+  transition: transform 0.3s;
+}
+
+@media (max-width: 720px) {
+  .quick-ask { padding: 24px 18px 24px; }
+  .quick-steps-grid { grid-template-columns: 1fr; gap: 12px; }
+  .quick-steps { margin-top: 36px; }
+  .quick-promo {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+    padding: 32px 24px;
+  }
+  .quick-promo-text { margin-left: auto; margin-right: auto; }
+  .quick-promo-cards { order: -1; }
+}
