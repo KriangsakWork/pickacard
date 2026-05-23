@@ -12,7 +12,13 @@
 
   var DATA_PATHS = {
     cards: '/data/tarot-meanings.json',
-    intents: '/data/intent-keywords.json'
+    intents: '/data/intent-keywords.json',
+    cardsV2: '/data/tarot-meanings-v2.json'
+  };
+
+  var v2State = {
+    data: null,
+    loadingPromise: null
   };
 
   var state = {
@@ -176,11 +182,67 @@
     };
   }
 
+  // ----- v2 meanings dataset (MVP-merged) -----
+  function loadV2() {
+    if (v2State.data) return Promise.resolve(v2State.data);
+    if (v2State.loadingPromise) return v2State.loadingPromise;
+    v2State.loadingPromise = loadJSON(DATA_PATHS.cardsV2)
+      .then(function (data) {
+        v2State.data = (data && typeof data === 'object') ? data : { cards: {} };
+        if (!v2State.data.cards || typeof v2State.data.cards !== 'object') {
+          v2State.data.cards = {};
+        }
+        return v2State.data;
+      })
+      .catch(function (err) {
+        v2State.loadingPromise = null;
+        throw err;
+      });
+    return v2State.loadingPromise;
+  }
+
+  // Safe lookup: returns { keywords:[], interpretation:'' } and never throws.
+  // Falls back from requested category → 'future' → first available category → empty entry.
+  function getV2Meaning(cardName, category, orientation) {
+    orientation = orientation || 'upright';
+    var empty = { keywords: [], interpretation: '' };
+    if (!v2State.data || !v2State.data.cards) return empty;
+    var card = v2State.data.cards[cardName];
+    if (!card) return empty;
+
+    function pick(cat) {
+      var slot = cat && card[cat];
+      if (!slot) return null;
+      var entry = slot[orientation] || slot.upright;
+      if (!entry) return null;
+      return {
+        keywords: Array.isArray(entry.keywords) ? entry.keywords.slice() : [],
+        interpretation: typeof entry.interpretation === 'string' ? entry.interpretation : ''
+      };
+    }
+
+    var result = pick(category) || pick('future');
+    if (result) return result;
+
+    // last-resort: first available category on this card
+    var keys = Object.keys(card);
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i];
+      if (k === 'arcana' || k === 'image') continue;
+      var r = pick(k);
+      if (r) return r;
+    }
+    return empty;
+  }
+
   global.TarotEngine = {
     load: load,
     detectIntent: detectIntent,
     drawCards: drawCards,
     createReading: createReading,
-    isLoaded: function () { return state.loaded; }
+    isLoaded: function () { return state.loaded; },
+    loadV2: loadV2,
+    getV2Meaning: getV2Meaning,
+    isV2Loaded: function () { return !!v2State.data; }
   };
 })(window);
