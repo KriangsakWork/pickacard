@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "language": "th",
+  "note": "Official source of truth for tarot cards already present in tarot-meanings-v2.json. Used by maintenance automation to determine which cards still need to be generated. Keep alphabetical order by canonical English card name.",
+  "schema": {
+    "completed": "string[] — canonical English card names that already exist in tarot-meanings-v2.json",
+    "ordering": "alphabetical, case-insensitive, by canonical English name"
+  },
+  "totalCardsPlanned": 78,
+  "totalCardsCompleted": 12,
+  "completed": [
+    "Ace of Cups",
+    "Death",
+    "The Devil",
+    "The Fool",
+    "The Hermit",
+    "The High Priestess",
+    "The Lovers",
+    "The Moon",
+    "The Star",
+    "The Sun",
+    "Two of Cups",
+    "Wheel of Fortune"
+  ]
+}
