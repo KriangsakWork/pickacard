@@ -6,6 +6,16 @@ function toggleMenu() {
   document.querySelector('.nav-menu').classList.toggle('open');
 }
 
+window.handleCardImageError = function(imgEl) {
+  var name = imgEl.getAttribute('data-card-name') || '';
+  var div = document.createElement('div');
+  div.className = 'rc-placeholder';
+  var span = document.createElement('span');
+  span.textContent = name;
+  div.appendChild(span);
+  imgEl.replaceWith(div);
+};
+
 function showReading(pile) {
   const reading = READINGS[pile];
   if (!reading) return;
@@ -25,11 +35,8 @@ function showReading(pile) {
     html += '<article class="reveal-card" style="animation-delay: ' + (i * 0.12) + 's;">';
     html += '  <div class="rc-media">';
     html += '    <span class="rc-num">' + (i + 1) + '</span>';
-    if (card.hasImage === false) {
-      html += '    <div class="rc-placeholder"><span>' + card.name + '</span></div>';
-    } else {
-      html += '    <img src="/images/tarot/' + imgSlug + '.png" alt="' + card.name + '" loading="lazy">';
-    }
+    html += '    <img src="/images/tarot/' + imgSlug + '.png" alt="' + card.name + '" loading="lazy" ' +
+            'data-card-name="' + card.name + '" onerror="window.handleCardImageError(this)">';
     html += '  </div>';
     html += '  <div class="rc-info">';
     html += '    <div class="rc-heading">';
