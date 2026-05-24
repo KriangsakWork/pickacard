@@ -1,5 +1,5 @@
 /* ============================================================
-   PICK A CARD — STYLE SYSTEM
+   PICK MYSTIC — STYLE SYSTEM
    Modern Thai tarot experience: structured · emotional · mystical
    ------------------------------------------------------------
    1. Design tokens      5. Section primitives   9. Articles
@@ -106,6 +106,12 @@ h1, h2, h3 { line-height: 1.3; }
 }
 
 .nav-logo img { width: 36px; height: 36px; }
+.nav-brand { display: inline-flex; flex-direction: column; line-height: 1.05; }
+.nav-brand-name { font-size: 14px; font-weight: 700; letter-spacing: 0.15em; }
+.nav-brand-tagline { font-size: 9px; font-weight: 500; letter-spacing: 0.08em; opacity: 0.65; text-transform: none; margin-top: 2px; }
+@media (max-width: 480px) {
+  .nav-brand-tagline { display: none; }
+}
 
 .nav-menu { display: flex; gap: 24px; }
 
