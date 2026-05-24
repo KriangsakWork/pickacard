@@ -444,8 +444,8 @@ h1, h2, h3 { line-height: 1.3; }
   .hero-actions { justify-content: flex-start; }
   .hero-art {
     flex: 0 0 auto;
-    width: 40vw;
-    max-width: 440px;
+    width: 40.6vw;
+    max-width: 447px;
   }
 }
 
