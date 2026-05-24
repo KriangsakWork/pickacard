@@ -789,6 +789,32 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   color: var(--c-ink-mute);
 }
 
+.post-card-text {
+  background: linear-gradient(160deg, #F5F0FF 0%, #EDE3FF 100%);
+  border-color: rgba(126, 87, 194, 0.25);
+}
+.post-card-text .post-body {
+  justify-content: center;
+  padding: var(--sp-6) var(--sp-5);
+  text-align: center;
+  gap: 10px;
+}
+.post-card-text .post-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #7E57C2;
+  text-transform: uppercase;
+}
+.post-card-text .post-title { font-size: 22px; line-height: 1.35; color: #3D2A5C; }
+.post-card-text .post-text { font-size: 14.5px; color: #5B3F8A; }
+.post-card-text .post-date {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7E57C2;
+  padding-top: 14px;
+}
+
 @media (min-width: 720px) {
   .post-grid { grid-template-columns: repeat(3, 1fr); }
 }
