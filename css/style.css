@@ -994,8 +994,11 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   max-width: 640px;
-  margin: 0 auto 32px;
+  /* top margin reserves space for .pile-badge (which pops above the card when selected) */
+  margin: 48px auto 32px;
 }
+
+.reading-page .section-subtitle { margin-bottom: 8px; }
 
 .cards-grid.locked { pointer-events: none; }
 
@@ -1477,7 +1480,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 
 /* ===== RESPONSIVE (INNER PAGES) ===== */
 @media (max-width: 768px) {
-  .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; max-width: 340px; }
+  .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; max-width: 340px; margin-top: 40px; }
 
   .reveal-head { margin-bottom: 26px; }
   .reveal-eyebrow { font-size: 13px; }
