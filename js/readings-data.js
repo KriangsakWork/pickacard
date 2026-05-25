@@ -56,6 +56,18 @@ const READING_ITEMS = [
     publishedAt: '2026-03-16'
   },
   {
+    slug: 'when-meet-soulmate',
+    url: '/reading/when-meet-soulmate.html',
+    title: 'เมื่อไหร่จะเจอเนื้อคู่',
+    hook: 'ไพ่บอกจังหวะเวลาที่คนที่ใช่จะเข้ามาในชีวิตคุณ',
+    image: '/images/banners/banner-soulmate.png',
+    category: 'love',
+    featured: true,
+    popularity: 92,
+    ctr: 0.42,
+    publishedAt: '2026-05-25'
+  },
+  {
     slug: 'soulmate',
     url: '/reading/soulmate.html',
     title: 'เนื้อคู่ของคุณคือใคร',
