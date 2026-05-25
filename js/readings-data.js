@@ -60,7 +60,7 @@ const READING_ITEMS = [
     url: '/reading/when-meet-soulmate.html',
     title: 'เมื่อไหร่จะเจอเนื้อคู่',
     hook: 'ไพ่บอกจังหวะเวลาที่คนที่ใช่จะเข้ามาในชีวิตคุณ',
-    image: '/images/banners/banner-when-meet-soulmate.png',
+    image: '/images/banners/when-meet-soulmate.png',
     category: 'love',
     featured: true,
     popularity: 92,
