@@ -1535,11 +1535,12 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   color: #FFFFFF;
   font-size: 28px;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.65;
   margin: 0;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  /* เพดาน 3 บรรทัด: 28 × 1.5 = 42px → 3 บรรทัด = 126px + เผื่อ descender */
-  max-height: 140px;
+  /* เพดาน 3 บรรทัด: 28 × 1.65 ≈ 46px ต่อบรรทัด → 3 บรรทัด ≈ 138px
+     ให้ max-height ห่างเผื่อ descender ของไทย (◌ุ ◌ู) อีกเยอะ ๆ */
+  max-height: 180px;
   overflow: hidden;
 }
 #share-card .share-mascot {

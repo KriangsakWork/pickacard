@@ -167,13 +167,19 @@ async function generateShareImage() {
   document.getElementById('share-topic-text').textContent =
     topic ? '✦ ' + topic + ' ✦' : '';
 
-  // คำทำนายใบกลาง — เพดาน 3 บรรทัด (~130 ตัวอักษรไทย ที่ width 660 / font 28)
+  // คำทำนายใบกลาง — เพดาน 3 บรรทัด (~115 ตัวอักษรไทย ที่ width 660 / font 28)
   let text = predictionText;
-  if (text.length > 130) text = text.substring(0, 127) + '...';
+  if (text.length > 115) text = text.substring(0, 112) + '...';
   document.getElementById('share-prediction-text').textContent = text;
 
   const imgs = document.querySelectorAll('#share-card img');
   await Promise.all(Array.from(imgs).map(waitImg));
+
+  // รอ Prompt font โหลดเสร็จก่อน render — ถ้าใช้ fallback font ตัวอักษรไทย
+  // (โดยเฉพาะสระล่าง/ตัวสะกด) จะตัดผิด ทำให้บรรทัด 3 ดูขาด ๆ
+  if (document.fonts && document.fonts.ready) {
+    try { await document.fonts.ready; } catch (_) {}
+  }
 
   const canvas = await window.html2canvas(document.getElementById('share-card'), {
     scale: 1,
