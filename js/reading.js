@@ -80,14 +80,11 @@ function showReading(pile) {
 
   html += '<p class="reveal-disclaimer">* คำทำนายนี้เป็นแนวทางเพื่อการพิจารณา ไม่สามารถยืนยันผลลัพธ์ได้แน่นอน</p>';
 
-  html += '<div class="reveal-actions">';
-  html += '  <button id="share-btn" class="share-btn" onclick="shareReading()"><span>✨</span> แชร์ผลทำนาย</button>';
-  html += '  <button id="save-btn" class="share-btn share-btn-secondary" onclick="saveReadingImage()"><span>💾</span> บันทึกรูป</button>';
-  html += '</div>';
-
-  html += '<div class="reveal-actions">';
-  html += '  <button class="btn-reset" onclick="resetReading()">↺ เปิดไพ่ใหม่</button>';
-  html += '  <a href="/" class="btn-back-home">← กลับหน้าแรก</a>';
+  html += '<div class="action-row">';
+  html += '  <button id="share-btn" class="action-btn action-btn--primary" onclick="shareReading()"><span>✨</span> แชร์ผลทำนาย</button>';
+  html += '  <button id="save-btn" class="action-btn" onclick="saveReadingImage()"><span>💾</span> บันทึกรูป</button>';
+  html += '  <button class="action-btn" onclick="resetReading()"><span>↺</span> เปิดไพ่ใหม่</button>';
+  html += '  <a href="/" class="action-btn">← กลับหน้าแรก</a>';
   html += '</div>';
 
   document.getElementById('reading-content').innerHTML = html;
