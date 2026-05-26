@@ -1473,9 +1473,9 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 }
 #share-card .share-prediction {
   position: absolute;
-  top: 1410px;
+  top: 1400px;
   left: 80px;
-  width: 740px;
+  width: 660px;
   text-align: center;
   z-index: 3;
 }

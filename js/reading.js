@@ -161,7 +161,7 @@ async function generateShareImage() {
   document.getElementById('share-main-card').src = '/images/tarot/' + slug + '.png';
 
   let text = predictionText;
-  if (text.length > 90) text = text.substring(0, 87) + '...';
+  if (text.length > 120) text = text.substring(0, 117) + '...';
   document.getElementById('share-prediction-text').textContent = text;
 
   const imgs = document.querySelectorAll('#share-card img');
