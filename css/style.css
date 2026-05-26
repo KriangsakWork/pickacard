@@ -1491,7 +1491,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 }
 #share-card .share-main-card {
   position: absolute;
-  top: 460px;
+  top: 480px;
   left: 50%;
   transform: translateX(-50%);
   width: 580px;
@@ -1501,7 +1501,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 }
 #share-card .share-topic {
   position: absolute;
-  top: 1340px;
+  top: 1360px;
   left: 50%;
   transform: translateX(-50%);
   width: 920px;
@@ -1522,29 +1522,31 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 }
 #share-card .share-prediction {
   position: absolute;
-  top: 1430px;
+  top: 1450px;
   left: 50%;
   transform: translateX(-50%);
   width: 660px;
   text-align: center;
   z-index: 3;
+  /* padding กันบรรทัดล่างถูก max-height ตัดส่วน descender ของอักษรไทย */
+  padding-bottom: 6px;
 }
 #share-card .share-prediction p {
   color: #FFFFFF;
   font-size: 28px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  /* เพดาน 3 บรรทัด: 28 × 1.4 ≈ 39px ต่อบรรทัด → 3 บรรทัด ~117px */
-  max-height: 120px;
+  /* เพดาน 3 บรรทัด: 28 × 1.5 = 42px → 3 บรรทัด = 126px + เผื่อ descender */
+  max-height: 140px;
   overflow: hidden;
 }
 #share-card .share-mascot {
   position: absolute;
-  bottom: 90px;
+  bottom: 70px;
   right: 0;
-  width: 280px;
+  width: 260px;
   height: auto;
   z-index: 4;
 }

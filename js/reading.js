@@ -160,8 +160,10 @@ async function generateShareImage() {
 
   // หัวข้อของหน้า pick-a-card (เช่น "โชคลาภที่กำลังจะมา")
   // ครอบด้วย ✦ ให้ดูเป็นหัวข้อชัด ๆ ไม่ปนกับคำทำนาย
+  // strip emoji ออก (บางหน้ามี 💕 ฯลฯ ใน H1) ไม่ให้แสดงในรูป
   const h1 = document.querySelector('h1.section-title');
-  const topic = h1 ? h1.textContent.trim() : '';
+  let topic = h1 ? h1.textContent : '';
+  topic = topic.replace(/\p{Extended_Pictographic}/gu, '').replace(/\s+/g, ' ').trim();
   document.getElementById('share-topic-text').textContent =
     topic ? '✦ ' + topic + ' ✦' : '';
 
