@@ -1504,24 +1504,25 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   top: 1340px;
   left: 50%;
   transform: translateX(-50%);
-  width: 880px;
+  width: 920px;
   text-align: center;
   z-index: 3;
+  /* padding กัน Thai diacritic ด้านบนถูกตัด */
+  padding: 8px 0;
 }
 #share-card .share-topic p {
   color: #FFE6A8;
   font-size: 38px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.5;
   margin: 0;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* ตัด overflow:hidden + ellipsis ออก — หัวข้อทุกหน้าตอนนี้สั้นพอจะไม่ล้น */
 }
 #share-card .share-prediction {
   position: absolute;
-  top: 1410px;
+  top: 1430px;
   left: 50%;
   transform: translateX(-50%);
   width: 660px;
