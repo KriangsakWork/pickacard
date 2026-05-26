@@ -159,13 +159,15 @@ async function generateShareImage() {
   document.getElementById('share-main-card').src = '/images/tarot/' + slug + '.png';
 
   // หัวข้อของหน้า pick-a-card (เช่น "โชคลาภที่กำลังจะมา")
+  // ครอบด้วย ✦ ให้ดูเป็นหัวข้อชัด ๆ ไม่ปนกับคำทำนาย
   const h1 = document.querySelector('h1.section-title');
   const topic = h1 ? h1.textContent.trim() : '';
-  document.getElementById('share-topic-text').textContent = topic;
+  document.getElementById('share-topic-text').textContent =
+    topic ? '✦ ' + topic + ' ✦' : '';
 
-  // คำทำนายใบกลาง — จำกัด 3 บรรทัด (~90 ตัวอักษรไทย ที่ width 660 / font 28)
+  // คำทำนายใบกลาง — เพดาน 3 บรรทัด (~130 ตัวอักษรไทย ที่ width 660 / font 28)
   let text = predictionText;
-  if (text.length > 90) text = text.substring(0, 87) + '...';
+  if (text.length > 130) text = text.substring(0, 127) + '...';
   document.getElementById('share-prediction-text').textContent = text;
 
   const imgs = document.querySelectorAll('#share-card img');

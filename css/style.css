@@ -1535,6 +1535,9 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   line-height: 1.4;
   margin: 0;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  /* เพดาน 3 บรรทัด: 28 × 1.4 ≈ 39px ต่อบรรทัด → 3 บรรทัด ~117px */
+  max-height: 120px;
+  overflow: hidden;
 }
 #share-card .share-mascot {
   position: absolute;
