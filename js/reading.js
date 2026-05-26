@@ -16,9 +16,16 @@ window.handleCardImageError = function(imgEl) {
   imgEl.replaceWith(div);
 };
 
+// เก็บคำทำนายปัจจุบันไว้ใช้ตอนแชร์เป็นรูป
+let currentReading = null;
+let currentPile = null;
+
 function showReading(pile) {
   const reading = READINGS[pile];
   if (!reading) return;
+
+  currentReading = reading;
+  currentPile = pile;
 
   let html = '';
 
@@ -74,6 +81,11 @@ function showReading(pile) {
   html += '<p class="reveal-disclaimer">* คำทำนายนี้เป็นแนวทางเพื่อการพิจารณา ไม่สามารถยืนยันผลลัพธ์ได้แน่นอน</p>';
 
   html += '<div class="reveal-actions">';
+  html += '  <button id="share-btn" class="share-btn" onclick="shareReading()"><span>✨</span> แชร์ผลทำนาย</button>';
+  html += '  <button id="save-btn" class="share-btn share-btn-secondary" onclick="saveReadingImage()"><span>💾</span> บันทึกรูป</button>';
+  html += '</div>';
+
+  html += '<div class="reveal-actions">';
   html += '  <button class="btn-reset" onclick="resetReading()">↺ เปิดไพ่ใหม่</button>';
   html += '  <a href="/" class="btn-back-home">← กลับหน้าแรก</a>';
   html += '</div>';
@@ -85,6 +97,153 @@ function showReading(pile) {
   setTimeout(() => {
     document.getElementById('reading-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 100);
+}
+
+// ============================================
+// SHARE AS IMAGE — html2canvas-based feature
+// Generates 1080x1920 (IG Story) share image using the middle card (ปัจจุบัน)
+// as the main card. Falls back to download if Web Share API unsupported.
+// Assets: /images/share/share-bg.png, /images/share/mascot.png
+// ============================================
+
+function cardSlug(cardName) {
+  return (cardName || '').toLowerCase().replace(/\s+/g, '-');
+}
+
+function ensureShareCardDOM() {
+  if (document.getElementById('share-card')) return;
+
+  // เช็คว่ามีไฟล์ template หรือยัง (เตือนใน console เฉพาะตอน build ครั้งแรกที่ขาดไฟล์)
+  // ไฟล์ที่ต้องอัพโหลด: /images/share/share-bg.png และ /images/share/mascot.png
+  const wrap = document.createElement('div');
+  wrap.id = 'share-card';
+  wrap.innerHTML =
+    '<img src="/images/share/share-bg.png" class="share-bg" crossorigin="anonymous"' +
+    '     onerror="console.warn(\'[share] ต้องอัพโหลด /images/share/share-bg.png\')">' +
+    '<img id="share-main-card" src="" class="share-main-card" crossorigin="anonymous">' +
+    '<div class="share-prediction"><p id="share-prediction-text"></p></div>' +
+    '<img src="/images/share/mascot.png" class="share-mascot" crossorigin="anonymous"' +
+    '     onerror="console.warn(\'[share] ต้องอัพโหลด /images/share/mascot.png\')">';
+  document.body.appendChild(wrap);
+}
+
+function loadHtml2Canvas() {
+  if (window.html2canvas) return Promise.resolve(window.html2canvas);
+  if (window.__h2cPromise) return window.__h2cPromise;
+  window.__h2cPromise = new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    s.onload = () => resolve(window.html2canvas);
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+  return window.__h2cPromise;
+}
+
+function waitImg(img) {
+  return new Promise(resolve => {
+    if (!img || (img.complete && img.naturalWidth > 0)) return resolve();
+    img.onload = () => resolve();
+    img.onerror = () => resolve(); // ปล่อยให้ render ต่อแม้รูปโหลดไม่สำเร็จ
+  });
+}
+
+// สร้างภาพ 1080x1920 และคืน { blob, slug } — ใช้ร่วมกันระหว่างปุ่มแชร์และบันทึก
+async function generateShareImage() {
+  ensureShareCardDOM();
+  await loadHtml2Canvas();
+
+  // ใบกลาง = ปัจจุบัน (index 1 ของ cards)
+  const middleCard = currentReading.cards[1] || currentReading.cards[0];
+  const slug = cardSlug(middleCard.name);
+  const predictionText = (middleCard.text || currentReading.message || '').trim();
+
+  document.getElementById('share-main-card').src = '/images/tarot/' + slug + '.png';
+
+  let text = predictionText;
+  if (text.length > 120) text = text.substring(0, 117) + '...';
+  document.getElementById('share-prediction-text').textContent = text;
+
+  const imgs = document.querySelectorAll('#share-card img');
+  await Promise.all(Array.from(imgs).map(waitImg));
+
+  const canvas = await window.html2canvas(document.getElementById('share-card'), {
+    scale: 1,
+    useCORS: true,
+    backgroundColor: null,
+    width: 1080,
+    height: 1920,
+    logging: false
+  });
+
+  const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+  return { blob, slug };
+}
+
+function downloadBlob(blob, fileName) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function runShareAction(btnId, loadingText, action, eventName) {
+  if (!currentReading) return;
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.textContent = loadingText;
+
+  try {
+    const { blob, slug } = await generateShareImage();
+    if (!blob) throw new Error('blob is null');
+    await action(blob, slug);
+
+    if (typeof gtag === 'function') {
+      try { gtag('event', eventName, { card: slug }); } catch (_) {}
+    }
+    console.log(eventName, slug);
+  } catch (err) {
+    console.error(eventName + ' failed:', err);
+    alert('เกิดข้อผิดพลาดในการสร้างภาพ ลองใหม่อีกครั้ง');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+  }
+}
+
+async function shareReading() {
+  await runShareAction('share-btn', 'กำลังสร้างภาพ...', async (blob, slug) => {
+    const fileName = 'pickmystic-' + slug + '.png';
+    const file = new File([blob], fileName, { type: 'image/png' });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: 'คำทำนายของฉันจาก Pick Mystic',
+          text: 'ดูคำทำนายไพ่ทาโรต์ของฉันที่ pickmystic.com'
+        });
+      } catch (err) {
+        if (err.name !== 'AbortError') console.error(err);
+      }
+    } else {
+      // desktop / browser ที่ไม่รองรับ → fallback เป็น download
+      downloadBlob(blob, fileName);
+    }
+  }, 'share_clicked');
+}
+
+async function saveReadingImage() {
+  await runShareAction('save-btn', 'กำลังบันทึก...', async (blob, slug) => {
+    downloadBlob(blob, 'pickmystic-' + slug + '.png');
+  }, 'save_clicked');
 }
 
 function resetReading() {
