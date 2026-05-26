@@ -82,6 +82,7 @@ function showReading(pile) {
 
   html += '<div class="reveal-actions">';
   html += '  <button id="share-btn" class="share-btn" onclick="shareReading()"><span>✨</span> แชร์ผลทำนาย</button>';
+  html += '  <button id="save-btn" class="share-btn share-btn-secondary" onclick="saveReadingImage()"><span>💾</span> บันทึกรูป</button>';
   html += '</div>';
 
   html += '<div class="reveal-actions">';
@@ -147,88 +148,102 @@ function waitImg(img) {
   });
 }
 
-async function shareReading() {
-  if (!currentReading) return;
-  const shareBtn = document.getElementById('share-btn');
-  if (!shareBtn) return;
+// สร้างภาพ 1080x1920 และคืน { blob, slug } — ใช้ร่วมกันระหว่างปุ่มแชร์และบันทึก
+async function generateShareImage() {
+  ensureShareCardDOM();
+  await loadHtml2Canvas();
 
-  const originalHTML = shareBtn.innerHTML;
-  shareBtn.disabled = true;
-  shareBtn.textContent = 'กำลังสร้างภาพ...';
+  // ใบกลาง = ปัจจุบัน (index 1 ของ cards)
+  const middleCard = currentReading.cards[1] || currentReading.cards[0];
+  const slug = cardSlug(middleCard.name);
+  const predictionText = (middleCard.text || currentReading.message || '').trim();
+
+  document.getElementById('share-main-card').src = '/images/tarot/' + slug + '.png';
+
+  let text = predictionText;
+  if (text.length > 90) text = text.substring(0, 87) + '...';
+  document.getElementById('share-prediction-text').textContent = text;
+
+  const imgs = document.querySelectorAll('#share-card img');
+  await Promise.all(Array.from(imgs).map(waitImg));
+
+  const canvas = await window.html2canvas(document.getElementById('share-card'), {
+    scale: 1,
+    useCORS: true,
+    backgroundColor: null,
+    width: 1080,
+    height: 1920,
+    logging: false
+  });
+
+  const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+  return { blob, slug };
+}
+
+function downloadBlob(blob, fileName) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function runShareAction(btnId, loadingText, action, eventName) {
+  if (!currentReading) return;
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.textContent = loadingText;
 
   try {
-    ensureShareCardDOM();
-    await loadHtml2Canvas();
+    const { blob, slug } = await generateShareImage();
+    if (!blob) throw new Error('blob is null');
+    await action(blob, slug);
 
-    // ใบกลาง = ปัจจุบัน (index 1 ของ cards)
-    const middleCard = currentReading.cards[1] || currentReading.cards[0];
-    const slug = cardSlug(middleCard.name);
-    const predictionText = (middleCard.text || currentReading.message || '').trim();
-
-    const mainImg = document.getElementById('share-main-card');
-    mainImg.src = '/images/tarot/' + slug + '.png';
-
-    let text = predictionText;
-    if (text.length > 100) text = text.substring(0, 97) + '...';
-    document.getElementById('share-prediction-text').textContent = text;
-
-    // รอรูปทุกใบใน share-card โหลดเสร็จ
-    const imgs = document.querySelectorAll('#share-card img');
-    await Promise.all(Array.from(imgs).map(waitImg));
-
-    const canvas = await window.html2canvas(document.getElementById('share-card'), {
-      scale: 1,
-      useCORS: true,
-      backgroundColor: null,
-      width: 1080,
-      height: 1920,
-      logging: false
-    });
-
-    await new Promise(resolve => {
-      canvas.toBlob(async (blob) => {
-        if (!blob) {
-          alert('เกิดข้อผิดพลาดในการสร้างภาพ ลองใหม่อีกครั้ง');
-          return resolve();
-        }
-        const fileName = 'pickmystic-' + slug + '.png';
-        const file = new File([blob], fileName, { type: 'image/png' });
-
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({
-              files: [file],
-              title: 'คำทำนายของฉันจาก Pick Mystic',
-              text: 'ดูคำทำนายไพ่ทาโรต์ของฉันที่ pickmystic.com'
-            });
-          } catch (err) {
-            if (err.name !== 'AbortError') console.error(err);
-          }
-        } else {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = fileName;
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          URL.revokeObjectURL(url);
-        }
-
-        if (typeof gtag === 'function') {
-          try { gtag('event', 'share_clicked', { card: slug }); } catch (_) {}
-        }
-        console.log('share_clicked', slug);
-        resolve();
-      }, 'image/png');
-    });
+    if (typeof gtag === 'function') {
+      try { gtag('event', eventName, { card: slug }); } catch (_) {}
+    }
+    console.log(eventName, slug);
   } catch (err) {
-    console.error('Share failed:', err);
+    console.error(eventName + ' failed:', err);
     alert('เกิดข้อผิดพลาดในการสร้างภาพ ลองใหม่อีกครั้ง');
   } finally {
-    shareBtn.disabled = false;
-    shareBtn.innerHTML = originalHTML;
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
   }
+}
+
+async function shareReading() {
+  await runShareAction('share-btn', 'กำลังสร้างภาพ...', async (blob, slug) => {
+    const fileName = 'pickmystic-' + slug + '.png';
+    const file = new File([blob], fileName, { type: 'image/png' });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: 'คำทำนายของฉันจาก Pick Mystic',
+          text: 'ดูคำทำนายไพ่ทาโรต์ของฉันที่ pickmystic.com'
+        });
+      } catch (err) {
+        if (err.name !== 'AbortError') console.error(err);
+      }
+    } else {
+      // desktop / browser ที่ไม่รองรับ → fallback เป็น download
+      downloadBlob(blob, fileName);
+    }
+  }, 'share_clicked');
+}
+
+async function saveReadingImage() {
+  await runShareAction('save-btn', 'กำลังบันทึก...', async (blob, slug) => {
+    downloadBlob(blob, 'pickmystic-' + slug + '.png');
+  }, 'save_clicked');
 }
 
 function resetReading() {
