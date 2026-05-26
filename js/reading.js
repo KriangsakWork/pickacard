@@ -118,6 +118,7 @@ function ensureShareCardDOM() {
     '<img src="/images/share/share-bg.png" class="share-bg" crossorigin="anonymous"' +
     '     onerror="console.warn(\'[share] ต้องอัพโหลด /images/share/share-bg.png\')">' +
     '<img id="share-main-card" src="" class="share-main-card" crossorigin="anonymous">' +
+    '<div class="share-topic"><p id="share-topic-text"></p></div>' +
     '<div class="share-prediction"><p id="share-prediction-text"></p></div>' +
     '<img src="/images/share/mascot.png" class="share-mascot" crossorigin="anonymous"' +
     '     onerror="console.warn(\'[share] ต้องอัพโหลด /images/share/mascot.png\')">';
@@ -157,8 +158,14 @@ async function generateShareImage() {
 
   document.getElementById('share-main-card').src = '/images/tarot/' + slug + '.png';
 
+  // หัวข้อของหน้า pick-a-card (เช่น "โชคลาภที่กำลังจะมา")
+  const h1 = document.querySelector('h1.section-title');
+  const topic = h1 ? h1.textContent.trim() : '';
+  document.getElementById('share-topic-text').textContent = topic;
+
+  // คำทำนายใบกลาง — จำกัด 3 บรรทัด (~90 ตัวอักษรไทย ที่ width 660 / font 28)
   let text = predictionText;
-  if (text.length > 120) text = text.substring(0, 117) + '...';
+  if (text.length > 90) text = text.substring(0, 87) + '...';
   document.getElementById('share-prediction-text').textContent = text;
 
   const imgs = document.querySelectorAll('#share-card img');

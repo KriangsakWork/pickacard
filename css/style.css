@@ -1491,7 +1491,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 }
 #share-card .share-main-card {
   position: absolute;
-  top: 500px;
+  top: 460px;
   left: 50%;
   transform: translateX(-50%);
   width: 580px;
@@ -1499,28 +1499,48 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
   z-index: 2;
 }
-#share-card .share-prediction {
+#share-card .share-topic {
   position: absolute;
-  top: 1400px;
+  top: 1340px;
   left: 50%;
   transform: translateX(-50%);
-  width: 760px;
+  width: 880px;
+  text-align: center;
+  z-index: 3;
+}
+#share-card .share-topic p {
+  color: #FFE6A8;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#share-card .share-prediction {
+  position: absolute;
+  top: 1410px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 660px;
   text-align: center;
   z-index: 3;
 }
 #share-card .share-prediction p {
   color: #FFFFFF;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.4;
   margin: 0;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 #share-card .share-mascot {
   position: absolute;
-  bottom: 80px;
+  bottom: 90px;
   right: 0;
-  width: 320px;
+  width: 280px;
   height: auto;
   z-index: 4;
 }
