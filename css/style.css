@@ -1463,7 +1463,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 }
 #share-card .share-main-card {
   position: absolute;
-  top: 540px;
+  top: 500px;
   left: 50%;
   transform: translateX(-50%);
   width: 580px;
@@ -1474,8 +1474,9 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 #share-card .share-prediction {
   position: absolute;
   top: 1400px;
-  left: 80px;
-  width: 660px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 760px;
   text-align: center;
   z-index: 3;
 }
@@ -1491,7 +1492,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   position: absolute;
   bottom: 80px;
   right: 0;
-  width: 360px;
+  width: 320px;
   height: auto;
   z-index: 4;
 }
