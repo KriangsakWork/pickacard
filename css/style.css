@@ -750,16 +750,21 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 
 /* ===== Placeholder (no birthday saved yet) ===== */
 .lucky-placeholder {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--sp-5);
   padding: var(--sp-5) var(--sp-2);
   text-align: center;
 }
+.lucky-placeholder[hidden],
+.lucky-result[hidden] { display: none; }
+
 .lucky-placeholder-visual {
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 .lucky-placeholder-visual img {
   width: 100%;
@@ -772,6 +777,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   flex-direction: column;
   align-items: center;
   gap: var(--sp-3);
+  max-width: 360px;
 }
 .lucky-placeholder-title {
   font-size: 20px;
@@ -789,12 +795,14 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 
 @media (min-width: 760px) {
   .lucky-placeholder {
-    grid-template-columns: minmax(220px, 320px) 1fr;
-    gap: var(--sp-6);
-    padding: var(--sp-5) var(--sp-4);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: var(--sp-6) var(--sp-4);
     text-align: left;
   }
-  .lucky-placeholder-visual img { max-width: 280px; }
+  .lucky-placeholder-visual img { max-width: 260px; }
   .lucky-placeholder-body { align-items: flex-start; }
   .lucky-placeholder-title { font-size: 24px; }
 }
@@ -802,18 +810,24 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 /* ===== Decorative bunny in result state ===== */
 .lucky-result-bunny {
   position: absolute;
-  right: 4px;
-  bottom: 0;
+  right: 12px;
+  bottom: 12px;
   width: 80px;
   height: auto;
   opacity: 0.85;
   pointer-events: none;
   user-select: none;
+  z-index: 0;
+}
+.lucky-result > *:not(.lucky-result-bunny) {
+  position: relative;
+  z-index: 1;
 }
 @media (min-width: 760px) {
   .lucky-result-bunny {
     width: 120px;
-    right: 8px;
+    right: 20px;
+    bottom: 20px;
   }
 }
 
@@ -898,25 +912,32 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   justify-content: center;
   gap: 2px;
   aspect-ratio: 1 / 1;
-  background: var(--day-bg, #eee);
-  border: 2px solid transparent;
+  background: #eee;
+  border: 3px solid transparent;
   border-radius: 50%;
   font-family: inherit;
   cursor: pointer;
   padding: 4px;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  box-shadow: 0 4px 10px -3px rgba(38, 22, 70, 0.18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+.birthday-day[data-day="monday"]    { background: linear-gradient(135deg, #FFF4B8, #FFEB99); }
+.birthday-day[data-day="tuesday"]   { background: linear-gradient(135deg, #FFCCE5, #FFB3D9); }
+.birthday-day[data-day="wednesday"] { background: linear-gradient(135deg, #C8F0C5, #A8E6A3); }
+.birthday-day[data-day="thursday"]  { background: linear-gradient(135deg, #FFE0BD, #FFCC99); }
+.birthday-day[data-day="friday"]    { background: linear-gradient(135deg, #C8E5FF, #A3D5FF); }
+.birthday-day[data-day="saturday"]  { background: linear-gradient(135deg, #DBC2FF, #C9A3FF); }
+.birthday-day[data-day="sunday"]    { background: linear-gradient(135deg, #FFBDBD, #FF9999); }
 .birthday-day:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px -4px rgba(38, 22, 70, 0.25);
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 .birthday-day.is-selected {
   border-color: var(--c-primary);
+  transform: scale(1.1);
   box-shadow:
     0 0 0 3px rgba(126, 87, 194, 0.18),
-    0 8px 18px -4px rgba(126, 87, 194, 0.35);
-  transform: translateY(-2px);
+    0 8px 20px rgba(126, 87, 194, 0.35);
 }
 .birthday-day-short {
   font-size: 16px;
