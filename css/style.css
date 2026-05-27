@@ -742,6 +742,146 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   .lucky-cta { flex-direction: row; justify-content: center; gap: var(--sp-4); }
 }
 
+/* ===== Placeholder (no birthday saved yet) ===== */
+.lucky-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-4);
+  padding: var(--sp-6) var(--sp-4);
+}
+.lucky-placeholder-icon {
+  font-size: 44px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 10px rgba(126, 87, 194, 0.25));
+}
+.lucky-placeholder-text {
+  font-size: 15px;
+  color: var(--c-ink);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ===== Change birthday button (top-right) ===== */
+.lucky-change-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--c-border);
+  color: var(--c-primary);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.lucky-change-btn:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+/* ===== Birthday picker modal ===== */
+.birthday-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+}
+.birthday-modal[hidden] { display: none; }
+.birthday-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(38, 22, 70, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.birthday-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background:
+    radial-gradient(135% 80% at 0% 0%, rgba(185, 165, 255, 0.22) 0%, transparent 56%),
+    linear-gradient(160deg, #FFFFFF 0%, #F6F0FF 100%);
+  border: 1px solid rgba(126, 87, 194, 0.15);
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 60px -10px rgba(38, 22, 70, 0.35);
+  padding: var(--sp-6) var(--sp-5);
+  text-align: center;
+  animation: birthdayPop 0.22s ease;
+}
+@keyframes birthdayPop {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.birthday-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-primary);
+  margin: 0 0 6px;
+}
+.birthday-modal-sub {
+  font-size: 13.5px;
+  color: var(--c-ink-soft);
+  margin: 0 0 var(--sp-5);
+}
+.birthday-days {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
+}
+@media (min-width: 520px) {
+  .birthday-days { grid-template-columns: repeat(7, 1fr); }
+}
+.birthday-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  aspect-ratio: 1 / 1;
+  background: var(--day-bg, #eee);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 4px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  box-shadow: 0 4px 10px -3px rgba(38, 22, 70, 0.18);
+}
+.birthday-day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -4px rgba(38, 22, 70, 0.25);
+}
+.birthday-day.is-selected {
+  border-color: var(--c-primary);
+  box-shadow:
+    0 0 0 3px rgba(126, 87, 194, 0.18),
+    0 8px 18px -4px rgba(126, 87, 194, 0.35);
+  transform: translateY(-2px);
+}
+.birthday-day-short {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4a2a7a;
+}
+.birthday-day-full {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #4a2a7a;
+  opacity: 0.85;
+}
+.birthday-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
 /* ===== 9b. ARTICLES (Article Card component) ===== */
 .post-grid {
   display: grid;
