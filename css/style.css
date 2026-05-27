@@ -2080,7 +2080,17 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 .daily-main { padding-top: 32px; padding-bottom: 64px; }
 .daily-container { max-width: 760px; }
 
-.daily-header { text-align: center; margin-bottom: 28px; }
+.daily-header { text-align: center; margin-bottom: 28px; position: relative; }
+.daily-header-art {
+  display: flex;
+  justify-content: center;
+  margin: 4px auto 14px;
+}
+.daily-header-art img {
+  width: clamp(160px, 32vw, 220px);
+  height: auto;
+  filter: drop-shadow(0 14px 28px rgba(126, 87, 194, 0.28));
+}
 .daily-header .back-link {
   display: inline-block;
   color: var(--c-ink-soft);
@@ -2336,3 +2346,21 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   margin-bottom: 10px;
 }
 .daily-about p { margin-bottom: 10px; line-height: 1.8; }
+
+/* Daily promo banner art (homepage) */
+.daily-promo-art {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.daily-promo-art img {
+  width: clamp(140px, 22vw, 220px);
+  height: auto;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.25));
+}
+@media (max-width: 720px) {
+  .daily-promo-art { order: -1; }
+  .daily-promo-art img { width: 160px; }
+}
