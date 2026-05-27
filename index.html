@@ -263,9 +263,14 @@
         <div class="lucky-widget" id="luckyWidget">
           <!-- Placeholder shown when no birthday saved -->
           <div class="lucky-placeholder" id="luckyPlaceholder" hidden>
-            <div class="lucky-placeholder-icon">🐰✨</div>
-            <p class="lucky-placeholder-text">บอกเราหน่อยว่าคุณเกิดวันอะไร<br>เพื่อดูสีถูกโฉลกของคุณ</p>
-            <button type="button" class="btn btn-primary" id="openBirthdayBtn">เลือกวันเกิดของคุณ →</button>
+            <div class="lucky-placeholder-visual">
+              <img src="/images/bunny-wardrobe.png" alt="กระต่ายกับเสื้อคลุมหลากสี" loading="lazy">
+            </div>
+            <div class="lucky-placeholder-body">
+              <h3 class="lucky-placeholder-title">บอกเราหน่อยว่าคุณเกิดวันอะไร</h3>
+              <p class="lucky-placeholder-text">เพื่อดูสีถูกโฉลกที่เสริมพลังให้คุณ</p>
+              <button type="button" class="btn btn-primary" id="openBirthdayBtn">เลือกวันเกิดของคุณ →</button>
+            </div>
           </div>
 
           <!-- Result shown when birthday saved -->
@@ -281,6 +286,8 @@
               <p class="lucky-cta-text">✨ อยากรู้ดวงของคุณวันนี้ไหม?</p>
               <a class="btn btn-primary" href="#topics">เปิดไพ่ของวันนี้</a>
             </div>
+
+            <img class="lucky-result-bunny" src="/images/bunny-wardrobe.png" alt="" aria-hidden="true" loading="lazy">
           </div>
         </div>
       </div>
