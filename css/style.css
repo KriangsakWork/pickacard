@@ -923,13 +923,13 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.birthday-day[data-day="monday"]    { background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #FFE066 35%, #F5C518 70%); }
-.birthday-day[data-day="tuesday"]   { background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #FF99C2 35%, #E91E63 70%); }
-.birthday-day[data-day="wednesday"] { background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #81E892 35%, #4CAF50 70%); }
-.birthday-day[data-day="thursday"]  { background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #FFB366 35%, #FF8C00 70%); }
-.birthday-day[data-day="friday"]    { background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #66B3FF 35%, #1E88E5 70%); }
-.birthday-day[data-day="saturday"]  { background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #B388FF 35%, #7E57C2 70%); }
-.birthday-day[data-day="sunday"]    { background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #FF8080 35%, #E53935 70%); }
+.birthday-day[data-day="monday"]    { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 28%), #F5C518; }
+.birthday-day[data-day="tuesday"]   { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 28%), #E91E63; }
+.birthday-day[data-day="wednesday"] { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 28%), #4CAF50; }
+.birthday-day[data-day="thursday"]  { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 28%), #FF8C00; }
+.birthday-day[data-day="friday"]    { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 28%), #1E88E5; }
+.birthday-day[data-day="saturday"]  { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 28%), #7E57C2; }
+.birthday-day[data-day="sunday"]    { background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 28%), #E53935; }
 .birthday-day:hover {
   transform: scale(1.1);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
