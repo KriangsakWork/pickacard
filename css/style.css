@@ -863,15 +863,16 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 .birthday-modal-card {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 720px;
   background:
     radial-gradient(135% 80% at 0% 0%, rgba(185, 165, 255, 0.22) 0%, transparent 56%),
     linear-gradient(160deg, #FFFFFF 0%, #F6F0FF 100%);
   border: 1px solid rgba(126, 87, 194, 0.15);
-  border-radius: var(--r-lg);
+  border-radius: 24px;
   box-shadow: 0 24px 60px -10px rgba(38, 22, 70, 0.35);
-  padding: var(--sp-6) var(--sp-5);
+  padding: 40px 32px;
   text-align: center;
+  box-sizing: border-box;
   animation: birthdayPop 0.22s ease;
 }
 @keyframes birthdayPop {
@@ -890,13 +891,17 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   margin: 0 0 var(--sp-5);
 }
 .birthday-days {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-2);
-  margin-bottom: var(--sp-5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  margin-bottom: var(--sp-4);
+  overflow: visible;
 }
 @media (min-width: 520px) {
-  .birthday-days { grid-template-columns: repeat(7, 1fr); }
+  .birthday-days { flex-wrap: nowrap; }
 }
 .birthday-day {
   display: flex;
@@ -904,16 +909,17 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   align-items: center;
   justify-content: center;
   gap: 2px;
-  width: 70px;
-  height: 70px;
-  max-width: 100%;
-  aspect-ratio: 1 / 1;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
   background: #eee;
   border: 3px solid transparent;
   border-radius: 50%;
   font-family: inherit;
   cursor: pointer;
-  padding: 4px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -936,17 +942,19 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
     0 10px 22px rgba(126, 87, 194, 0.38);
 }
 .birthday-day-short {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 0 6px rgba(0, 0, 0, 0.25);
+  line-height: 1;
 }
 .birthday-day-full {
-  font-size: 10.5px;
+  font-size: 9.5px;
   font-weight: 600;
   color: #ffffff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   opacity: 0.95;
+  line-height: 1.1;
 }
 .birthday-modal-actions {
   display: flex;
