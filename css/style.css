@@ -807,28 +807,21 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   .lucky-placeholder-title { font-size: 24px; }
 }
 
-/* ===== Decorative bunny in result state ===== */
-.lucky-result-bunny {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  width: 80px;
-  height: auto;
-  opacity: 0.85;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
+/* ===== Decorative bunny next to "change birthday" button ===== */
+.lucky-head-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.lucky-result > *:not(.lucky-result-bunny) {
-  position: relative;
-  z-index: 1;
+.lucky-head-bunny {
+  width: 60px;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(126, 87, 194, 0.18));
 }
 @media (min-width: 760px) {
-  .lucky-result-bunny {
-    width: 120px;
-    right: 20px;
-    bottom: 20px;
-  }
+  .lucky-head-bunny { width: 80px; }
 }
 
 /* ===== Change birthday button (top-right) ===== */
@@ -911,6 +904,9 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   align-items: center;
   justify-content: center;
   gap: 2px;
+  width: 70px;
+  height: 70px;
+  max-width: 100%;
   aspect-ratio: 1 / 1;
   background: #eee;
   border: 3px solid transparent;
@@ -919,36 +915,38 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   cursor: pointer;
   padding: 4px;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.birthday-day[data-day="monday"]    { background: linear-gradient(135deg, #FFF4B8, #FFEB99); }
-.birthday-day[data-day="tuesday"]   { background: linear-gradient(135deg, #FFCCE5, #FFB3D9); }
-.birthday-day[data-day="wednesday"] { background: linear-gradient(135deg, #C8F0C5, #A8E6A3); }
-.birthday-day[data-day="thursday"]  { background: linear-gradient(135deg, #FFE0BD, #FFCC99); }
-.birthday-day[data-day="friday"]    { background: linear-gradient(135deg, #C8E5FF, #A3D5FF); }
-.birthday-day[data-day="saturday"]  { background: linear-gradient(135deg, #DBC2FF, #C9A3FF); }
-.birthday-day[data-day="sunday"]    { background: linear-gradient(135deg, #FFBDBD, #FF9999); }
+.birthday-day[data-day="monday"]    { background: radial-gradient(circle at 30% 30%, #FFFFFF, #FFE066, #F5C518); }
+.birthday-day[data-day="tuesday"]   { background: radial-gradient(circle at 30% 30%, #FFFFFF, #FF99C2, #E91E63); }
+.birthday-day[data-day="wednesday"] { background: radial-gradient(circle at 30% 30%, #FFFFFF, #81E892, #4CAF50); }
+.birthday-day[data-day="thursday"]  { background: radial-gradient(circle at 30% 30%, #FFFFFF, #FFB366, #FF8C00); }
+.birthday-day[data-day="friday"]    { background: radial-gradient(circle at 30% 30%, #FFFFFF, #66B3FF, #1E88E5); }
+.birthday-day[data-day="saturday"]  { background: radial-gradient(circle at 30% 30%, #FFFFFF, #B388FF, #7E57C2); }
+.birthday-day[data-day="sunday"]    { background: radial-gradient(circle at 30% 30%, #FFFFFF, #FF8080, #E53935); }
 .birthday-day:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
 }
 .birthday-day.is-selected {
   border-color: var(--c-primary);
-  transform: scale(1.1);
+  transform: scale(1.15);
   box-shadow:
-    0 0 0 3px rgba(126, 87, 194, 0.18),
-    0 8px 20px rgba(126, 87, 194, 0.35);
+    0 0 0 3px rgba(126, 87, 194, 0.2),
+    0 10px 22px rgba(126, 87, 194, 0.38);
 }
 .birthday-day-short {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
-  color: #4a2a7a;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 0 6px rgba(0, 0, 0, 0.25);
 }
 .birthday-day-full {
   font-size: 10.5px;
   font-weight: 600;
-  color: #4a2a7a;
-  opacity: 0.85;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  opacity: 0.95;
 }
 .birthday-modal-actions {
   display: flex;
