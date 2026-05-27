@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LDVBEN0NW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0LDVBEN0NW');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title id="pageTitle">ไพ่ทาโรต์ประจำวัน | Pick Mystic</title>
+  <meta id="metaDesc" name="description" content="เปิดไพ่ทาโรต์ประจำวันของคุณ ดูดวงรายวันฟรี พร้อมคำแนะนำจากไพ่ทาโรต์ เปลี่ยนใหม่ทุกเที่ยงคืน">
+  <meta name="keywords" content="ไพ่ประจำวัน, ดูดวงประจำวัน, ทาโรต์รายวัน, ไพ่ทาโรต์วันนี้, daily tarot, ดูดวงฟรี">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pickmystic.com/daily/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://pickmystic.com/daily/">
+  <meta property="og:title" content="ไพ่ทาโรต์ประจำวัน | Pick Mystic">
+  <meta property="og:description" content="เปิดไพ่ทาโรต์ประจำวันของคุณ ดูดวงรายวันฟรี พร้อมคำแนะนำจากไพ่ทาโรต์">
+  <meta property="og:image" content="https://pickmystic.com/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ไพ่ทาโรต์ประจำวันจาก Pick Mystic">
+  <meta property="og:locale" content="th_TH">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ไพ่ทาโรต์ประจำวัน | Pick Mystic">
+  <meta name="twitter:description" content="เปิดไพ่ทาโรต์ประจำวันของคุณ ดูดวงรายวันฟรี">
+  <meta name="twitter:image" content="https://pickmystic.com/images/og-image.jpg">
+
+  <script type="application/ld+json" id="articleSchema">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "ไพ่ทาโรต์ประจำวัน",
+    "description": "ไพ่ทาโรต์ประจำวันของคุณ พร้อมคำแนะนำและพลังงานของวัน",
+    "inLanguage": "th-TH",
+    "author": { "@type": "Organization", "name": "Pick Mystic" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pick Mystic",
+      "logo": { "@type": "ImageObject", "url": "https://pickmystic.com/images/logo.png" }
+    },
+    "image": "https://pickmystic.com/images/og-image.jpg"
+  }
+  </script>
+
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo.png" alt="Pick Mystic logo" width="36" height="36">
+        <span class="nav-brand"><span class="nav-brand-name">PICK MYSTIC</span><span class="nav-brand-tagline">Pick a Card Tarot</span></span>
+      </a>
+      <div class="nav-menu">
+        <a href="/" class="nav-link">หน้าแรก</a>
+        <a href="/daily/" class="nav-link active">ไพ่ประจำวัน</a>
+        <a href="/blog/" class="nav-link">บทความ</a>
+        <a href="/about.html" class="nav-link">เกี่ยวกับเรา</a>
+        <a href="/how-to.html" class="nav-link">วิธีการใช้งาน</a>
+        <a href="/faq.html" class="nav-link">คำถามที่พบบ่อย</a>
+      </div>
+      <button class="nav-toggle" aria-label="เมนู" aria-expanded="false" onclick="toggleMenu()">☰</button>
+    </div>
+  </nav>
+
+  <main class="daily-main">
+    <div class="container daily-container">
+
+      <!-- ============ HEADER ============ -->
+      <header class="daily-header">
+        <a href="/" class="back-link">← กลับหน้าแรก</a>
+        <span class="eyebrow daily-eyebrow">🌙 พลังงานประจำวัน</span>
+        <h1 class="daily-title">ไพ่ประจำวันของคุณ</h1>
+        <p class="daily-date" id="dailyDate">กำลังโหลดวันที่...</p>
+        <p class="daily-subtitle">พลังงานของวันนี้กำลังบอกอะไรกับคุณ</p>
+      </header>
+
+      <!-- ============ CARD STAGE ============ -->
+      <section class="daily-stage" id="dailyStage" aria-live="polite">
+
+        <!-- Pre-reveal: closed deck -->
+        <div class="daily-prereveal" id="prereveal">
+          <button type="button" class="daily-card-flip" id="flipBtn" aria-label="เปิดไพ่ประจำวัน">
+            <span class="daily-card-flip-inner">
+              <span class="daily-card-face daily-card-back">
+                <img src="/images/card-back.png" alt="" loading="eager">
+              </span>
+            </span>
+          </button>
+          <p class="daily-prereveal-hint">✨ ตั้งใจกับวันนี้สักครู่ แล้วแตะการ์ดเพื่อเปิดไพ่</p>
+          <button type="button" class="btn btn-primary btn-lg" id="revealBtn">เปิดไพ่ประจำวัน</button>
+        </div>
+
+        <!-- Post-reveal: card + reading -->
+        <div class="daily-result" id="dailyResult" hidden>
+          <div class="daily-card-wrap">
+            <div class="daily-card-flipper" id="cardFlipper">
+              <div class="daily-card-face daily-card-back">
+                <img src="/images/card-back.png" alt="" loading="lazy">
+              </div>
+              <div class="daily-card-face daily-card-front">
+                <img id="dailyCardImg" src="" alt="" loading="eager">
+                <span class="daily-card-num" id="dailyCardNum"></span>
+                <span class="daily-card-label" id="dailyCardLabelTh"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="daily-info">
+            <div class="daily-info-row">
+              <span class="daily-info-label">Keyword</span>
+              <strong class="daily-info-value" id="dailyKeyword"></strong>
+            </div>
+            <div class="daily-info-row">
+              <span class="daily-info-label">Focus</span>
+              <strong class="daily-info-value" id="dailyFocus"></strong>
+            </div>
+            <div class="daily-info-row">
+              <span class="daily-info-label">Lucky Color</span>
+              <strong class="daily-info-value" id="dailyColor"></strong>
+            </div>
+            <div class="daily-info-row">
+              <span class="daily-info-label">Lucky Number</span>
+              <strong class="daily-info-value" id="dailyNumber"></strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ READING ============ -->
+      <section class="daily-reading" id="dailyReading" hidden>
+        <div class="daily-reading-head">
+          <h2 class="daily-card-name" id="dailyCardName">—</h2>
+          <p class="daily-card-name-th" id="dailyCardNameTh">—</p>
+        </div>
+
+        <article class="daily-reading-block">
+          <h3 class="daily-block-title">💜 ความหมายของวันนี้</h3>
+          <p class="daily-block-text" id="dailyMeaning"></p>
+        </article>
+
+        <article class="daily-reading-block daily-reading-block-advice">
+          <h3 class="daily-block-title">✨ คำแนะนำประจำวัน</h3>
+          <p class="daily-block-text" id="dailyAdvice"></p>
+        </article>
+
+        <article class="daily-reading-block daily-reading-block-warn">
+          <h3 class="daily-block-title">⚠️ สิ่งที่ควรระวัง</h3>
+          <p class="daily-block-text" id="dailyWarning"></p>
+        </article>
+      </section>
+
+      <!-- ============ COUNTDOWN ============ -->
+      <section class="daily-countdown" id="dailyCountdown" hidden>
+        <span class="daily-countdown-label">🕛 ไพ่ใบใหม่ใน</span>
+        <span class="daily-countdown-timer" id="countdownTimer">00:00:00</span>
+        <p class="daily-countdown-note">ไพ่จะเปลี่ยนใหม่ทุกเที่ยงคืน (เวลาไทย)</p>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="daily-cta" id="dailyCta" hidden>
+        <button type="button" class="btn btn-secondary daily-cta-btn" id="saveBtn" title="เร็วๆ นี้" disabled>📖 บันทึกไพ่นี้</button>
+        <button type="button" class="btn btn-secondary daily-cta-btn" id="shareBtn">🔗 แชร์ไพ่นี้</button>
+        <a class="btn btn-primary daily-cta-btn" href="/readings.html">🔮 ดูดวงเต็มรูปแบบ →</a>
+      </section>
+
+      <!-- ============ SEO COPY ============ -->
+      <section class="daily-about">
+        <h2 class="daily-about-title">เกี่ยวกับ "ไพ่ทาโรต์ประจำวัน"</h2>
+        <p>ไพ่ประจำวันของ Pick Mystic ช่วยให้คุณได้ทบทวนพลังงานของวันด้วยไพ่ทาโรต์เพียง 1 ใบ ระบบจะสุ่มไพ่จากตำแหน่งของวันที่ ทำให้ทุกคนที่เข้ามาในวันเดียวกันจะได้เห็นไพ่ใบเดียวกัน และเปลี่ยนใหม่อัตโนมัติทุกเที่ยงคืนตามเวลาประเทศไทย</p>
+        <p>เปิดไพ่ทาโรต์ออนไลน์ฟรี ไม่ต้องสมัครสมาชิก พร้อมคำทำนาย คำแนะนำ และสิ่งที่ควรระวังประจำวัน เหมาะสำหรับใช้เป็นแรงบันดาลใจในการเริ่มต้นวันใหม่</p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            <img src="/images/logo.png" alt="Pick Mystic logo" width="32" height="32">
+            <span class="nav-brand"><span class="nav-brand-name">PICK MYSTIC</span><span class="nav-brand-tagline">Pick a Card Tarot</span></span>
+          </a>
+          <p class="footer-tagline">✦ ทุกการเลือก คือก้าวเล็ก ๆ ที่พาเราไปสู่สิ่งที่ดีกว่า</p>
+        </div>
+        <nav class="footer-nav" aria-label="ลิงก์ส่วนท้าย">
+          <a href="/daily/">ไพ่ประจำวัน</a>
+          <a href="/blog/">บทความ</a>
+          <a href="/about.html">เกี่ยวกับเรา</a>
+          <a href="/how-to.html">วิธีการใช้งาน</a>
+          <a href="/faq.html">คำถามที่พบบ่อย</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Pick Mystic. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var menu = document.querySelector('.nav-menu');
+      var btn  = document.querySelector('.nav-toggle');
+      if (!menu) return;
+      var open = menu.classList.toggle('open');
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+  </script>
+  <script src="/js/daily.js"></script>
+</body>
+</html>

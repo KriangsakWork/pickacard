@@ -2073,3 +2073,266 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   .quick-promo-text { margin-left: auto; margin-right: auto; }
   .quick-promo-cards { order: -1; }
 }
+
+/* ============================================================
+   DAILY TAROT PAGE (/daily)
+   ============================================================ */
+.daily-main { padding-top: 32px; padding-bottom: 64px; }
+.daily-container { max-width: 760px; }
+
+.daily-header { text-align: center; margin-bottom: 28px; }
+.daily-header .back-link {
+  display: inline-block;
+  color: var(--c-ink-soft);
+  font-weight: 500;
+  margin-bottom: 18px;
+  transition: color 0.2s;
+}
+.daily-header .back-link:hover { color: var(--c-primary); }
+
+.daily-eyebrow {
+  display: inline-block;
+  background: rgba(126, 87, 194, 0.10);
+  color: var(--c-primary-deep);
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+.daily-title {
+  font-family: var(--t-display);
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 10px;
+}
+.daily-date {
+  color: var(--c-primary-deep);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.daily-subtitle { color: var(--c-ink-soft); }
+
+/* ---------- STAGE ---------- */
+.daily-stage {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 5vw, 40px);
+  box-shadow: var(--sh-2);
+  margin-bottom: 24px;
+}
+
+.daily-prereveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+.daily-card-flip {
+  background: none; border: 0; cursor: pointer;
+  width: 220px; height: 340px;
+  perspective: 1000px;
+  padding: 0;
+}
+.daily-card-flip-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+.daily-card-flip:hover .daily-card-flip-inner { transform: translateY(-6px) rotate(-2deg); }
+.daily-prereveal-hint { color: var(--c-ink-soft); text-align: center; }
+
+/* ---------- RESULT: CARD + INFO ---------- */
+.daily-result {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+}
+@media (min-width: 720px) {
+  .daily-result { grid-template-columns: 260px 1fr; gap: 36px; }
+}
+
+.daily-card-wrap {
+  display: flex; justify-content: center;
+  perspective: 1200px;
+}
+.daily-card-flipper {
+  position: relative;
+  width: 240px; height: 372px;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.3, 0.7, 0.3, 1);
+  transform: rotateY(180deg);
+}
+.daily-card-flipper.is-flipped { transform: rotateY(0deg); }
+.daily-card-flipper.no-anim { transition: none; }
+
+.daily-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 18px 42px rgba(46, 33, 71, 0.25);
+}
+.daily-card-face img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.daily-card-back { transform: rotateY(180deg); background: var(--c-night-2); }
+.daily-card-front {
+  background: linear-gradient(135deg, #F1E8FA 0%, #E2D2F4 100%);
+  border: 2px solid #D4BFF0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.daily-card-num {
+  position: absolute;
+  top: 14px; left: 0; right: 0;
+  text-align: center;
+  font-family: var(--t-display);
+  font-weight: 700;
+  color: var(--c-primary-deep);
+  font-size: 14px;
+  letter-spacing: 2px;
+  pointer-events: none;
+}
+.daily-card-label {
+  position: absolute;
+  bottom: 14px; left: 0; right: 0;
+  text-align: center;
+  font-family: var(--t-display);
+  font-weight: 600;
+  color: var(--c-ink);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+/* ---------- INFO LIST ---------- */
+.daily-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+}
+@media (min-width: 720px) { .daily-info { grid-template-columns: 1fr; gap: 18px; } }
+
+.daily-info-row { display: flex; flex-direction: column; gap: 2px; }
+.daily-info-label {
+  font-size: 12px;
+  color: var(--c-ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.daily-info-value {
+  font-size: 17px;
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+/* ---------- READING ---------- */
+.daily-reading {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 5vw, 36px);
+  box-shadow: var(--sh-1);
+  margin-bottom: 24px;
+}
+.daily-reading-head { text-align: center; margin-bottom: 24px; }
+.daily-card-name {
+  font-family: var(--t-display);
+  font-size: clamp(24px, 4vw, 32px);
+  color: var(--c-primary-deep);
+  font-weight: 700;
+}
+.daily-card-name-th {
+  color: var(--c-ink-soft);
+  font-size: 16px;
+  margin-top: 4px;
+}
+.daily-reading-block {
+  padding: 18px 20px;
+  border-radius: var(--r-md);
+  background: var(--c-primary-soft);
+  margin-bottom: 14px;
+}
+.daily-reading-block:last-child { margin-bottom: 0; }
+.daily-reading-block-advice { background: #FBF4DD; }
+.daily-reading-block-warn { background: #FBE7E7; }
+.daily-block-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 6px;
+}
+.daily-block-text {
+  color: var(--c-ink);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* ---------- COUNTDOWN ---------- */
+.daily-countdown {
+  text-align: center;
+  background: linear-gradient(135deg, #2E1A4E 0%, #1C1033 100%);
+  color: #F0E6FF;
+  border-radius: var(--r-lg);
+  padding: 22px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--sh-2);
+}
+.daily-countdown-label {
+  display: block;
+  font-size: 13px;
+  color: #C9A8F0;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.daily-countdown-timer {
+  font-family: var(--t-display);
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+}
+.daily-countdown-note {
+  margin-top: 6px;
+  font-size: 13px;
+  color: rgba(240, 230, 255, 0.7);
+}
+
+/* ---------- CTA ---------- */
+.daily-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+@media (max-width: 540px) {
+  .daily-cta { grid-template-columns: 1fr; }
+}
+.daily-cta .daily-cta-btn:last-child { grid-column: 1 / -1; }
+.daily-cta-btn { min-height: 48px; justify-content: center; }
+
+/* ---------- ABOUT ---------- */
+.daily-about {
+  padding: 24px 4px 0;
+  color: var(--c-ink-soft);
+}
+.daily-about-title {
+  font-family: var(--t-display);
+  font-size: 20px;
+  color: var(--c-ink);
+  margin-bottom: 10px;
+}
+.daily-about p { margin-bottom: 10px; line-height: 1.8; }
