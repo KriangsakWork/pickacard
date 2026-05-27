@@ -251,26 +251,50 @@
       </div>
     </section>
 
-    <!-- ============ LUCKY COLOR OF THE DAY ============ -->
+    <!-- ============ LUCKY COLORS BY BIRTHDAY ============ -->
     <section class="section">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">เสริมดวงประจำวัน</span>
-          <h2 class="section-title">🌙 สีมงคลวันนี้</h2>
-          <p class="section-subtitle">เลือกสีที่ช่วยเสริมพลังในด้านที่คุณต้องการวันนี้</p>
+          <span class="eyebrow">เสริมดวงตามวันเกิด</span>
+          <h2 class="section-title">🌈 สีถูกโฉลกของคุณ</h2>
+          <p class="section-subtitle">สีมงคลตามวันเกิด ตามหลักโหราศาสตร์ไทย</p>
         </div>
 
-        <div class="lucky-widget">
-          <div class="lucky-widget-head">
-            <span class="lucky-day-pill">🗓️ <strong id="luckyDay">วันนี้</strong></span>
-            <span class="lucky-widget-note">สีเสริมพลังประจำวัน</span>
+        <div class="lucky-widget" id="luckyWidget">
+          <!-- Placeholder shown when no birthday saved -->
+          <div class="lucky-placeholder" id="luckyPlaceholder" hidden>
+            <div class="lucky-placeholder-icon">🐰✨</div>
+            <p class="lucky-placeholder-text">บอกเราหน่อยว่าคุณเกิดวันอะไร<br>เพื่อดูสีถูกโฉลกของคุณ</p>
+            <button type="button" class="btn btn-primary" id="openBirthdayBtn">เลือกวันเกิดของคุณ →</button>
           </div>
 
-          <div class="lucky-grid" id="luckyGrid"></div>
+          <!-- Result shown when birthday saved -->
+          <div class="lucky-result" id="luckyResult" hidden>
+            <div class="lucky-widget-head">
+              <span class="lucky-day-pill">🎂 <strong id="luckyDay">วันนี้</strong></span>
+              <button type="button" class="lucky-change-btn" id="changeBirthdayBtn">เปลี่ยนวันเกิด</button>
+            </div>
 
-          <div class="lucky-cta">
-            <p class="lucky-cta-text">✨ วันนี้อยากรู้มากกว่านี้ไหม?</p>
-            <a class="btn btn-primary" href="#topics">เปิดไพ่ของวันนี้</a>
+            <div class="lucky-grid" id="luckyGrid"></div>
+
+            <div class="lucky-cta">
+              <p class="lucky-cta-text">✨ อยากรู้ดวงของคุณวันนี้ไหม?</p>
+              <a class="btn btn-primary" href="#topics">เปิดไพ่ของวันนี้</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Birthday picker modal -->
+      <div class="birthday-modal" id="birthdayModal" hidden aria-hidden="true" role="dialog" aria-labelledby="birthdayModalTitle">
+        <div class="birthday-modal-backdrop" data-birthday-close></div>
+        <div class="birthday-modal-card" role="document">
+          <h3 class="birthday-modal-title" id="birthdayModalTitle">คุณเกิดวันอะไร?</h3>
+          <p class="birthday-modal-sub">เลือกวันเกิดของคุณเพื่อดูสีถูกโฉลกตามหลักโหราศาสตร์ไทย</p>
+          <div class="birthday-days" id="birthdayDays"></div>
+          <div class="birthday-modal-actions">
+            <button type="button" class="btn btn-secondary" data-birthday-close>ปิด</button>
+            <button type="button" class="btn btn-primary" id="confirmBirthdayBtn" disabled>ยืนยัน</button>
           </div>
         </div>
       </div>
