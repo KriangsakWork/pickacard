@@ -810,17 +810,23 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 /* ===== Decorative bunny next to "change birthday" button ===== */
 .lucky-head-right {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
 }
 .lucky-head-bunny {
-  width: 60px;
+  width: 50px;
   height: auto;
   user-select: none;
   pointer-events: none;
   filter: drop-shadow(0 4px 10px rgba(126, 87, 194, 0.18));
 }
 @media (min-width: 760px) {
+  .lucky-head-right {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 12px;
+  }
   .lucky-head-bunny { width: 80px; }
 }
 
