@@ -2300,3 +2300,528 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   .quick-promo-text { margin-left: auto; margin-right: auto; }
   .quick-promo-cards { order: -1; }
 }
+
+/* ============================================================
+   DAILY TAROT PAGE (/daily)
+   ============================================================ */
+.daily-main { padding-top: 32px; padding-bottom: 64px; }
+.daily-container { max-width: 760px; }
+
+.daily-header { text-align: center; margin-bottom: 28px; position: relative; }
+.daily-header-art {
+  display: flex;
+  justify-content: center;
+  margin: 4px auto 14px;
+}
+.daily-header-art img {
+  width: clamp(160px, 32vw, 220px);
+  height: auto;
+  filter: drop-shadow(0 14px 28px rgba(126, 87, 194, 0.28));
+}
+.daily-header .back-link {
+  display: inline-block;
+  color: var(--c-ink-soft);
+  font-weight: 500;
+  margin-bottom: 18px;
+  transition: color 0.2s;
+}
+.daily-header .back-link:hover { color: var(--c-primary); }
+
+.daily-eyebrow {
+  display: inline-block;
+  background: rgba(126, 87, 194, 0.10);
+  color: var(--c-primary-deep);
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+.daily-title {
+  font-family: var(--t-display);
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 10px;
+}
+.daily-date {
+  color: var(--c-primary-deep);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.daily-subtitle { color: var(--c-ink-soft); }
+
+/* ---------- STAGE ---------- */
+.daily-stage {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 5vw, 40px);
+  box-shadow: var(--sh-2);
+  margin-bottom: 24px;
+}
+
+.daily-prereveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+.daily-card-flip {
+  background: none; border: 0; cursor: pointer;
+  width: 220px; height: 340px;
+  perspective: 1000px;
+  padding: 0;
+}
+.daily-card-flip-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+.daily-card-flip:hover .daily-card-flip-inner { transform: translateY(-6px) rotate(-2deg); }
+.daily-prereveal-hint { color: var(--c-ink-soft); text-align: center; }
+
+/* ---------- RESULT: CARD + INFO ---------- */
+.daily-result {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+}
+@media (min-width: 720px) {
+  .daily-result { grid-template-columns: 260px 1fr; gap: 36px; }
+}
+
+.daily-card-wrap {
+  display: flex; justify-content: center;
+  perspective: 1200px;
+}
+.daily-card-flipper {
+  position: relative;
+  width: 240px; height: 372px;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.3, 0.7, 0.3, 1);
+  transform: rotateY(180deg);
+}
+.daily-card-flipper.is-flipped { transform: rotateY(0deg); }
+.daily-card-flipper.no-anim { transition: none; }
+
+.daily-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 18px 42px rgba(46, 33, 71, 0.25);
+}
+.daily-card-face img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.daily-card-back { transform: rotateY(180deg); background: var(--c-night-2); }
+.daily-card-front {
+  background: linear-gradient(135deg, #F1E8FA 0%, #E2D2F4 100%);
+  border: 2px solid #D4BFF0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.daily-card-num {
+  position: absolute;
+  top: 14px; left: 0; right: 0;
+  text-align: center;
+  font-family: var(--t-display);
+  font-weight: 700;
+  color: var(--c-primary-deep);
+  font-size: 14px;
+  letter-spacing: 2px;
+  pointer-events: none;
+}
+.daily-card-label {
+  position: absolute;
+  bottom: 14px; left: 0; right: 0;
+  text-align: center;
+  font-family: var(--t-display);
+  font-weight: 600;
+  color: var(--c-ink);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+/* ---------- INFO LIST ---------- */
+.daily-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+}
+@media (min-width: 720px) { .daily-info { grid-template-columns: 1fr; gap: 18px; } }
+
+.daily-info-row { display: flex; flex-direction: column; gap: 2px; }
+.daily-info-label {
+  font-size: 12px;
+  color: var(--c-ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.daily-info-value {
+  font-size: 17px;
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+/* ---------- READING ---------- */
+.daily-reading {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 5vw, 36px);
+  box-shadow: var(--sh-1);
+  margin-bottom: 24px;
+}
+.daily-reading-head { text-align: center; margin-bottom: 24px; }
+.daily-card-name {
+  font-family: var(--t-display);
+  font-size: clamp(24px, 4vw, 32px);
+  color: var(--c-primary-deep);
+  font-weight: 700;
+}
+.daily-card-name-th {
+  color: var(--c-ink-soft);
+  font-size: 16px;
+  margin-top: 4px;
+}
+.daily-reading-block {
+  padding: 18px 20px;
+  border-radius: var(--r-md);
+  background: var(--c-primary-soft);
+  margin-bottom: 14px;
+}
+.daily-reading-block:last-child { margin-bottom: 0; }
+.daily-reading-block-advice { background: #FBF4DD; }
+.daily-reading-block-warn { background: #FBE7E7; }
+.daily-block-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 6px;
+}
+.daily-block-text {
+  color: var(--c-ink);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* ---------- COUNTDOWN ---------- */
+.daily-countdown {
+  text-align: center;
+  background: linear-gradient(135deg, #2E1A4E 0%, #1C1033 100%);
+  color: #F0E6FF;
+  border-radius: var(--r-lg);
+  padding: 22px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--sh-2);
+}
+.daily-countdown-label {
+  display: block;
+  font-size: 13px;
+  color: #C9A8F0;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.daily-countdown-timer {
+  font-family: var(--t-display);
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+}
+.daily-countdown-note {
+  margin-top: 6px;
+  font-size: 13px;
+  color: rgba(240, 230, 255, 0.7);
+}
+
+/* ---------- CTA ---------- */
+.daily-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+@media (max-width: 540px) {
+  .daily-cta { grid-template-columns: 1fr; }
+}
+.daily-cta .daily-cta-btn:last-child { grid-column: 1 / -1; }
+.daily-cta-btn { min-height: 48px; justify-content: center; }
+
+/* ---------- ABOUT ---------- */
+.daily-about {
+  padding: 24px 4px 0;
+  color: var(--c-ink-soft);
+}
+.daily-about-title {
+  font-family: var(--t-display);
+  font-size: 20px;
+  color: var(--c-ink);
+  margin-bottom: 10px;
+}
+.daily-about p { margin-bottom: 10px; line-height: 1.8; }
+
+/* Daily promo banner art (homepage) */
+.daily-promo-art {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.daily-promo-art img {
+  width: clamp(140px, 22vw, 220px);
+  height: auto;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.25));
+}
+@media (max-width: 720px) {
+  .daily-promo-art { order: -1; }
+  .daily-promo-art img { width: 160px; }
+}
+
+/* ============================================================
+   DAILY TAROT BANNER (homepage entry)
+   ============================================================ */
+.daily-banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr auto;
+  grid-template-areas: "content art cta";
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+  padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 48px);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255,255,255,0.7) 0%, transparent 45%),
+    radial-gradient(circle at 90% 100%, rgba(201,168,240,0.35) 0%, transparent 55%),
+    linear-gradient(135deg, #EFE8FB 0%, #E2D6F6 100%);
+  border-radius: 32px;
+  border: 1.5px dashed rgba(126, 87, 194, 0.22);
+  box-shadow: 0 24px 60px rgba(126, 87, 194, 0.16);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.daily-banner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 70px rgba(126, 87, 194, 0.22);
+}
+
+/* Decorative stars / moon / planet */
+.daily-banner-stars { position: absolute; inset: 0; pointer-events: none; }
+.db-star {
+  position: absolute;
+  color: rgba(126, 87, 194, 0.45);
+  font-size: 14px;
+}
+.db-star-1 { top: 18px; left: 22px; }
+.db-star-2 { bottom: 22px; left: 16px; font-size: 12px; }
+.db-star-3 { top: 26px; right: 26px; font-size: 11px; }
+.db-star-4 { bottom: 18px; right: 22px; font-size: 13px; }
+.db-moon {
+  position: absolute;
+  top: 18%; left: 46%;
+  font-size: 26px;
+  opacity: 0.85;
+  transform: rotate(-12deg);
+}
+.db-planet {
+  position: absolute;
+  top: 14%; right: 28%;
+  font-size: 22px;
+  opacity: 0.6;
+}
+
+/* Content (left) */
+.daily-banner-content {
+  grid-area: content;
+  position: relative;
+  z-index: 2;
+}
+.daily-banner-pill {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--c-primary-deep);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(126, 87, 194, 0.18);
+  margin-bottom: 16px;
+}
+.daily-banner-title {
+  font-family: var(--t-display);
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.1;
+  color: #2A1758;
+  margin-bottom: 6px;
+}
+.daily-banner-subtitle {
+  font-family: var(--t-body);
+  color: var(--c-primary);
+  font-weight: 700;
+  font-size: clamp(18px, 2.4vw, 24px);
+  margin-bottom: 14px;
+}
+.daily-banner-desc {
+  color: var(--c-ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+  max-width: 420px;
+}
+
+/* Features pills */
+.daily-banner-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.db-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.db-feature-icon {
+  width: 36px; height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 10px rgba(126, 87, 194, 0.12);
+}
+.db-feature-icon-1 { background: linear-gradient(135deg, #EBDFFA, #DDC9F4); }
+.db-feature-icon-2 { background: linear-gradient(135deg, #FCE1EE, #F4CBE0); }
+.db-feature-icon-3 { background: linear-gradient(135deg, #E7DCFA, #D2BFF1); }
+.db-feature-text { display: flex; flex-direction: column; line-height: 1.3; }
+.db-feature-text strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+}
+.db-feature-text small {
+  font-size: 12px;
+  color: var(--c-ink-mute);
+}
+
+/* Art (middle) */
+.daily-banner-art {
+  grid-area: art;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.daily-banner-art img {
+  width: clamp(220px, 32vw, 360px);
+  height: auto;
+  filter: drop-shadow(0 24px 40px rgba(126, 87, 194, 0.28));
+  transition: transform 0.4s ease;
+}
+.daily-banner:hover .daily-banner-art img { transform: translateY(-4px) scale(1.02); }
+
+/* CTA (right) */
+.daily-banner-cta {
+  grid-area: cta;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+.daily-banner-cta-btn {
+  width: clamp(64px, 8vw, 88px);
+  height: clamp(64px, 8vw, 88px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #B392E6 0%, #7E57C2 65%, #5E3DA6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 18px 40px rgba(126, 87, 194, 0.45),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.15),
+    inset 0 4px 10px rgba(255, 255, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.daily-banner:hover .daily-banner-cta-btn {
+  transform: scale(1.06);
+  box-shadow: 0 22px 48px rgba(126, 87, 194, 0.55), inset 0 -6px 14px rgba(0,0,0,0.15);
+}
+.daily-banner-cta-arrow {
+  color: #fff;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  line-height: 1;
+  margin-left: 4px;
+  font-family: var(--t-display);
+}
+.daily-banner-cta-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.3;
+}
+.daily-banner-cta-text strong {
+  color: var(--c-primary-deep);
+  font-weight: 700;
+  font-size: 15px;
+}
+.daily-banner-cta-text small {
+  color: var(--c-ink-mute);
+  font-size: 12px;
+}
+
+/* Tablet */
+@media (max-width: 960px) {
+  .daily-banner {
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-areas:
+      "content art"
+      "cta cta";
+    padding: 28px 24px;
+  }
+  .daily-banner-cta { flex-direction: row; justify-content: center; margin-top: 8px; }
+  .daily-banner-cta-text { align-items: flex-start; text-align: left; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .daily-banner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "art"
+      "content"
+      "cta";
+    text-align: center;
+    padding: 28px 22px;
+    border-radius: 24px;
+  }
+  .daily-banner-content { display: flex; flex-direction: column; align-items: center; }
+  .daily-banner-desc { margin-left: auto; margin-right: auto; }
+  .daily-banner-features { justify-content: center; }
+  .db-feature { flex: 0 0 calc(50% - 12px); }
+  .db-moon, .db-planet { display: none; }
+  .daily-banner-cta { flex-direction: row; }
+  .daily-banner-cta-text { align-items: flex-start; text-align: left; }
+}
