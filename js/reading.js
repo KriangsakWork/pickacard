@@ -100,7 +100,7 @@ function showReading(pile) {
 // SHARE AS IMAGE — html2canvas-based feature
 // Generates 1080x1920 (IG Story) share image using the middle card (ปัจจุบัน)
 // as the main card. Falls back to download if Web Share API unsupported.
-// Assets: /images/share/share-bg.png, /images/share/mascot.png
+// Assets: /images/share/share-bg.webp, /images/share/mascot.webp
 // ============================================
 
 function cardSlug(cardName) {
@@ -111,17 +111,17 @@ function ensureShareCardDOM() {
   if (document.getElementById('share-card')) return;
 
   // เช็คว่ามีไฟล์ template หรือยัง (เตือนใน console เฉพาะตอน build ครั้งแรกที่ขาดไฟล์)
-  // ไฟล์ที่ต้องอัพโหลด: /images/share/share-bg.png และ /images/share/mascot.png
+  // ไฟล์ที่ต้องอัพโหลด: /images/share/share-bg.webp และ /images/share/mascot.webp
   const wrap = document.createElement('div');
   wrap.id = 'share-card';
   wrap.innerHTML =
-    '<img src="/images/share/share-bg.png" class="share-bg" crossorigin="anonymous"' +
-    '     onerror="console.warn(\'[share] ต้องอัพโหลด /images/share/share-bg.png\')">' +
+    '<img src="/images/share/share-bg.webp" class="share-bg" crossorigin="anonymous"' +
+    '     onerror="console.warn(\'[share] ต้องอัพโหลด /images/share/share-bg.webp\')">' +
     '<img id="share-main-card" src="" class="share-main-card" crossorigin="anonymous">' +
     '<div class="share-topic"><p id="share-topic-text"></p></div>' +
     '<div class="share-prediction"><p id="share-prediction-text"></p></div>' +
-    '<img src="/images/share/mascot.png" class="share-mascot" crossorigin="anonymous"' +
-    '     onerror="console.warn(\'[share] ต้องอัพโหลด /images/share/mascot.png\')">';
+    '<img src="/images/share/mascot.webp" class="share-mascot" crossorigin="anonymous"' +
+    '     onerror="console.warn(\'[share] ต้องอัพโหลด /images/share/mascot.webp\')">';
   document.body.appendChild(wrap);
 }
 
@@ -284,7 +284,7 @@ function createOverlay() {
   overlay.innerHTML =
     '<div class="reveal-overlay-icon">🔮</div>' +
     '<div class="reveal-overlay-text">กำลังเปิดคำทำนาย...</div>' +
-    '<img class="reveal-overlay-mascot" src="/images/fortune-rabbit-loading-mascot.png" alt="" aria-hidden="true">';
+    '<img class="reveal-overlay-mascot" src="/images/fortune-rabbit-loading-mascot.webp" alt="" aria-hidden="true">';
   document.body.appendChild(overlay);
   return overlay;
 }

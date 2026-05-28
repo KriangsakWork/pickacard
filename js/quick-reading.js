@@ -57,7 +57,7 @@
     overlay.innerHTML =
       '<div class="reveal-overlay-icon">🔮</div>' +
       '<div class="reveal-overlay-text">กำลังเปิดไพ่ของคุณ...</div>' +
-      '<img class="reveal-overlay-mascot" src="/images/fortune-rabbit-loading-mascot.png" alt="" aria-hidden="true">';
+      '<img class="reveal-overlay-mascot" src="/images/fortune-rabbit-loading-mascot.webp" alt="" aria-hidden="true">';
     document.body.appendChild(overlay);
     return overlay;
   }
@@ -71,7 +71,7 @@
     html += '<article class="reveal-card" style="animation-delay:' + (index * 0.12) + 's;">';
     html += '  <div class="rc-media">';
     html += '    <span class="rc-num">' + (index + 1) + '</span>';
-    html += '    <img src="' + escapeHtml(card.image || '/images/card-back.png') + '" alt="ไพ่' +
+    html += '    <img src="' + escapeHtml(card.image || '/images/card-back.webp') + '" alt="ไพ่' +
             escapeHtml(card.nameTh || card.name || '') + '" loading="lazy">';
     html += '  </div>';
     html += '  <div class="rc-info">';
@@ -171,7 +171,7 @@
     return {
       name: cardName,
       nameTh: meta.nameTh || '',
-      image: meta.image || '/images/card-back.png',
+      image: meta.image || '/images/card-back.webp',
       arcana: meta.arcana || ''
     };
   }
