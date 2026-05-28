@@ -92,14 +92,13 @@ export default function ReadingExperience({ topic, readings }) {
     <>
       {stage === 'transitioning' && (
         <div className="reveal-overlay visible">
-          <div className="reveal-overlay-icon">🔮</div>
-          <div className="reveal-overlay-text">กำลังเปิดคำทำนาย...</div>
           <img
             className="reveal-overlay-mascot"
             src="/images/fortune-rabbit-loading-mascot.webp"
             alt=""
             aria-hidden="true"
           />
+          <div className="reveal-overlay-text">กำลังเปิดคำทำนาย...</div>
         </div>
       )}
 
