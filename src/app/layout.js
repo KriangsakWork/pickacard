@@ -18,6 +18,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://pickmystic.com'),
   title: {
     default: "Pick Mystic — ดูดวงไพ่ทาโรต์ออนไลน์ฟรี",
     template: "%s | Pick Mystic",
