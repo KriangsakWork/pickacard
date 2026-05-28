@@ -10,22 +10,27 @@ function cardSlug(name) {
 }
 
 export default function ReadingExperience({ topic, readings }) {
-  const [stage, setStage] = useState('pick'); // 'pick' | 'transitioning' | 'reading'
+  const [stage, setStage] = useState('pick'); // 'pick' | 'selected' | 'transitioning' | 'reading'
   const [selectedPile, setSelectedPile] = useState(null);
   const [reading, setReading] = useState(null);
 
   function pickPile(pileId) {
     if (stage !== 'pick') return;
     setSelectedPile(pileId);
-    setStage('transitioning');
+    setStage('selected');
+    // 700ms: user sees the picked card pop up with the "✨ ไพ่ของคุณ" badge
     setTimeout(() => {
-      setReading(readings[pileId]);
-      setStage('reading');
+      setStage('transitioning');
+      // 450ms: overlay fades to opaque before swapping in the reading
       setTimeout(() => {
-        const el = document.getElementById('reading-section');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
-    }, 1150);
+        setReading(readings[pileId]);
+        setStage('reading');
+        setTimeout(() => {
+          const el = document.getElementById('reading-section');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      }, 450);
+    }, 700);
   }
 
   function resetReading() {
