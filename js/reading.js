@@ -42,7 +42,7 @@ function showReading(pile) {
     html += '<article class="reveal-card" style="animation-delay: ' + (i * 0.12) + 's;">';
     html += '  <div class="rc-media">';
     html += '    <span class="rc-num">' + (i + 1) + '</span>';
-    html += '    <img src="/images/tarot/' + imgSlug + '.png" alt="' + card.name + '" loading="lazy" ' +
+    html += '    <img src="/images/tarot/' + imgSlug + '.webp" alt="' + card.name + '" loading="lazy" ' +
             'data-card-name="' + card.name + '" onerror="window.handleCardImageError(this)">';
     html += '  </div>';
     html += '  <div class="rc-info">';
@@ -156,7 +156,7 @@ async function generateShareImage() {
   const slug = cardSlug(middleCard.name);
   const predictionText = (middleCard.text || currentReading.message || '').trim();
 
-  document.getElementById('share-main-card').src = '/images/tarot/' + slug + '.png';
+  document.getElementById('share-main-card').src = '/images/tarot/' + slug + '.webp';
 
   // หัวข้อของหน้า pick-a-card (เช่น "โชคลาภที่กำลังจะมา")
   // ครอบด้วย ✦ ให้ดูเป็นหัวข้อชัด ๆ ไม่ปนกับคำทำนาย

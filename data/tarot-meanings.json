@@ -28,7 +28,7 @@
       "name": "The Moon",
       "nameTh": "พระจันทร์",
       "arcana": "major",
-      "image": "/images/tarot/the-moon.png",
+      "image": "/images/tarot/the-moon.webp",
       "keywords": ["ความไม่ชัดเจน", "สัญชาตญาณ", "สิ่งที่ซ่อนอยู่"],
       "meanings": {
         "love": {
@@ -50,7 +50,7 @@
       "name": "Two of Cups",
       "nameTh": "ถ้วยสองใบ",
       "arcana": "minor",
-      "image": "/images/tarot/two-of-cups.png",
+      "image": "/images/tarot/two-of-cups.webp",
       "keywords": ["การเชื่อมโยง", "ความผูกพัน", "ใจตรงกัน"],
       "meanings": {
         "love": {
@@ -72,7 +72,7 @@
       "name": "The Star",
       "nameTh": "ดวงดาว",
       "arcana": "major",
-      "image": "/images/tarot/the-star.png",
+      "image": "/images/tarot/the-star.webp",
       "keywords": ["ความหวัง", "การเยียวยา", "แรงบันดาลใจ"],
       "meanings": {
         "love": {
@@ -94,7 +94,7 @@
       "name": "Three of Swords",
       "nameTh": "ดาบสามเล่ม",
       "arcana": "minor",
-      "image": "/images/tarot/three-of-swords.png",
+      "image": "/images/tarot/three-of-swords.webp",
       "keywords": ["ความเจ็บปวด", "การปลดปล่อย", "บทเรียน"],
       "meanings": {
         "love": {
@@ -116,7 +116,7 @@
       "name": "The Hermit",
       "nameTh": "ฤๅษี",
       "arcana": "major",
-      "image": "/images/tarot/the-hermit.png",
+      "image": "/images/tarot/the-hermit.webp",
       "keywords": ["การค้นหาภายใน", "ความสงบ", "ปัญญา"],
       "meanings": {
         "love": {
@@ -138,7 +138,7 @@
       "name": "The Lovers",
       "nameTh": "คู่รัก",
       "arcana": "major",
-      "image": "/images/tarot/the-lovers.png",
+      "image": "/images/tarot/the-lovers.webp",
       "keywords": ["ความรักแท้", "ทางเลือก", "ความสอดคล้อง"],
       "meanings": {
         "love": {
@@ -160,7 +160,7 @@
       "name": "Five of Cups",
       "nameTh": "ถ้วยห้าใบ",
       "arcana": "minor",
-      "image": "/images/tarot/five-of-cups.png",
+      "image": "/images/tarot/five-of-cups.webp",
       "keywords": ["ความเสียดาย", "การมองใหม่", "ความหวังที่เหลืออยู่"],
       "meanings": {
         "love": {
@@ -182,7 +182,7 @@
       "name": "The Tower",
       "nameTh": "หอคอย",
       "arcana": "major",
-      "image": "/images/tarot/the-tower.png",
+      "image": "/images/tarot/the-tower.webp",
       "keywords": ["การเปลี่ยนแปลง", "ความจริงที่ปรากฏ", "การปลดปล่อย"],
       "meanings": {
         "love": {
@@ -204,7 +204,7 @@
       "name": "Justice",
       "nameTh": "ความยุติธรรม",
       "arcana": "major",
-      "image": "/images/tarot/justice.png",
+      "image": "/images/tarot/justice.webp",
       "keywords": ["ความสมดุล", "ความจริง", "ผลของการกระทำ"],
       "meanings": {
         "love": {
@@ -226,7 +226,7 @@
       "name": "Page of Cups",
       "nameTh": "เพจถ้วย",
       "arcana": "minor",
-      "image": "/images/tarot/page-of-cups.png",
+      "image": "/images/tarot/page-of-cups.webp",
       "keywords": ["ความรู้สึกใหม่", "การเริ่มต้น", "ความอ่อนโยน"],
       "meanings": {
         "love": {
@@ -248,7 +248,7 @@
       "name": "The High Priestess",
       "nameTh": "นักบวชหญิง",
       "arcana": "major",
-      "image": "/images/tarot/the-high-priestess.png",
+      "image": "/images/tarot/the-high-priestess.webp",
       "keywords": ["ญาณทัศนะ", "ความลับ", "การหยั่งรู้"],
       "meanings": {
         "love": {
@@ -270,7 +270,7 @@
       "name": "Knight of Cups",
       "nameTh": "อัศวินถ้วย",
       "arcana": "minor",
-      "image": "/images/tarot/knight-of-cups.png",
+      "image": "/images/tarot/knight-of-cups.webp",
       "keywords": ["ข้อเสนอ", "การทำตามหัวใจ", "โอกาสที่เข้ามา"],
       "meanings": {
         "love": {

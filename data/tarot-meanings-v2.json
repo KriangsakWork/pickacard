@@ -50,7 +50,7 @@
   "cards": {
     "The Moon": {
       "arcana": "major",
-      "image": "/images/tarot/the-moon.png",
+      "image": "/images/tarot/the-moon.webp",
       "nameTh": "พระจันทร์",
       "love": {
         "upright": {
@@ -135,7 +135,7 @@
     },
     "The Star": {
       "arcana": "major",
-      "image": "/images/tarot/the-star.png",
+      "image": "/images/tarot/the-star.webp",
       "nameTh": "ดาว",
       "love": {
         "upright": {
@@ -220,7 +220,7 @@
     },
     "The Lovers": {
       "arcana": "major",
-      "image": "/images/tarot/the-lovers.png",
+      "image": "/images/tarot/the-lovers.webp",
       "nameTh": "คู่รัก",
       "love": {
         "upright": {
@@ -305,7 +305,7 @@
     },
     "Two of Cups": {
       "arcana": "minor",
-      "image": "/images/tarot/two-of-cups.png",
+      "image": "/images/tarot/two-of-cups.webp",
       "nameTh": "ถ้วยสองใบ",
       "love": {
         "upright": {
@@ -390,7 +390,7 @@
     },
     "The High Priestess": {
       "arcana": "major",
-      "image": "/images/tarot/the-high-priestess.png",
+      "image": "/images/tarot/the-high-priestess.webp",
       "nameTh": "นักบวชหญิง",
       "love": {
         "upright": {
@@ -475,7 +475,7 @@
     },
     "The Hermit": {
       "arcana": "major",
-      "image": "/images/tarot/the-hermit.png",
+      "image": "/images/tarot/the-hermit.webp",
       "nameTh": "ฤาษี",
       "love": {
         "upright": {
@@ -560,7 +560,7 @@
     },
     "Wheel of Fortune": {
       "arcana": "major",
-      "image": "/images/tarot/wheel-of-fortune.png",
+      "image": "/images/tarot/wheel-of-fortune.webp",
       "nameTh": "กงล้อแห่งโชคชะตา",
       "love": {
         "upright": {
@@ -653,7 +653,7 @@
     },
     "Death": {
       "arcana": "major",
-      "image": "/images/tarot/death.png",
+      "image": "/images/tarot/death.webp",
       "nameTh": "ความตาย",
       "love": {
         "upright": {
@@ -713,7 +713,7 @@
     },
     "The Sun": {
       "arcana": "major",
-      "image": "/images/tarot/the-sun.png",
+      "image": "/images/tarot/the-sun.webp",
       "nameTh": "ดวงอาทิตย์",
       "love": {
         "upright": {
@@ -773,7 +773,7 @@
     },
     "The Devil": {
       "arcana": "major",
-      "image": "/images/tarot/the-devil.png",
+      "image": "/images/tarot/the-devil.webp",
       "nameTh": "ปีศาจ",
       "love": {
         "upright": {
@@ -833,7 +833,7 @@
     },
     "The Fool": {
       "arcana": "major",
-      "image": "/images/tarot/the-fool.png",
+      "image": "/images/tarot/the-fool.webp",
       "nameTh": "คนโง่ผู้กล้า",
       "love": {
         "upright": {
@@ -893,7 +893,7 @@
     },
     "Ace of Cups": {
       "arcana": "minor",
-      "image": "/images/tarot/ace-of-cups.png",
+      "image": "/images/tarot/ace-of-cups.webp",
       "slug": "ace-of-cups",
       "love": {
         "upright": {
@@ -978,7 +978,7 @@
     },
     "The Magician": {
       "arcana": "major",
-      "image": "/images/tarot/the-magician.png",
+      "image": "/images/tarot/the-magician.webp",
       "slug": "the-magician",
       "love": {
         "upright": {
@@ -1068,7 +1068,7 @@
     },
     "The Empress": {
       "arcana": "major",
-      "image": "/images/tarot/the-empress.png",
+      "image": "/images/tarot/the-empress.webp",
       "slug": "the-empress",
       "love": {
         "upright": {
@@ -1158,7 +1158,7 @@
     },
     "The Emperor": {
       "arcana": "major",
-      "image": "/images/tarot/the-emperor.png",
+      "image": "/images/tarot/the-emperor.webp",
       "slug": "the-emperor",
       "love": {
         "upright": {
@@ -1248,7 +1248,7 @@
     },
     "The Hierophant": {
       "arcana": "major",
-      "image": "/images/tarot/the-hierophant.png",
+      "image": "/images/tarot/the-hierophant.webp",
       "slug": "the-hierophant",
       "love": {
         "upright": {
@@ -1338,7 +1338,7 @@
     },
     "The Chariot": {
       "arcana": "major",
-      "image": "/images/tarot/the-chariot.png",
+      "image": "/images/tarot/the-chariot.webp",
       "slug": "the-chariot",
       "love": {
         "upright": {
@@ -1428,7 +1428,7 @@
     },
     "Strength": {
       "arcana": "major",
-      "image": "/images/tarot/strength.png",
+      "image": "/images/tarot/strength.webp",
       "slug": "strength",
       "love": {
         "upright": {
@@ -1518,7 +1518,7 @@
     },
     "Justice": {
       "arcana": "major",
-      "image": "/images/tarot/justice.png",
+      "image": "/images/tarot/justice.webp",
       "slug": "justice",
       "love": {
         "upright": {
@@ -1608,7 +1608,7 @@
     },
     "The Hanged Man": {
       "arcana": "major",
-      "image": "/images/tarot/the-hanged-man.png",
+      "image": "/images/tarot/the-hanged-man.webp",
       "slug": "the-hanged-man",
       "love": {
         "upright": {
@@ -1698,7 +1698,7 @@
     },
     "Temperance": {
       "arcana": "major",
-      "image": "/images/tarot/temperance.png",
+      "image": "/images/tarot/temperance.webp",
       "slug": "temperance",
       "love": {
         "upright": {
@@ -1788,7 +1788,7 @@
     },
     "The Tower": {
       "arcana": "major",
-      "image": "/images/tarot/the-tower.png",
+      "image": "/images/tarot/the-tower.webp",
       "slug": "the-tower",
       "love": {
         "upright": {
@@ -1878,7 +1878,7 @@
     },
     "Judgement": {
       "arcana": "major",
-      "image": "/images/tarot/judgement.png",
+      "image": "/images/tarot/judgement.webp",
       "slug": "judgement",
       "love": {
         "upright": {
@@ -1968,7 +1968,7 @@
     },
     "The World": {
       "arcana": "major",
-      "image": "/images/tarot/the-world.png",
+      "image": "/images/tarot/the-world.webp",
       "slug": "the-world",
       "love": {
         "upright": {
@@ -2058,7 +2058,7 @@
     },
     "Five of Cups": {
       "arcana": "minor",
-      "image": "/images/tarot/five-of-cups.png",
+      "image": "/images/tarot/five-of-cups.webp",
       "slug": "five-of-cups",
       "love": {
         "upright": {
@@ -2143,7 +2143,7 @@
     },
     "Knight of Cups": {
       "arcana": "minor",
-      "image": "/images/tarot/knight-of-cups.png",
+      "image": "/images/tarot/knight-of-cups.webp",
       "slug": "knight-of-cups",
       "love": {
         "upright": {
@@ -2228,7 +2228,7 @@
     },
     "Page of Cups": {
       "arcana": "minor",
-      "image": "/images/tarot/page-of-cups.png",
+      "image": "/images/tarot/page-of-cups.webp",
       "slug": "page-of-cups",
       "love": {
         "upright": {
@@ -2313,7 +2313,7 @@
     },
     "Three of Swords": {
       "arcana": "minor",
-      "image": "/images/tarot/three-of-swords.png",
+      "image": "/images/tarot/three-of-swords.webp",
       "slug": "three-of-swords",
       "love": {
         "upright": {
@@ -2398,7 +2398,7 @@
     },
     "Ace of Wands": {
       "arcana": "minor",
-      "image": "/images/tarot/ace-of-wands.png",
+      "image": "/images/tarot/ace-of-wands.webp",
       "slug": "ace-of-wands",
       "love": {
         "upright": {
@@ -2483,7 +2483,7 @@
     },
     "Ace of Swords": {
       "arcana": "minor",
-      "image": "/images/tarot/ace-of-swords.png",
+      "image": "/images/tarot/ace-of-swords.webp",
       "slug": "ace-of-swords",
       "love": {
         "upright": {
@@ -2568,7 +2568,7 @@
     },
     "Ace of Pentacles": {
       "arcana": "minor",
-      "image": "/images/tarot/ace-of-pentacles.png",
+      "image": "/images/tarot/ace-of-pentacles.webp",
       "slug": "ace-of-pentacles",
       "love": {
         "upright": {
@@ -2653,7 +2653,7 @@
     },
     "Queen of Cups": {
       "arcana": "minor",
-      "image": "/images/tarot/queen-of-cups.png",
+      "image": "/images/tarot/queen-of-cups.webp",
       "slug": "queen-of-cups",
       "love": {
         "upright": {
@@ -2706,7 +2706,7 @@
     },
     "Queen of Wands": {
       "arcana": "minor",
-      "image": "/images/tarot/queen-of-wands.png",
+      "image": "/images/tarot/queen-of-wands.webp",
       "slug": "queen-of-wands",
       "love": {
         "upright": {
@@ -2759,7 +2759,7 @@
     },
     "Queen of Swords": {
       "arcana": "minor",
-      "image": "/images/tarot/queen-of-swords.png",
+      "image": "/images/tarot/queen-of-swords.webp",
       "slug": "queen-of-swords",
       "love": {
         "upright": {
@@ -2812,7 +2812,7 @@
     },
     "Queen of Pentacles": {
       "arcana": "minor",
-      "image": "/images/tarot/queen-of-pentacles.png",
+      "image": "/images/tarot/queen-of-pentacles.webp",
       "slug": "queen-of-pentacles",
       "love": {
         "upright": {
