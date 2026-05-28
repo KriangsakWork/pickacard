@@ -9,6 +9,7 @@ const BLOG_POSTS = [
   'tarot-death-meaning',
   'tarot-moon-meaning',
   'tarot-love-meaning',
+  'why-cant-move-on',
 ];
 
 export default function sitemap() {
