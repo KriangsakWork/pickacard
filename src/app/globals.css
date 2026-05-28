@@ -1,5 +1,7 @@
 @import "tailwindcss";
+@import "./legacy.css";
 
+/* Design system tokens — also available as Tailwind utility classes */
 @theme {
   --color-primary: #7E57C2;
   --color-primary-50: #F5F0FA;
@@ -15,22 +17,59 @@
   --font-sans: var(--font-prompt), "Prompt", system-ui, sans-serif;
 }
 
+/* Bridge next/font variables into the legacy.css design tokens */
 :root {
-  --background: #FAFAFD;
-  --foreground: #3D2A5C;
+  --t-body: var(--font-prompt), "Prompt", system-ui, sans-serif;
+  --t-display: var(--font-playfair), "Playfair Display", serif;
 }
 
-html, body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* Inline styles lifted from the old about/faq/how-to HTML <style> blocks */
+.content-page { padding: 48px 0; max-width: 760px; margin: 0 auto; }
+.content-page h1 { font-size: 32px; color: #3D2A5C; margin-bottom: 12px; text-align: center; }
+.content-page .subtitle { text-align: center; color: #7E57C2; font-style: italic; margin-bottom: 40px; }
+.content-page h2 { font-size: 20px; color: #3D2A5C; margin: 32px 0 12px; }
+.content-page p { font-size: 15px; line-height: 1.9; color: #3D2A5C; margin-bottom: 16px; }
 
-h1, h2, h3, h4 {
-  font-weight: 600;
-  color: var(--color-dark-purple);
-  letter-spacing: -0.01em;
-}
+.faq-item { background: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(126,87,194,0.08); }
+.faq-item h3 { font-size: 16px; color: #3D2A5C; margin-bottom: 8px; }
+.faq-item h3::before { content: "Q: "; color: #7E57C2; font-weight: 700; }
+.faq-item p { font-size: 14px; color: #6B5B7A; line-height: 1.85; }
+.faq-item p::before { content: "A: "; color: #7E57C2; font-weight: 700; }
+
+.step { background: white; padding: 24px 28px; border-radius: 14px; margin-bottom: 16px; display: flex; gap: 20px; align-items: flex-start; box-shadow: 0 4px 12px rgba(126,87,194,0.08); }
+.step-num { width: 48px; height: 48px; background: #7E57C2; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; flex-shrink: 0; }
+.step h3 { font-size: 17px; color: #3D2A5C; margin-bottom: 6px; }
+.step p { font-size: 14px; color: #6B5B7A; line-height: 1.8; }
+.tip-box { background: linear-gradient(135deg, #E8DEF7, #F5F0FA); padding: 24px; border-radius: 14px; margin-top: 32px; }
+.tip-box h3 { color: #5B3F8A; margin-bottom: 8px; }
+.tip-box p { font-size: 14px; color: #3D2A5C; line-height: 1.8; }
+
+/* /cards index + detail */
+.cards-group-title { font-size: 22px; color: #3D2A5C; margin: 32px 0 16px; }
+.cards-grid-library { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+.card-tile { display: block; background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 12px rgba(126,87,194,0.08); text-decoration: none; transition: transform .15s, box-shadow .15s; }
+.card-tile:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(126,87,194,0.16); }
+.card-tile img { width: 100%; height: auto; aspect-ratio: 2/3; object-fit: cover; }
+.card-tile-body { padding: 12px 14px; }
+.card-tile-body h3 { font-size: 15px; color: #3D2A5C; margin: 0; }
+.card-tile-body p { font-size: 13px; color: #7E57C2; margin: 4px 0 0; }
+
+.card-detail { padding: 32px 0 64px; max-width: 880px; margin: 0 auto; }
+.card-detail-head { display: grid; gap: 32px; grid-template-columns: 280px 1fr; margin: 24px 0 40px; align-items: start; }
+@media (max-width: 640px) { .card-detail-head { grid-template-columns: 1fr; } }
+.card-detail-image img { width: 100%; border-radius: 16px; box-shadow: 0 12px 32px rgba(126,87,194,0.2); }
+.card-detail-arcana { display: inline-block; font-size: 12px; color: #7E57C2; background: #E8DEF7; padding: 4px 12px; border-radius: 999px; letter-spacing: .04em; }
+.card-detail-info h1 { font-size: 32px; color: #3D2A5C; margin: 12px 0 6px; }
+.card-detail-name-th { color: #6B5B7A; font-size: 18px; }
+.card-detail-meanings { display: grid; gap: 16px; }
+.card-meaning { background: white; padding: 20px 24px; border-radius: 14px; box-shadow: 0 4px 12px rgba(126,87,194,0.08); }
+.card-meaning h2 { font-size: 18px; color: #3D2A5C; margin: 0 0 10px; }
+.card-meaning p { color: #3D2A5C; line-height: 1.85; font-size: 15px; }
+.card-meaning-keywords { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0 0 10px; }
+.card-meaning-keywords li { font-size: 12px; color: #7E57C2; background: #F5F0FA; padding: 4px 10px; border-radius: 999px; }
+.card-meaning-empty { color: #9B8FB4; font-style: italic; }
+
+/* /readings filter chips */
+.filter-chip { background: white; border: 1px solid rgba(126,87,194,0.14); color: #6B5B7A; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; transition: background .15s, color .15s; }
+.filter-chip:hover { background: #F5F0FA; }
+.filter-chip.active { background: #7E57C2; color: white; border-color: #7E57C2; }

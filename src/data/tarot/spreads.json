@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "phase": 3,
+  "language": "th",
+  "note": "เทมเพลตสเปรดไพ่ทาโรต์ แต่ละสเปรดคือลำดับตำแหน่งคงที่ — เครื่องสุ่มจะหยิบไพ่จาก pool มาวางตามลำดับนี้ทีละใบ ขยายเพิ่มสเปรดในอนาคตได้โดยไม่ต้องแก้โค้ด",
+  "schema": {
+    "spread": "object<spreadId, { id, name, count, positions: Position[] }>",
+    "Position": "{ id: string, label: string, hint?: string }",
+    "rules": [
+      "count ต้องเท่ากับจำนวน positions เสมอ",
+      "position id ต้องไม่ซ้ำกันภายในสเปรดเดียวกัน"
+    ]
+  },
+  "default": "quick3",
+  "spreads": {
+    "single": {
+      "id": "single",
+      "name": "ไพ่ใบเดียว",
+      "count": 1,
+      "positions": [
+        {
+          "id": "message",
+          "label": "ข้อความจากจักรวาล",
+          "hint": "สิ่งที่จักรวาลอยากบอกคุณในตอนนี้"
+        }
+      ]
+    },
+    "quick3": {
+      "id": "quick3",
+      "name": "สเปรด 3 ใบ (Quick Reading)",
+      "count": 3,
+      "positions": [
+        {
+          "id": "current",
+          "label": "สถานการณ์ปัจจุบัน",
+          "hint": "พลังงานที่ห้อมล้อมคุณอยู่ในตอนนี้"
+        },
+        {
+          "id": "hidden",
+          "label": "สิ่งที่ซ่อนอยู่",
+          "hint": "สิ่งที่คุณยังมองไม่เห็น แต่ควรรับรู้"
+        },
+        {
+          "id": "guidance",
+          "label": "แนวโน้มและคำแนะนำ",
+          "hint": "ทิศทางข้างหน้าและสิ่งที่จักรวาลแนะนำ"
+        }
+      ]
+    },
+    "celticCross": {
+      "id": "celticCross",
+      "name": "Celtic Cross (วางไว้สำหรับอนาคต)",
+      "count": 10,
+      "positions": [
+        { "id": "present",     "label": "สถานการณ์ปัจจุบัน" },
+        { "id": "challenge",   "label": "อุปสรรคที่ขวางอยู่" },
+        { "id": "past",        "label": "รากของอดีต" },
+        { "id": "recent",      "label": "เหตุการณ์ที่เพิ่งผ่าน" },
+        { "id": "goal",        "label": "เป้าหมายหรือสิ่งที่ใฝ่ฝัน" },
+        { "id": "nearFuture",  "label": "สิ่งที่กำลังจะมาถึง" },
+        { "id": "self",        "label": "ตัวคุณในสถานการณ์นี้" },
+        { "id": "environment", "label": "สิ่งแวดล้อมและคนรอบข้าง" },
+        { "id": "hopesFears",  "label": "ความหวังและความกลัว" },
+        { "id": "outcome",     "label": "ผลลัพธ์ที่เป็นไปได้" }
+      ]
+    }
+  }
+}

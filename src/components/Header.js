@@ -1,0 +1,50 @@
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+
+const NAV = [
+  { href: '/', label: 'หน้าแรก' },
+  { href: '/blog/', label: 'บทความ', external: true },
+  { href: '/about', label: 'เกี่ยวกับเรา' },
+  { href: '/how-to', label: 'วิธีการใช้งาน' },
+  { href: '/faq', label: 'คำถามที่พบบ่อย' },
+];
+
+export default function Header() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  return (
+    <nav className="navbar">
+      <div className="nav-container">
+        <Link href="/" className="nav-logo">
+          <img src="/images/logo.webp" alt="Pick Mystic logo" width="36" height="36" />
+          <span className="nav-brand">
+            <span className="nav-brand-name">PICK MYSTIC</span>
+            <span className="nav-brand-tagline">Pick a Card Tarot</span>
+          </span>
+        </Link>
+        <div className={`nav-menu${open ? ' open' : ''}`}>
+          {NAV.map(item => {
+            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+            const className = `nav-link${isActive ? ' active' : ''}`;
+            return item.external ? (
+              <a key={item.href} href={item.href} className={className}>{item.label}</a>
+            ) : (
+              <Link key={item.href} href={item.href} className={className}>{item.label}</Link>
+            );
+          })}
+        </div>
+        <button
+          className="nav-toggle"
+          aria-label="เมนู"
+          aria-expanded={open}
+          onClick={() => setOpen(v => !v)}
+        >
+          ☰
+        </button>
+      </div>
+    </nav>
+  );
+}
