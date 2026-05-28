@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const NAV = [
   { href: '/', label: 'หน้าแรก' },
@@ -13,10 +13,28 @@ const NAV = [
 
 export default function Header() {
   const pathname = usePathname();
+  const isHome = pathname === '/';
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!isHome) {
+      document.body.classList.remove('home');
+      setScrolled(false);
+      return;
+    }
+    document.body.classList.add('home');
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      document.body.classList.remove('home');
+    };
+  }, [isHome]);
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`}>
       <div className="nav-container">
         <Link href="/" className="nav-logo">
           <img src="/images/logo.webp" alt="Pick Mystic logo" width="36" height="36" />
