@@ -29,3 +29,62 @@ export const allCategoriesQuery = groq`
     icon
   }
 `;
+
+// Slugs of every published article — used by generateStaticParams.
+export const articleSlugsQuery = groq`
+  *[_type == "article" && defined(slug.current) && defined(publishedAt) && publishedAt <= now()].slug.current
+`;
+
+// A single article by slug, with everything the detail page needs.
+export const articleBySlugQuery = groq`
+  *[_type == "article" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    coverImage,
+    body,
+    publishedAt,
+    author,
+    isFeatured,
+    seo,
+    "categoryId": category._ref,
+    category->{
+      title,
+      "slug": slug.current,
+      icon
+    },
+    relatedProducts[]->{
+      _id,
+      name,
+      "slug": slug.current,
+      image,
+      price,
+      currency,
+      shopeeUrl
+    },
+    relatedCards
+  }
+`;
+
+// Up to 3 other published articles in the same category (excludes current).
+export const relatedArticlesQuery = groq`
+  *[_type == "article"
+    && defined(publishedAt) && publishedAt <= now()
+    && _id != $id
+    && category._ref == $categoryId
+  ] | order(publishedAt desc) [0...3] {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    coverImage,
+    publishedAt,
+    isFeatured,
+    category->{
+      title,
+      "slug": slug.current,
+      icon
+    }
+  }
+`;
