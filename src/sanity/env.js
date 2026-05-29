@@ -15,9 +15,14 @@ export const projectId = assertValue(
 );
 
 function assertValue(v, errorMessage) {
-  if (v === undefined) {
+  // Trim stray whitespace/newlines that can sneak in when pasting values into
+  // a hosting provider's env UI (a trailing newline makes Sanity reject the
+  // projectId). Treat an empty/whitespace-only value as missing.
+  const value = typeof v === 'string' ? v.trim() : v;
+
+  if (!value) {
     throw new Error(errorMessage);
   }
 
-  return v;
+  return value;
 }
