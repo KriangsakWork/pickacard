@@ -63,3 +63,5 @@ duangjai/
 ## Deploy
 
 Static site - ใช้กับ Vercel ได้ทันที (auto-deploy เมื่อ push GitHub)
+
+chore: trigger rebuild
