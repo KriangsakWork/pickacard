@@ -9,12 +9,9 @@ const nextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      // Legacy blog (static HTML in public/blog/) — serve directory index for /blog
-      { source: '/blog', destination: '/blog/index.html' },
-    ];
-  },
+  // Note: the old /blog -> /blog/index.html rewrite was removed so the new
+  // Sanity-powered app/blog/page.js serves /blog. The legacy article HTML in
+  // public/blog/*.html is still reachable directly and will be migrated in B1.
 };
 
 export default nextConfig;
