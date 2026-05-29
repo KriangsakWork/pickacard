@@ -1,3 +1,7 @@
-// Schema registry. Document and object schemas are added here in Phase A2
-// (Article, Product, etc.). Empty for now — an empty Studio is expected.
-export const schemaTypes = [];
+import article from './article';
+import category from './category';
+import product from './product';
+import homepagePicks from './homepagePicks';
+
+// Schema registry consumed by sanity.config.js.
+export const schemaTypes = [article, category, product, homepagePicks];
