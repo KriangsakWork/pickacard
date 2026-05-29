@@ -61,6 +61,11 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+  // Disable Content Releases (default in Sanity v5) to restore the classic
+  // single-click Publish workflow instead of the release-based one.
+  releases: {
+    enabled: false,
+  },
   document: {
     // Prevent create/duplicate/delete on singletons so only one stays.
     actions: (prev, { schemaType }) =>
