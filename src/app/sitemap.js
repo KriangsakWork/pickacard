@@ -1,4 +1,3 @@
-import { READING_ITEMS } from '@/data/readings-list';
 import { ALL_CARDS } from '@/lib/cards';
 import { client } from '@/sanity/client';
 
@@ -20,6 +19,17 @@ async function fetchBlogPosts() {
   }
 }
 
+async function fetchPickTopicSlugs() {
+  try {
+    const items = await client.fetch(
+      `*[_type=="pickTopic" && defined(slug.current)]{ "slug": slug.current }`
+    );
+    return items.map(i => i.slug);
+  } catch {
+    return [];
+  }
+}
+
 export default async function sitemap() {
   const now = new Date();
 
@@ -33,8 +43,9 @@ export default async function sitemap() {
     { url: `${BASE}/faq`,          priority: 0.5, changeFrequency: 'monthly' },
   ];
 
-  const topics = READING_ITEMS.map(item => ({
-    url: `${BASE}/reading/${item.slug}`,
+  const topicSlugs = await fetchPickTopicSlugs();
+  const topics = topicSlugs.map(slug => ({
+    url: `${BASE}/reading/${slug}`,
     priority: 0.8,
     changeFrequency: 'weekly',
   }));

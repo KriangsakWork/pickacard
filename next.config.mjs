@@ -16,6 +16,11 @@ const nextConfig = {
         destination: '/readings',
         permanent: true,
       },
+      {
+        source: '/reading/:slug.html',
+        destination: '/reading/:slug',
+        permanent: true,
+      },
     ];
   },
   // Note: the old /blog -> /blog/index.html rewrite was removed so the new
