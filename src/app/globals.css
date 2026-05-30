@@ -69,6 +69,9 @@
 .card-meaning-keywords li { font-size: 12px; color: #7E57C2; background: #F5F0FA; padding: 4px 10px; border-radius: 999px; }
 .card-meaning-empty { color: #9B8FB4; font-style: italic; }
 
+/* Featured article card — subtle primary outline on the shared .topic-card */
+.topic-card.is-featured { border-color: var(--color-primary); box-shadow: 0 2px 10px rgba(126,87,194,0.18); }
+
 /* /readings filter chips */
 .filter-chip { background: white; border: 1px solid rgba(126,87,194,0.14); color: #6B5B7A; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; transition: background .15s, color .15s; }
 .filter-chip:hover { background: #F5F0FA; }

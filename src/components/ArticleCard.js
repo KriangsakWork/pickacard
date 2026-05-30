@@ -13,6 +13,9 @@ function formatThaiDate(value) {
   }).format(new Date(value));
 }
 
+// Reuses the home page's .topic-card look (legacy.css) so article cards match
+// the rest of the site: 22px radius, dark glassy category tag, 24px body
+// padding, image scrim + hover lift.
 export default function ArticleCard({ article }) {
   const { title, slug, excerpt, coverImage, publishedAt, isFeatured, category } =
     article;
@@ -24,11 +27,9 @@ export default function ArticleCard({ article }) {
   return (
     <Link
       href={`/blog/${slug}`}
-      className={`group block overflow-hidden rounded-2xl bg-white shadow-[0_4px_20px_rgba(126,87,194,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_14px_32px_rgba(126,87,194,0.18)] ${
-        isFeatured ? 'border-2 border-primary' : 'border border-transparent'
-      }`}
+      className={`topic-card${isFeatured ? ' is-featured' : ''}`}
     >
-      <div className="relative aspect-[16/9] overflow-hidden bg-primary-50">
+      <div className="topic-media">
         {coverUrl ? (
           <Image
             src={coverUrl}
@@ -36,7 +37,7 @@ export default function ArticleCard({ article }) {
             fill
             loading="lazy"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-5xl">
@@ -45,35 +46,29 @@ export default function ArticleCard({ article }) {
         )}
 
         {category?.title && (
-          <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-primary shadow-sm backdrop-blur">
+          <span className="topic-tag">
             {category.icon ? `${category.icon} ` : ''}
             {category.title}
           </span>
         )}
 
         {isFeatured && (
-          <span className="absolute right-3 top-3 rounded-full bg-primary px-2.5 py-1 text-xs font-medium text-white shadow-sm">
-            ⭐ เด่น
-          </span>
+          <span className="topic-soon-pill">⭐ เด่น</span>
         )}
       </div>
 
-      <div className="p-5">
-        <h3 className="line-clamp-2 text-lg font-semibold leading-snug text-dark-purple">
-          {title}
-        </h3>
-        {excerpt && (
-          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-purple">
-            {excerpt}
-          </p>
-        )}
-        <div className="mt-4 flex items-center justify-between">
-          <time dateTime={publishedAt} className="text-xs text-muted-purple">
+      <div className="topic-body">
+        <h3 className="topic-title line-clamp-2">{title}</h3>
+        {excerpt && <p className="topic-hook line-clamp-2">{excerpt}</p>}
+
+        <div className="mt-auto flex items-center justify-between pt-2.5">
+          <time
+            dateTime={publishedAt}
+            className="text-xs font-medium text-[#9B8FB4]"
+          >
             {formatThaiDate(publishedAt)}
           </time>
-          <span className="text-sm font-medium text-primary transition-transform group-hover:translate-x-0.5">
-            อ่านต่อ →
-          </span>
+          <span className="text-[13px] font-bold text-primary">อ่านต่อ →</span>
         </div>
       </div>
     </Link>
