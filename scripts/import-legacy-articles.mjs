@@ -27,6 +27,7 @@ const ARTICLES = [
   'tarot-death-meaning.html',
   'tarot-love-meaning.html',
   'how-to-pick-a-card.html',
+  'ex-come-back-tarot.html',
 ];
 
 const CATEGORY_SEED = [
