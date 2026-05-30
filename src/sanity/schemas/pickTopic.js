@@ -1,7 +1,5 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
-import { slugify } from '../lib/slugify';
-
 const cardItem = defineArrayMember({
   name: 'pickCard',
   title: 'Card',
@@ -128,8 +126,17 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title', slugify, maxLength: 96 },
-      validation: (Rule) => Rule.required(),
+      description:
+        'พิมพ์ภาษาอังกฤษเท่านั้น เช่น how-he-thinks (จะกลายเป็น URL: /pick/how-he-thinks)',
+      options: { maxLength: 96 },
+      validation: (Rule) =>
+        Rule.required().custom((value) => {
+          const current = value?.current;
+          if (!current) return true;
+          return /^[a-z0-9-]+$/.test(current)
+            ? true
+            : 'slug ต้องเป็นภาษาอังกฤษพิมพ์เล็กและขีดกลางเท่านั้น';
+        }),
     }),
     defineField({
       name: 'shortDescription',

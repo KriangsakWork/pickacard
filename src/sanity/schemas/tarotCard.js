@@ -1,7 +1,5 @@
 import { defineField, defineType } from 'sanity';
 
-import { slugify } from '../lib/slugify';
-
 export default defineType({
   name: 'tarotCard',
   title: 'Tarot card',
@@ -25,8 +23,16 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'name', slugify, maxLength: 96 },
-      validation: (Rule) => Rule.required(),
+      description: 'พิมพ์ภาษาอังกฤษ เช่น page-of-cups',
+      options: { maxLength: 96 },
+      validation: (Rule) =>
+        Rule.required().custom((value) => {
+          const current = value?.current;
+          if (!current) return true;
+          return /^[a-z0-9-]+$/.test(current)
+            ? true
+            : 'slug ต้องเป็นภาษาอังกฤษพิมพ์เล็กและขีดกลางเท่านั้น';
+        }),
     }),
     defineField({
       name: 'arcana',
