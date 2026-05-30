@@ -47,8 +47,11 @@
   --t-body: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* ===== 2. RESET & BASE ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ===== 2. RESET & BASE =====
+   Only box-sizing here. Margin/padding zeroing is left to Tailwind's preflight
+   (in @layer base) so Tailwind spacing utilities (mt-*, p-* …) can still win —
+   an unlayered `* { margin:0; padding:0 }` would override every layered utility. */
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
