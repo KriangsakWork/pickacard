@@ -160,14 +160,14 @@ export default async function HomePage() {
                 <img src="/images/mascot-topics.webp" alt="หมอดูแนะนำจาก Pick Mystic" loading="lazy" />
               </div>
               <div className="feature-banner-content">
-                <span className="feature-banner-tag">🔮 หมอดูแนะนำ</span>
+                <span className="feature-banner-tag">หมอดูแนะนำ</span>
                 <h2 className="feature-banner-title">ปรึกษาหมอดูตัวจริง แบบเจาะลึก</h2>
                 <p className="feature-banner-text">
                   เตรียมพบกับบริการดูดวงส่วนตัวกับหมอดูที่เราคัดสรรมาเพื่อคุณ ทั้งเรื่องความรัก การงาน และเส้นทางชีวิต
                 </p>
                 <a className="btn btn-primary" href="#topics">ดูรายละเอียด →</a>
               </div>
-              <span className="feature-banner-badge">พื้นที่แนะนำ</span>
+              <span className="feature-banner-badge">เร็วๆ นี้</span>
             </div>
           </div>
         </section>
