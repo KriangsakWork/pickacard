@@ -2300,13 +2300,13 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 .quick-promo-cards img:nth-child(2) { z-index: 2; transform: translateY(-10px); transition: transform 0.35s ease; }
 .quick-promo-cards img:nth-child(3) { transform: rotate(14deg) translateX(-20px); transition: transform 0.35s ease; }
 .quick-promo:hover .quick-promo-cards img:nth-child(1) {
-  transform: rotate(-20deg) translate(-10px, 6px);
+  transform: rotate(-18deg) translate(-5px, 3px);
 }
 .quick-promo:hover .quick-promo-cards img:nth-child(2) {
-  transform: translateY(-18px);
+  transform: translateY(-16px);
 }
 .quick-promo:hover .quick-promo-cards img:nth-child(3) {
-  transform: rotate(20deg) translate(10px, 6px);
+  transform: rotate(18deg) translate(5px, 3px);
 }
 
 @media (max-width: 720px) {
