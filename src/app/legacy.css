@@ -819,7 +819,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   gap: 8px;
 }
 .lucky-head-bunny {
-  width: 50px;
+  width: 100px;
   height: auto;
   user-select: none;
   pointer-events: none;
@@ -831,7 +831,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
     align-items: center;
     gap: 12px;
   }
-  .lucky-head-bunny { width: 80px; }
+  .lucky-head-bunny { width: 160px; }
 }
 
 /* ===== Change birthday button (top-right) ===== */

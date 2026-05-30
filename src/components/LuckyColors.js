@@ -36,12 +36,12 @@ const DAY_SHORT = { monday: 'จ.', tuesday: 'อ.', wednesday: 'พ.', thursday
 const DAY_FULL  = { monday: 'จันทร์', tuesday: 'อังคาร', wednesday: 'พุธ', thursday: 'พฤหัสบดี', friday: 'ศุกร์', saturday: 'เสาร์', sunday: 'อาทิตย์' };
 
 const CATEGORIES = [
-  { key: 'work',  label: 'การงาน',         icon: '💼' },
-  { key: 'money', label: 'การเงิน',        icon: '💰' },
-  { key: 'love',  label: 'ความรัก',        icon: '💗' },
-  { key: 'mercy', label: 'เมตตา',          icon: '🕊️' },
-  { key: 'luck',  label: 'โชคลาภ',         icon: '🍀' },
-  { key: 'avoid', label: 'สีที่ควรเลี่ยง', icon: '🚫' },
+  { key: 'work',  label: 'การงาน'         },
+  { key: 'money', label: 'การเงิน'        },
+  { key: 'love',  label: 'ความรัก'        },
+  { key: 'mercy', label: 'เมตตา'          },
+  { key: 'luck',  label: 'โชคลาภ'         },
+  { key: 'avoid', label: 'สีที่ควรเลี่ยง' },
 ];
 
 export default function LuckyColors() {
@@ -123,7 +123,7 @@ export default function LuckyColors() {
                       className="lucky-swatch"
                       style={{ '--from': color.from, '--to': color.to, '--glow': color.glow }}
                     />
-                    <span className="lucky-cat">{cat.icon} {cat.label}</span>
+                    <span className="lucky-cat">{cat.label}</span>
                     <span className="lucky-color-name">{color.name}</span>
                   </div>
                 );
