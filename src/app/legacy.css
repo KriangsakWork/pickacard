@@ -2296,12 +2296,17 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   border-radius: 9px;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
 }
-.quick-promo-cards img:nth-child(1) { transform: rotate(-14deg) translateX(20px); }
-.quick-promo-cards img:nth-child(2) { z-index: 2; transform: translateY(-10px); }
-.quick-promo-cards img:nth-child(3) { transform: rotate(14deg) translateX(-20px); }
+.quick-promo-cards img:nth-child(1) { transform: rotate(-14deg) translateX(20px); transition: transform 0.35s ease; }
+.quick-promo-cards img:nth-child(2) { z-index: 2; transform: translateY(-10px); transition: transform 0.35s ease; }
+.quick-promo-cards img:nth-child(3) { transform: rotate(14deg) translateX(-20px); transition: transform 0.35s ease; }
+.quick-promo:hover .quick-promo-cards img:nth-child(1) {
+  transform: rotate(-32deg) translate(-24px, 14px);
+}
 .quick-promo:hover .quick-promo-cards img:nth-child(2) {
-  transform: translateY(-16px);
-  transition: transform 0.3s;
+  transform: translateY(-28px);
+}
+.quick-promo:hover .quick-promo-cards img:nth-child(3) {
+  transform: rotate(32deg) translate(24px, 14px);
 }
 
 @media (max-width: 720px) {
