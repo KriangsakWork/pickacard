@@ -145,7 +145,7 @@ export default async function HomePage() {
           <div className="container">
             <div className="section-head">
               <span className="eyebrow">เสริมดวงตามวันเกิด</span>
-              <h2 className="section-title">🌈 สีถูกโฉลกของคุณ</h2>
+              <h2 className="section-title">สีถูกโฉลกของคุณ</h2>
               <p className="section-subtitle">สีมงคลตามวันเกิด ตามหลักโหราศาสตร์ไทย</p>
             </div>
             <LuckyColors />
@@ -177,7 +177,7 @@ export default async function HomePage() {
           <div className="container">
             <div className="section-head">
               <span className="eyebrow">เรื่องเล่าจากสำรับไพ่</span>
-              <h2 className="section-title">📖 บทความล่าสุด</h2>
+              <h2 className="section-title">บทความล่าสุด</h2>
               <p className="section-subtitle">ความรู้และเรื่องน่ารู้เกี่ยวกับไพ่ทาโรต์และการดูดวง</p>
             </div>
 
