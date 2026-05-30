@@ -26,6 +26,20 @@ function formatThaiDate(value) {
   }).format(new Date(value));
 }
 
+// Rough reading-time estimate from Portable Text. Thai has no word spaces,
+// so we count characters and assume ~350 chars/min (≈ comfortable Thai pace).
+function readingMinutes(blocks) {
+  if (!Array.isArray(blocks)) return 1;
+  const chars = blocks
+    .filter((b) => b._type === 'block' && Array.isArray(b.children))
+    .reduce(
+      (sum, b) =>
+        sum + b.children.reduce((s, c) => s + (c.text ? c.text.length : 0), 0),
+      0
+    );
+  return Math.max(1, Math.round(chars / 350));
+}
+
 export async function generateStaticParams() {
   try {
     const slugs = await client.fetch(articleSlugsQuery, {}, fetchOpts);
@@ -101,10 +115,20 @@ export default async function ArticlePage({ params }) {
     ? urlFor(coverImage).width(1600).height(800).fit('crop').url()
     : null;
 
+  const minutes = readingMinutes(body);
+
   return (
     <main>
       <article className="section">
         <div className="container max-w-3xl">
+          {/* Back to list — ghost button */}
+          <Link
+            href="/blog"
+            className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary-50"
+          >
+            ← กลับไปดูบทความทั้งหมด
+          </Link>
+
           {/* Breadcrumb */}
           <nav
             aria-label="breadcrumb"
@@ -133,6 +157,8 @@ export default async function ArticlePage({ params }) {
             <span className="line-clamp-1 text-dark-purple">{title}</span>
           </nav>
 
+          {/* Article card */}
+          <div className="rounded-3xl bg-white p-6 shadow-[0_8px_30px_rgba(126,87,194,0.10)] md:p-12">
           {/* Header */}
           <header>
             {category?.title && (
@@ -148,6 +174,8 @@ export default async function ArticlePage({ params }) {
               <span>โดย {author || 'Pick Mystic'}</span>
               <span aria-hidden="true">·</span>
               <time dateTime={publishedAt}>{formatThaiDate(publishedAt)}</time>
+              <span aria-hidden="true">·</span>
+              <span>อ่าน {minutes} นาที</span>
             </div>
           </header>
 
@@ -228,6 +256,8 @@ export default async function ArticlePage({ params }) {
           <div className="mt-12 border-t border-primary/10 pt-6">
             <ArticleShareButtons title={title} />
           </div>
+          </div>
+          {/* /Article card */}
 
           {/* Related articles */}
           <RelatedArticles articles={related} />

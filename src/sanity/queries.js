@@ -20,6 +20,25 @@ export const allArticlesQuery = groq`
     }
 `;
 
+// The 3 newest published articles — used by the home "บทความล่าสุด" block.
+export const latestArticlesQuery = groq`
+  *[_type == "article" && defined(publishedAt) && publishedAt <= now()]
+    | order(publishedAt desc) [0...3] {
+      _id,
+      title,
+      "slug": slug.current,
+      excerpt,
+      coverImage,
+      publishedAt,
+      isFeatured,
+      category->{
+        title,
+        "slug": slug.current,
+        icon
+      }
+  }
+`;
+
 // All categories, ordered by their display order.
 export const allCategoriesQuery = groq`
   *[_type == "category"] | order(order asc) {

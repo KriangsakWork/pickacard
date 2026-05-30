@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import { READING_ITEMS } from '@/data/readings-list';
 import LuckyColors from '@/components/LuckyColors';
+import ArticleCard from '@/components/ArticleCard';
+import ViewAllCard from '@/components/ViewAllCard';
+import { client } from '@/sanity/client';
+import { latestArticlesQuery } from '@/sanity/queries';
+
+export const revalidate = 60; // ISR — keep the latest-articles block fresh
 
 export const metadata = {
   title: 'Pick Mystic - ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายอนาคต',
@@ -18,10 +24,23 @@ const FEATURED_SLUGS = [
   'soulmate', 'universe-message', 'fortune',
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
   const featured = FEATURED_SLUGS
     .map(slug => READING_ITEMS.find(i => i.slug === slug))
     .filter(Boolean);
+
+  // Latest 3 articles from Sanity. Falls back to an empty list if Sanity is
+  // unreachable at build time (on-demand ISR will fill it in later).
+  let latestArticles = [];
+  try {
+    latestArticles = await client.fetch(
+      latestArticlesQuery,
+      {},
+      { next: { revalidate: 60 } }
+    );
+  } catch {
+    latestArticles = [];
+  }
 
   return (
     <>
@@ -157,41 +176,15 @@ export default function HomePage() {
               <p className="section-subtitle">ความรู้และเรื่องน่ารู้เกี่ยวกับไพ่ทาโรต์และการดูดวง</p>
             </div>
 
-            <div className="post-grid">
-              <a className="post-card" href="/blog/how-to-pick-a-card.html">
-                <div className="post-media">
-                  <img src="/images/blog/how-to-pick-a-card.webp" alt="" loading="lazy" />
-                </div>
-                <div className="post-body">
-                  <h3 className="post-title">Pick a Card คืออะไร? วิธีดูดวงสไตล์ใหม่ที่กำลังฮิต</h3>
-                  <p className="post-text">เรียนรู้พื้นฐานของ Pick a Card และวิธีเลือกไพ่ให้แม่นยำ</p>
-                  <span className="post-date">17 พ.ค. 2026</span>
-                </div>
-              </a>
-              <a className="post-card" href="/blog/tarot-love-meaning.html">
-                <div className="post-media">
-                  <img src="/images/blog/tarot-love-meaning.webp" alt="" loading="lazy" />
-                </div>
-                <div className="post-body">
-                  <h3 className="post-title">ความหมายไพ่ทาโรต์ในเรื่องความรัก</h3>
-                  <p className="post-text">ทำความเข้าใจไพ่หลัก ๆ ที่มีผลต่อเรื่องความรัก</p>
-                  <span className="post-date">17 พ.ค. 2026</span>
-                </div>
-              </a>
-              <a className="post-card" href="/blog/">
-                <div className="post-media">
-                  <img src="/images/blog/all-reading-seo.webp" alt="" loading="lazy" />
-                </div>
-                <div className="post-body">
-                  <h3 className="post-title">รวมบทความดูดวงทั้งหมด</h3>
-                  <p className="post-text">อ่านเรื่องน่ารู้เพิ่มเติมเกี่ยวกับไพ่ทาโรต์และสายมู</p>
-                  <span className="post-date">ดูทั้งหมด →</span>
-                </div>
-              </a>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {latestArticles.map((article) => (
+                <ArticleCard key={article._id} article={article} />
+              ))}
+              {latestArticles.length < 3 && <ViewAllCard />}
             </div>
 
             <div className="section-more">
-              <a href="/blog/">อ่านบทความทั้งหมด →</a>
+              <Link href="/blog">อ่านบทความทั้งหมด →</Link>
             </div>
           </div>
         </section>
