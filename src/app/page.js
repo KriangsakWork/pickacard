@@ -66,7 +66,7 @@ export default async function HomePage() {
               <span className="stat-badge-avatars" aria-hidden="true">
                 <span></span><span></span><span></span><span></span>
               </span>
-              <span className="stat-badge-text">วันนี้มีคนเปิดไพ่แล้ว <strong>12,483</strong> คน</span>
+              <span className="stat-badge-text">🌙 ค้นหาคำตอบที่ซ่อนอยู่ในไพ่ใบต่อไปของคุณ</span>
             </div>
           </div>
 
