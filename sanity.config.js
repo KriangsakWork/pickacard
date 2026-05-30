@@ -26,6 +26,12 @@ const structure = (S) =>
             .title('Content')
             .items([
               S.documentTypeListItem('article').title('Articles'),
+              S.documentTypeListItem('pickTopic')
+                .title('Pick Topics')
+                .icon(() => '🔮'),
+              S.documentTypeListItem('tarotCard')
+                .title('Tarot Cards')
+                .icon(() => '🃏'),
               S.documentTypeListItem('category').title('Categories'),
             ])
         ),
