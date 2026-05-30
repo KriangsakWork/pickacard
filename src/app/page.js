@@ -75,7 +75,7 @@ export default async function HomePage() {
 
       <main>
         {/* QUICK READING PROMO */}
-        <section className="section">
+        <section className="section section--promo">
           <div className="container">
             <Link className="quick-promo" href="/quick-reading">
               <span className="quick-promo-glow" aria-hidden="true"></span>
