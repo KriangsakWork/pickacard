@@ -124,38 +124,10 @@ export default async function ArticlePage({ params }) {
           {/* Back to list — ghost button */}
           <Link
             href="/blog"
-            className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary-50"
+            className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-white/70 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary-50"
           >
             ← กลับไปดูบทความทั้งหมด
           </Link>
-
-          {/* Breadcrumb */}
-          <nav
-            aria-label="breadcrumb"
-            className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-muted-purple"
-          >
-            <Link href="/" className="hover:text-primary">
-              หน้าแรก
-            </Link>
-            <span aria-hidden="true">›</span>
-            <Link href="/blog" className="hover:text-primary">
-              บทความ
-            </Link>
-            {category?.slug && (
-              <>
-                <span aria-hidden="true">›</span>
-                <Link
-                  href={`/blog?cat=${category.slug}`}
-                  className="hover:text-primary"
-                >
-                  {category.icon ? `${category.icon} ` : ''}
-                  {category.title}
-                </Link>
-              </>
-            )}
-            <span aria-hidden="true">›</span>
-            <span className="line-clamp-1 text-dark-purple">{title}</span>
-          </nav>
 
           {/* Article card */}
           <div className="rounded-3xl bg-white p-6 shadow-[0_8px_30px_rgba(126,87,194,0.10)] md:p-12">
