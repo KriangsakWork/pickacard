@@ -4,7 +4,7 @@ import Link from 'next/link';
 // call-to-action — used to fill the home grid when Sanity has < 3 articles.
 export default function ViewAllCard() {
   return (
-    <Link href="/blog" className="topic-card article-card">
+    <Link href="/blog" className="topic-card blog-card">
       <div className="topic-media flex items-center justify-center">
         <span className="relative z-[1] text-5xl">📚</span>
       </div>

@@ -15,8 +15,9 @@ function formatThaiDate(value) {
 
 // Reuses the home page's .topic-card look (legacy.css): full-bleed cover image
 // with a glassy category pill in the top-left corner, then 24px body padding
-// for title / excerpt / date. .article-card drops the faint purple border so
-// light pastel covers don't show a stray line along the top edge.
+// for title / excerpt / date. .blog-card drops the faint purple border so
+// light pastel covers don't show a stray line along the top edge. (Named
+// blog-card, not article-card — legacy.css already styles .article-card.)
 export default function ArticleCard({ article }) {
   const { title, slug, excerpt, coverImage, publishedAt, isFeatured, category } =
     article;
@@ -28,7 +29,7 @@ export default function ArticleCard({ article }) {
   return (
     <Link
       href={`/blog/${slug}`}
-      className={`topic-card article-card${isFeatured ? ' is-featured' : ''}`}
+      className={`topic-card blog-card${isFeatured ? ' is-featured' : ''}`}
     >
       <div className="topic-media">
         {coverUrl ? (
