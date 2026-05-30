@@ -87,7 +87,6 @@ const resultItem = defineArrayMember({
       type: 'text',
       rows: 3,
       description: 'คำแนะนำจากจักรวาล',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'relatedProducts',
