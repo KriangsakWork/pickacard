@@ -1,50 +1,62 @@
 import { notFound } from 'next/navigation';
-import ReadingExperience from '@/components/ReadingExperience';
-import { READING_ITEMS } from '@/data/readings-list';
 
-const TOPIC_SLUGS = READING_ITEMS.map(i => i.slug);
+import { client } from '@/sanity/client';
+import { urlFor } from '@/sanity/image';
+import {
+  allPickTopicSlugsQuery,
+  pickTopicBySlugQuery,
+} from '@/sanity/queries';
 
-function findTopic(slug) {
-  return READING_ITEMS.find(i => i.slug === slug);
+import ReadingClient from './ReadingClient';
+
+export const revalidate = 60;
+
+async function getTopic(slug) {
+  return client.fetch(pickTopicBySlugQuery, { slug });
 }
 
-async function loadReadings(slug) {
-  try {
-    const mod = await import(`@/data/readings/${slug}.js`);
-    return mod.READINGS;
-  } catch {
-    return null;
-  }
-}
-
-export function generateStaticParams() {
-  return TOPIC_SLUGS.map(topic => ({ topic }));
+export async function generateStaticParams() {
+  const slugs = await client.fetch(allPickTopicSlugsQuery);
+  return slugs.map(({ slug }) => ({ topic: slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { topic: slug } = await params;
-  const topic = findTopic(slug);
-  if (!topic) return {};
+  const data = await getTopic(slug);
+  if (!data) return {};
+  const metaTitle =
+    data.seo?.metaTitle || `${data.title} | ดูดวงด้วยไพ่ทาโรต์ฟรี`;
+  const metaDescription =
+    data.seo?.metaDescription || data.shortDescription || '';
+  const ogImage =
+    (data.seo?.ogImage && urlFor(data.seo.ogImage).width(1200).url()) ||
+    (data.coverImage && urlFor(data.coverImage).width(1200).url()) ||
+    undefined;
   return {
-    title: `${topic.title} | ดูดวงด้วยไพ่ทาโรต์ฟรี`,
-    description: topic.hook,
+    title: metaTitle,
+    description: metaDescription,
     openGraph: {
-      title: topic.title,
-      description: topic.hook,
-      images: [topic.image],
+      title: data.title,
+      description: metaDescription,
+      images: ogImage ? [ogImage] : undefined,
     },
   };
 }
 
 export default async function ReadingTopicPage({ params }) {
   const { topic: slug } = await params;
-  const topicData = findTopic(slug);
-  const readings = await loadReadings(slug);
-  if (!topicData || !readings) notFound();
+  const data = await getTopic(slug);
+  if (!data) notFound();
+
+  const topic = {
+    title: data.title,
+    shortDescription: data.shortDescription,
+  };
+  const results = Array.isArray(data.results) ? data.results : [];
 
   return (
     <main className="container">
-      <ReadingExperience topic={topicData} readings={readings} />
+      <ReadingClient topic={topic} results={results} />
     </main>
   );
 }

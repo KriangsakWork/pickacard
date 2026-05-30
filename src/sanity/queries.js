@@ -107,3 +107,50 @@ export const relatedArticlesQuery = groq`
     }
   }
 `;
+
+// Pick a Card topic by slug — resolves category and the 4 results, each with
+// 3 cards (tarotCard ref expanded for name/image/etc).
+export const pickTopicBySlugQuery = groq`
+  *[_type == "pickTopic" && slug.current == $slug][0]{
+    _id,
+    title,
+    "slug": slug.current,
+    shortDescription,
+    coverImage,
+    category->{
+      title,
+      "slug": slug.current,
+      icon
+    },
+    isFeatured,
+    publishedAt,
+    results[]{
+      resultTitle,
+      subtitle,
+      summary,
+      advice,
+      cards[]{
+        position,
+        tags,
+        meaning,
+        "card": cardRef->{
+          name,
+          nameTh,
+          "slug": slug.current,
+          arcana,
+          suit,
+          number,
+          image
+        }
+      }
+    },
+    seo
+  }
+`;
+
+// All published pick topic slugs — for generateStaticParams.
+export const allPickTopicSlugsQuery = groq`
+  *[_type == "pickTopic" && defined(slug.current)]{
+    "slug": slug.current
+  }
+`;
