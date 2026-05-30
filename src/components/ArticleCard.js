@@ -27,7 +27,7 @@ export default function ArticleCard({ article }) {
   return (
     <Link
       href={`/blog/${slug}`}
-      className={`topic-card${isFeatured ? ' is-featured' : ''}`}
+      className={`topic-card article-card${isFeatured ? ' is-featured' : ''}`}
     >
       <div className="topic-media">
         {coverUrl ? (
@@ -46,10 +46,7 @@ export default function ArticleCard({ article }) {
         )}
 
         {category?.title && (
-          <span className="topic-tag">
-            {category.icon ? `${category.icon} ` : ''}
-            {category.title}
-          </span>
+          <span className="topic-tag">{category.title}</span>
         )}
 
         {isFeatured && (

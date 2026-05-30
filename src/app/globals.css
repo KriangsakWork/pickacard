@@ -69,6 +69,13 @@
 .card-meaning-keywords li { font-size: 12px; color: #7E57C2; background: #F5F0FA; padding: 4px 10px; border-radius: 999px; }
 .card-meaning-empty { color: #9B8FB4; font-style: italic; }
 
+/* Article cards reuse .topic-card but drop the faint purple hairline border
+   and the dark media backdrop (light pastel covers made both read as a stray
+   purple line along the top edge). */
+.article-card { border-color: transparent; }
+.article-card .topic-media { background: var(--color-primary-50); }
+.article-card .topic-media::after { content: none; }
+
 /* Featured article card — subtle primary outline on the shared .topic-card */
 .topic-card.is-featured { border-color: var(--color-primary); box-shadow: 0 2px 10px rgba(126,87,194,0.18); }
 
