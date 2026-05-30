@@ -13,9 +13,9 @@ function formatThaiDate(value) {
   }).format(new Date(value));
 }
 
-// Reuses the home page's .topic-card look (legacy.css) so article cards match
-// the rest of the site: 22px radius, dark glassy category tag, 24px body
-// padding, image scrim + hover lift.
+// Clean "inset cover" card: white card with even padding, the cover image
+// sits inside with its own rounded corners (not full-bleed), category label
+// above it, then title / excerpt / date. Hover lifts the whole card.
 export default function ArticleCard({ article }) {
   const { title, slug, excerpt, coverImage, publishedAt, isFeatured, category } =
     article;
@@ -27,9 +27,17 @@ export default function ArticleCard({ article }) {
   return (
     <Link
       href={`/blog/${slug}`}
-      className={`topic-card article-card${isFeatured ? ' is-featured' : ''}`}
+      className={`group flex flex-col rounded-[20px] bg-white p-4 shadow-[0_2px_14px_rgba(46,33,71,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(46,33,71,0.14)] ${
+        isFeatured ? 'ring-2 ring-primary' : ''
+      }`}
     >
-      <div className="topic-media">
+      {category?.title && (
+        <span className="mb-2 text-xs font-semibold tracking-wide text-primary">
+          {category.title}
+        </span>
+      )}
+
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-primary-50">
         {coverUrl ? (
           <Image
             src={coverUrl}
@@ -37,37 +45,29 @@ export default function ArticleCard({ article }) {
             fill
             loading="lazy"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-5xl">
             🔮
           </div>
         )}
-
-        {category?.title && (
-          <span className="topic-tag">{category.title}</span>
-        )}
-
-        {isFeatured && (
-          <span className="topic-soon-pill">⭐ เด่น</span>
-        )}
       </div>
 
-      <div className="topic-body">
-        <h3 className="topic-title line-clamp-2">{title}</h3>
-        {excerpt && <p className="topic-hook line-clamp-2">{excerpt}</p>}
-
-        <div className="mt-auto flex items-center justify-between pt-2.5">
-          <time
-            dateTime={publishedAt}
-            className="text-xs font-medium text-[#9B8FB4]"
-          >
-            {formatThaiDate(publishedAt)}
-          </time>
-          <span className="text-[13px] font-bold text-primary">อ่านต่อ →</span>
-        </div>
-      </div>
+      <h3 className="mt-3.5 line-clamp-2 text-[17px] font-bold leading-snug text-dark-purple">
+        {title}
+      </h3>
+      {excerpt && (
+        <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-relaxed text-muted-purple">
+          {excerpt}
+        </p>
+      )}
+      <time
+        dateTime={publishedAt}
+        className="mt-3 text-xs font-medium text-[#9B8FB4]"
+      >
+        {formatThaiDate(publishedAt)}
+      </time>
     </Link>
   );
 }
