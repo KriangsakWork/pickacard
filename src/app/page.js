@@ -80,10 +80,10 @@ export default async function HomePage() {
             <Link className="quick-promo" href="/quick-reading">
               <span className="quick-promo-glow" aria-hidden="true"></span>
               <div className="quick-promo-body">
-                <span className="quick-promo-tag">✦ ฟีเจอร์ใหม่</span>
-                <h2 className="quick-promo-title">มีคำถามในใจ? ให้ไพ่ 3 ใบตอบคุณ</h2>
+                <span className="quick-promo-tag">✦ ฟีเจอร์ใหม่ ✦</span>
+                <h2 className="quick-promo-title">มีคำถามในใจ?<br className="mobile-title-br" /> ให้ไพ่ 3 ใบช่วยตอบคุณ</h2>
                 <p className="quick-promo-text">
-                  พิมพ์คำถามที่คุณอยากรู้ ระบบจะเปิดไพ่ทาโรต์ 3 ใบ พร้อมคำทำนายที่เรียบเรียงให้ตรงกับคำถามของคุณ — ฟรี ไม่ต้องสมัคร
+                  พิมพ์คำถามที่คุณอยากรู้ ระบบจะเปิดไพ่ทาโรต์ 3 ใบ พร้อมคำทำนายที่เรียบเรียงให้ตรงกับคำถามของคุณ <span className="quick-promo-free">ฟรี ไม่ต้องสมัคร</span>
                 </p>
                 <span className="btn btn-primary">พิมพ์คำถามของคุณ →</span>
               </div>

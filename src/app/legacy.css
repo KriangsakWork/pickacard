@@ -2278,6 +2278,8 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   color: #fff;
   margin-bottom: 10px;
 }
+.mobile-title-br { display: none; }
+.quick-promo-free { color: var(--c-accent); }
 .quick-promo-text {
   font-size: 14.5px;
   line-height: 1.8;
@@ -2310,6 +2312,7 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
 }
 
 @media (max-width: 720px) {
+  .mobile-title-br { display: block; }
   .quick-ask { padding: 24px 18px 24px; }
   .quick-steps-grid { grid-template-columns: 1fr; gap: 12px; }
   .quick-steps { margin-top: 36px; }
