@@ -1,12 +1,33 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-// Social share + save-image buttons for the reading detail page.
-// Mirrors ArticleShareButtons.js styling, but swaps the "copy link" pill for
-// a "save image" pill that rasterizes `captureRef` via html2canvas.
-export default function ReadingShareButtons({ title = '', slug = '', captureRef }) {
+function cardSlug(name) {
+  return (name || '').toLowerCase().replace(/\s+/g, '-');
+}
+
+function stripEmoji(s) {
+  return (s || '').replace(/\p{Extended_Pictographic}/gu, '').replace(/\s+/g, ' ').trim();
+}
+
+// Social share + Quick-Card-style 1080x1920 "save image" button for the
+// reading detail page. Social pills hit FB / X / Line share URLs; the pill
+// rasterises a hidden #share-card template (cosmic bg + hero tarot card +
+// truncated prediction) via html2canvas.
+export default function ReadingShareButtons({ title = '', slug = '', result }) {
   const [busy, setBusy] = useState(false);
+  const shareRef = useRef(null);
+
+  // Derive the hero card + prediction text from the active result.
+  const middleCard = result?.cards?.[1] || result?.cards?.[0] || null;
+  const cardName = middleCard?.card?.name || '';
+  const cardLocalSlug = cardSlug(cardName); // matches /images/tarot/*.webp
+  const mainCardSrc = cardLocalSlug
+    ? `/images/tarot/${cardLocalSlug}.webp`
+    : '';
+  const topicLine = stripEmoji(title);
+  let predictionText = (result?.summary || '').trim();
+  if (predictionText.length > 115) predictionText = predictionText.slice(0, 112) + '...';
 
   const enc = encodeURIComponent;
   const currentUrl = () =>
@@ -27,13 +48,13 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
 
   async function saveImage() {
     if (busy) return;
-    const node = captureRef?.current;
+    const node = shareRef.current;
     if (!node) return;
     setBusy(true);
     try {
       const { default: html2canvas } = await import('html2canvas');
 
-      // Wait for current images to load (next/image lazy ones).
+      // Wait for all images inside the hidden share-card to load.
       const imgs = Array.from(node.querySelectorAll('img'));
       await Promise.all(
         imgs.map(
@@ -50,26 +71,12 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
       }
 
       const canvas = await html2canvas(node, {
-        backgroundColor: '#F5F0FA',
-        scale: 2,
+        scale: 1,
         useCORS: true,
+        backgroundColor: null,
+        width: 1080,
+        height: 1920,
         logging: false,
-        // html2canvas clones the DOM into an iframe; the clone re-triggers
-        // CSS animations from their first keyframe. .reveal-card uses
-        // `fadeUp` (opacity:0 → 1) with per-card animation-delay, so cards 2
-        // and 3 end up captured while still invisible. Force them into the
-        // final visible state on the clone.
-        onclone: (doc) => {
-          doc
-            .querySelectorAll(
-              '.reveal-card, .reveal-summary, .reveal-head',
-            )
-            .forEach((el) => {
-              el.style.animation = 'none';
-              el.style.opacity = '1';
-              el.style.transform = 'none';
-            });
-        },
       });
       const dataUrl = canvas.toDataURL('image/png');
       const a = document.createElement('a');
@@ -140,6 +147,38 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
         </svg>
         {busy ? 'กำลังบันทึก...' : 'บันทึกรูป'}
       </button>
+
+      {/* Hidden 1080x1920 share-card template rendered to canvas only.
+          Same layout as the Quick Card share image: cosmic background +
+          hero tarot card + topic line + truncated prediction + mascot. */}
+      <div id="share-card" ref={shareRef} aria-hidden="true">
+        <img
+          src="/images/share/share-bg.webp"
+          className="share-bg"
+          alt=""
+          crossOrigin="anonymous"
+        />
+        {mainCardSrc && (
+          <img
+            src={mainCardSrc}
+            className="share-main-card"
+            alt=""
+            crossOrigin="anonymous"
+          />
+        )}
+        <div className="share-topic">
+          <p>{topicLine ? `✦ ${topicLine} ✦` : ''}</p>
+        </div>
+        <div className="share-prediction">
+          <p>{predictionText}</p>
+        </div>
+        <img
+          src="/images/share/mascot.webp"
+          className="share-mascot"
+          alt=""
+          crossOrigin="anonymous"
+        />
+      </div>
     </div>
   );
 }

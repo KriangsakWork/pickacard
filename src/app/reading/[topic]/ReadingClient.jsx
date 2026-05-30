@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
@@ -12,7 +12,6 @@ export default function ReadingClient({ topic, results }) {
   const [stage, setStage] = useState('pick'); // pick | selected | transitioning | reading
   const [selectedPile, setSelectedPile] = useState(null);
   const [result, setResult] = useState(null);
-  const captureRef = useRef(null);
 
   function pickPile(pileId) {
     if (stage !== 'pick') return;
@@ -47,7 +46,7 @@ export default function ReadingClient({ topic, results }) {
     return (
       <section className="reading-section" id="reading-section">
         <div id="reading-content">
-          <div ref={captureRef}>
+          <div>
             <header className="reveal-head">
               <div className="reveal-eyebrow">✦ คำทำนายสำหรับคุณ ✦</div>
               <h2 className="reveal-title">{result.resultTitle}</h2>
@@ -90,7 +89,7 @@ export default function ReadingClient({ topic, results }) {
             <ReadingShareButtons
               title={topic.title}
               slug={topic.slug}
-              captureRef={captureRef}
+              result={result}
             />
           </div>
 
