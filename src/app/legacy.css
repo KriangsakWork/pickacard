@@ -1613,6 +1613,20 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   margin: 2px 0 26px;
 }
 
+/* reveal share card — mirrors .reveal-summary frame, centered content */
+.reveal-share-card {
+  background: #fff;
+  border: 1px solid rgba(126, 87, 194, 0.13);
+  border-radius: 20px;
+  padding: 22px 28px;
+  box-shadow: 0 12px 32px rgba(126, 87, 194, 0.1);
+  margin: 6px 0 26px;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .reveal-share-card { padding: 18px 16px; }
+}
+
 /* reveal actions */
 .reveal-actions {
   display: flex; gap: 12px;
