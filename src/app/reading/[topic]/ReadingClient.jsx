@@ -86,15 +86,13 @@ export default function ReadingClient({ topic, results }) {
             </p>
           </div>
 
-          <div className="reveal-share">
+          <div className="reveal-share-card">
             <ReadingShareButtons
               title={topic.title}
               slug={topic.slug}
               captureRef={captureRef}
             />
           </div>
-
-          <hr className="reveal-divider" />
 
           <div className="reveal-actions">
             <button type="button" className="btn-primary" onClick={reset}>

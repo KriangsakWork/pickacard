@@ -76,7 +76,7 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
     'inline-flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5';
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center justify-center gap-3">
       <span className="text-sm font-medium text-muted-purple">แชร์ผลทำนาย:</span>
 
       <button
