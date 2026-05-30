@@ -9,6 +9,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/readings.html',
+        destination: '/readings',
+        permanent: true,
+      },
+    ];
+  },
   // Note: the old /blog -> /blog/index.html rewrite was removed so the new
   // Sanity-powered app/blog/page.js serves /blog. The legacy article HTML in
   // public/blog/*.html is still reachable directly and will be migrated in B1.

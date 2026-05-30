@@ -1,10 +1,13 @@
 import Link from 'next/link';
-import { READING_ITEMS } from '@/data/readings-list';
 import LuckyColors from '@/components/LuckyColors';
 import ArticleCard from '@/components/ArticleCard';
 import ViewAllCard from '@/components/ViewAllCard';
 import { client } from '@/sanity/client';
-import { latestArticlesQuery } from '@/sanity/queries';
+import { urlFor } from '@/sanity/image';
+import {
+  featuredPickTopicsQuery,
+  latestArticlesQuery,
+} from '@/sanity/queries';
 
 export const revalidate = 60; // ISR — keep the latest-articles block fresh
 
@@ -19,26 +22,18 @@ export const metadata = {
   },
 };
 
-const FEATURED_SLUGS = [
-  'when-meet-soulmate', 'his-feelings', 'missing-you', 'love-comeback',
-  'soulmate', 'universe-message', 'fortune',
-];
-
 export default async function HomePage() {
-  const featured = FEATURED_SLUGS
-    .map(slug => READING_ITEMS.find(i => i.slug === slug))
-    .filter(Boolean);
-
-  // Latest 3 articles from Sanity. Falls back to an empty list if Sanity is
-  // unreachable at build time (on-demand ISR will fill it in later).
+  // Featured pick topics + latest 3 articles from Sanity. Fall back to empty
+  // lists if Sanity is unreachable at build time.
+  let featured = [];
   let latestArticles = [];
   try {
-    latestArticles = await client.fetch(
-      latestArticlesQuery,
-      {},
-      { next: { revalidate: 60 } }
-    );
+    [featured, latestArticles] = await Promise.all([
+      client.fetch(featuredPickTopicsQuery),
+      client.fetch(latestArticlesQuery, {}, { next: { revalidate: 60 } }),
+    ]);
   } catch {
+    featured = [];
     latestArticles = [];
   }
 
@@ -114,19 +109,32 @@ export default async function HomePage() {
             </div>
 
             <div className="topic-grid">
-              {featured.map(item => (
-                <Link key={item.slug} className="topic-card" href={`/reading/${item.slug}`}>
-                  <div className="topic-media">
-                    <img src={item.image} alt={item.title} loading="lazy" />
-                    <span className="topic-tag">{item.category}</span>
-                  </div>
-                  <div className="topic-body">
-                    <h3 className="topic-title">{item.title}</h3>
-                    <p className="topic-hook">{item.hook}</p>
-                    <span className="topic-cta">เปิดไพ่เลย →</span>
-                  </div>
-                </Link>
-              ))}
+              {featured.map((item) => {
+                const imgUrl = item.coverImage
+                  ? urlFor(item.coverImage).width(800).format('webp').url()
+                  : null;
+                return (
+                  <Link
+                    key={item._id}
+                    className="topic-card"
+                    href={`/reading/${item.slug}`}
+                  >
+                    <div className="topic-media">
+                      {imgUrl ? (
+                        <img src={imgUrl} alt={item.title} loading="lazy" />
+                      ) : null}
+                      {item.category?.title && (
+                        <span className="topic-tag">{item.category.title}</span>
+                      )}
+                    </div>
+                    <div className="topic-body">
+                      <h3 className="topic-title">{item.title}</h3>
+                      <p className="topic-hook">{item.shortDescription}</p>
+                      <span className="topic-cta">เปิดไพ่เลย →</span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="section-more">

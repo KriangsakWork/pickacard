@@ -154,3 +154,39 @@ export const allPickTopicSlugsQuery = groq`
     "slug": slug.current
   }
 `;
+
+// All pick topics — newest first. Used by /readings list page.
+export const allPickTopicsQuery = groq`
+  *[_type == "pickTopic" && defined(slug.current)] | order(publishedAt desc){
+    _id,
+    title,
+    "slug": slug.current,
+    shortDescription,
+    coverImage,
+    category->{
+      title,
+      "slug": slug.current,
+      icon
+    },
+    isFeatured,
+    publishedAt
+  }
+`;
+
+// Featured pick topics for the homepage topic grid.
+export const featuredPickTopicsQuery = groq`
+  *[_type == "pickTopic" && isFeatured == true && defined(slug.current)]
+    | order(publishedAt desc)[0...6]{
+    _id,
+    title,
+    "slug": slug.current,
+    shortDescription,
+    coverImage,
+    category->{
+      title,
+      "slug": slug.current,
+      icon
+    },
+    isFeatured
+  }
+`;
