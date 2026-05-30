@@ -14,7 +14,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="footer-tagline">
-              ✦ ทุกการเลือก คือก้าวเล็กๆ ที่พาเราไปสู่สิ่งที่ดีกว่า
+              ✦ ทุกการเลือก คือก้าวเล็กๆ ที่พาเราไปสู่สิ่งที่ดีกว่า ✦
             </p>
           </div>
           <nav className="footer-nav" aria-label="ลิงก์ส่วนท้าย">
@@ -26,7 +26,7 @@ export default function Footer() {
           </nav>
         </div>
         <div className="footer-bottom">
-          <p className="footer-copy">© 2026 Pick Mystic. All rights reserved.</p>
+          <p className="footer-copy">© {new Date().getFullYear()} Pick Mystic. All rights reserved.</p>
         </div>
       </div>
     </footer>
