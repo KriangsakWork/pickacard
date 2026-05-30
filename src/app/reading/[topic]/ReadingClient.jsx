@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 
@@ -182,12 +181,16 @@ function ReadingCard({ card, index }) {
       <div className="rc-media">
         <span className="rc-num">{index + 1}</span>
         {imgUrl ? (
-          <Image
+          // Plain <img> with crossOrigin so html2canvas can rasterize the
+          // result for the "save image" feature without tainting the canvas.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
             src={imgUrl}
             alt={tarot.name || ''}
             width={400}
             height={680}
-            sizes="(max-width: 768px) 100vw, 400px"
+            loading="lazy"
+            crossOrigin="anonymous"
           />
         ) : (
           <div className="rc-placeholder">
