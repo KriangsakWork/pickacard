@@ -142,26 +142,26 @@ const CATEGORY_DEFS = [
 ];
 
 async function ensureCategories() {
-  // Discover the actual `category` schema fields so we don't fabricate them.
   const existing = await client.fetch(
     '*[_type == "category"]{ _id, "slug": slug.current, title }',
   );
-  const bySlug = new Map(existing.map((c) => [c.slug, c]));
+  const idBySlug = new Map(
+    existing.filter((c) => c.slug).map((c) => [c.slug, c._id]),
+  );
   const created = [];
   for (const def of CATEGORY_DEFS) {
+    if (idBySlug.has(def.key)) continue;
     const id = `category-${def.key}`;
-    if (bySlug.has(def.key) || existing.some((c) => c._id === id)) {
-      continue;
-    }
     await client.createIfNotExists({
       _id: id,
       _type: 'category',
       title: def.title,
       slug: { _type: 'slug', current: def.key },
     });
+    idBySlug.set(def.key, id);
     created.push(def.key);
   }
-  return { created, existing: existing.map((c) => c.slug) };
+  return { created, idBySlug };
 }
 
 // ---------- result mapping ----------
@@ -201,7 +201,7 @@ function buildResult(num, raw, missingCards) {
 
 // ---------- migrate one topic ----------
 
-async function migrateTopic(item, knownCardSlugs, missingCards) {
+async function migrateTopic(item, knownCardSlugs, categoryIdBySlug, missingCards) {
   const docId = `pickTopic-${item.slug}`;
   const readingsPath = resolve(projectRoot, `js/readings-${item.slug}.js`);
   if (!(await fileExists(readingsPath))) {
@@ -265,7 +265,7 @@ async function migrateTopic(item, knownCardSlugs, missingCards) {
     coverImage,
     category: {
       _type: 'reference',
-      _ref: `category-${item.category}`,
+      _ref: categoryIdBySlug.get(item.category) || `category-${item.category}`,
     },
     isFeatured: !!item.featured,
     publishedAt: item.publishedAt
@@ -324,7 +324,7 @@ async function main() {
     const item = READING_ITEMS[i];
     const label = `[${String(i + 1).padStart(2, '0')}/${READING_ITEMS.length}] ${item.slug}`;
     try {
-      const res = await migrateTopic(item, knownCardSlugs, new Set());
+      const res = await migrateTopic(item, knownCardSlugs, cat.idBySlug, new Set());
       if (res.status === 'migrated') {
         counts.migrated++;
         if (res.unresolved.length) {
