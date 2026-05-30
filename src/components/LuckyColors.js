@@ -106,7 +106,7 @@ export default function LuckyColors() {
         {hydrated && day && info && (
           <div className="lucky-result">
             <div className="lucky-widget-head">
-              <span className="lucky-day-pill">🎂 <strong>{info.label}</strong></span>
+              <span className="lucky-day-pill"><strong>{info.label}</strong></span>
               <div className="lucky-head-right">
                 <button type="button" className="lucky-change-btn" onClick={openModal}>เปลี่ยนวันเกิด</button>
                 <img className="lucky-head-bunny" src="/images/bunny-wardrobe.webp" alt="" aria-hidden="true" loading="lazy" />
@@ -131,7 +131,7 @@ export default function LuckyColors() {
             </div>
 
             <div className="lucky-cta">
-              <p className="lucky-cta-text">✨ อยากรู้ดวงของคุณวันนี้ไหม?</p>
+              <p className="lucky-cta-text">อยากรู้ดวงของคุณวันนี้ไหม?</p>
               <Link className="btn btn-primary" href="#topics">เปิดไพ่ของวันนี้</Link>
             </div>
           </div>

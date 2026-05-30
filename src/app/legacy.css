@@ -678,14 +678,14 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background: var(--c-primary);
+  border: none;
   font-size: 13px;
-  color: var(--c-ink);
+  color: #fff;
   padding: 6px 14px;
   border-radius: var(--r-pill);
 }
-.lucky-day-pill strong { color: var(--c-primary); font-weight: 700; }
+.lucky-day-pill strong { color: #fff; font-weight: 700; }
 .lucky-widget-note { font-size: 12.5px; color: var(--c-ink-mute); }
 
 .lucky-grid {
