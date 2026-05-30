@@ -25,30 +25,15 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
   const toLine = (u) =>
     `https://social-plugins.line.me/lineit/share?url=${enc(u)}`;
 
-  // Fetch a cross-origin image via CORS and return a data URL so html2canvas
-  // can rasterize it without tainting the canvas. Falls back to the original
-  // src on failure so the image just shows as-is in the snapshot.
-  async function toDataUrl(url) {
-    const res = await fetch(url, { mode: 'cors', credentials: 'omit' });
-    const blob = await res.blob();
-    return await new Promise((resolve, reject) => {
-      const r = new FileReader();
-      r.onload = () => resolve(r.result);
-      r.onerror = reject;
-      r.readAsDataURL(blob);
-    });
-  }
-
   async function saveImage() {
     if (busy) return;
     const node = captureRef?.current;
     if (!node) return;
     setBusy(true);
-    const restore = [];
     try {
       const { default: html2canvas } = await import('html2canvas');
 
-      // 1. Wait for current images to load.
+      // Wait for current images to load (next/image lazy ones).
       const imgs = Array.from(node.querySelectorAll('img'));
       await Promise.all(
         imgs.map(
@@ -60,29 +45,6 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
             }),
         ),
       );
-
-      // 2. Swap each cross-origin <img> src to a data URL so the canvas
-      // is not tainted when html2canvas reads pixel data.
-      await Promise.all(
-        imgs.map(async (img) => {
-          const src = img.currentSrc || img.src;
-          if (!src || src.startsWith('data:')) return;
-          try {
-            const dataUrl = await toDataUrl(src);
-            restore.push([img, img.src, img.srcset]);
-            img.removeAttribute('srcset');
-            img.src = dataUrl;
-            await new Promise((resolve) => {
-              if (img.complete && img.naturalWidth > 0) return resolve();
-              img.addEventListener('load', resolve, { once: true });
-              img.addEventListener('error', resolve, { once: true });
-            });
-          } catch {
-            // Leave original src; html2canvas may still skip it.
-          }
-        }),
-      );
-
       if (document.fonts?.ready) {
         try { await document.fonts.ready; } catch {}
       }
@@ -92,6 +54,22 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
         scale: 2,
         useCORS: true,
         logging: false,
+        // html2canvas clones the DOM into an iframe; the clone re-triggers
+        // CSS animations from their first keyframe. .reveal-card uses
+        // `fadeUp` (opacity:0 → 1) with per-card animation-delay, so cards 2
+        // and 3 end up captured while still invisible. Force them into the
+        // final visible state on the clone.
+        onclone: (doc) => {
+          doc
+            .querySelectorAll(
+              '.reveal-card, .reveal-summary, .reveal-head',
+            )
+            .forEach((el) => {
+              el.style.animation = 'none';
+              el.style.opacity = '1';
+              el.style.transform = 'none';
+            });
+        },
       });
       const dataUrl = canvas.toDataURL('image/png');
       const a = document.createElement('a');
@@ -105,12 +83,6 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
       console.error('save image failed:', err);
       alert('เกิดข้อผิดพลาดในการสร้างภาพ ลองใหม่อีกครั้ง');
     } finally {
-      // Restore original src/srcset so the visible UI keeps next/image
-      // optimizations after the capture finishes.
-      for (const [img, src, srcset] of restore) {
-        if (srcset) img.srcset = srcset;
-        if (src) img.src = src;
-      }
       setBusy(false);
     }
   }
