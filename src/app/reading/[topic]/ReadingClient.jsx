@@ -188,8 +188,6 @@ function ReadingCard({ card, index }) {
             width={400}
             height={680}
             sizes="(max-width: 768px) 100vw, 400px"
-            unoptimized
-            crossOrigin="anonymous"
           />
         ) : (
           <div className="rc-placeholder">

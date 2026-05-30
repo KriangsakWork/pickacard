@@ -25,19 +25,33 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
   const toLine = (u) =>
     `https://social-plugins.line.me/lineit/share?url=${enc(u)}`;
 
+  // Fetch a cross-origin image via CORS and return a data URL so html2canvas
+  // can rasterize it without tainting the canvas. Falls back to the original
+  // src on failure so the image just shows as-is in the snapshot.
+  async function toDataUrl(url) {
+    const res = await fetch(url, { mode: 'cors', credentials: 'omit' });
+    const blob = await res.blob();
+    return await new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve(r.result);
+      r.onerror = reject;
+      r.readAsDataURL(blob);
+    });
+  }
+
   async function saveImage() {
     if (busy) return;
     const node = captureRef?.current;
     if (!node) return;
     setBusy(true);
+    const restore = [];
     try {
       const { default: html2canvas } = await import('html2canvas');
 
-      // Wait for images inside the capture node to finish loading so the
-      // canvas snapshot includes the tarot card art.
-      const imgs = node.querySelectorAll('img');
+      // 1. Wait for current images to load.
+      const imgs = Array.from(node.querySelectorAll('img'));
       await Promise.all(
-        Array.from(imgs).map(
+        imgs.map(
           (img) =>
             new Promise((resolve) => {
               if (img.complete && img.naturalWidth > 0) return resolve();
@@ -46,6 +60,29 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
             }),
         ),
       );
+
+      // 2. Swap each cross-origin <img> src to a data URL so the canvas
+      // is not tainted when html2canvas reads pixel data.
+      await Promise.all(
+        imgs.map(async (img) => {
+          const src = img.currentSrc || img.src;
+          if (!src || src.startsWith('data:')) return;
+          try {
+            const dataUrl = await toDataUrl(src);
+            restore.push([img, img.src, img.srcset]);
+            img.removeAttribute('srcset');
+            img.src = dataUrl;
+            await new Promise((resolve) => {
+              if (img.complete && img.naturalWidth > 0) return resolve();
+              img.addEventListener('load', resolve, { once: true });
+              img.addEventListener('error', resolve, { once: true });
+            });
+          } catch {
+            // Leave original src; html2canvas may still skip it.
+          }
+        }),
+      );
+
       if (document.fonts?.ready) {
         try { await document.fonts.ready; } catch {}
       }
@@ -68,6 +105,12 @@ export default function ReadingShareButtons({ title = '', slug = '', captureRef 
       console.error('save image failed:', err);
       alert('เกิดข้อผิดพลาดในการสร้างภาพ ลองใหม่อีกครั้ง');
     } finally {
+      // Restore original src/srcset so the visible UI keeps next/image
+      // optimizations after the capture finishes.
+      for (const [img, src, srcset] of restore) {
+        if (srcset) img.srcset = srcset;
+        if (src) img.src = src;
+      }
       setBusy(false);
     }
   }
