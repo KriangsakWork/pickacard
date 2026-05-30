@@ -50,6 +50,7 @@ export default async function ReadingTopicPage({ params }) {
 
   const topic = {
     title: data.title,
+    slug: data.slug,
     shortDescription: data.shortDescription,
   };
   const results = Array.isArray(data.results) ? data.results : [];

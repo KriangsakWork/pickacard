@@ -1,16 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 
+import ReadingShareButtons from '@/components/ReadingShareButtons';
 import { urlFor } from '@/sanity/image';
 
 export default function ReadingClient({ topic, results }) {
   const [stage, setStage] = useState('pick'); // pick | selected | transitioning | reading
   const [selectedPile, setSelectedPile] = useState(null);
   const [result, setResult] = useState(null);
+  const captureRef = useRef(null);
 
   function pickPile(pileId) {
     if (stage !== 'pick') return;
@@ -45,42 +47,54 @@ export default function ReadingClient({ topic, results }) {
     return (
       <section className="reading-section" id="reading-section">
         <div id="reading-content">
-          <header className="reveal-head">
-            <div className="reveal-eyebrow">✦ คำทำนายสำหรับคุณ ✦</div>
-            <h2 className="reveal-title">{result.resultTitle}</h2>
-            <p className="reveal-sub">
-              {result.subtitle ||
-                'ไพ่ทั้ง 3 ใบนี้คือคำแนะนำและคำตอบที่คุณกำลังมองหา'}
-            </p>
-          </header>
+          <div ref={captureRef}>
+            <header className="reveal-head">
+              <div className="reveal-eyebrow">✦ คำทำนายสำหรับคุณ ✦</div>
+              <h2 className="reveal-title">{result.resultTitle}</h2>
+              <p className="reveal-sub">
+                {result.subtitle ||
+                  'ไพ่ทั้ง 3 ใบนี้คือคำแนะนำและคำตอบที่คุณกำลังมองหา'}
+              </p>
+            </header>
 
-          <div className="reveal-cards">
-            {result.cards.map((c, i) => (
-              <ReadingCard key={i} card={c} index={i} />
-            ))}
-          </div>
-
-          <section className="reveal-summary">
-            <div className="reveal-summary-icon">🌙</div>
-            <div className="reveal-summary-body">
-              <h3 className="reveal-summary-title">สรุปคำทำนาย</h3>
-              <p>{result.summary}</p>
+            <div className="reveal-cards">
+              {result.cards.map((c, i) => (
+                <ReadingCard key={i} card={c} index={i} />
+              ))}
             </div>
-          </section>
 
-          {result.advice && (
             <section className="reveal-summary">
-              <div className="reveal-summary-icon">🕯️</div>
+              <div className="reveal-summary-icon">🌙</div>
               <div className="reveal-summary-body">
-                <h3 className="reveal-summary-title">คำแนะนำจากจักรวาล</h3>
-                <p>{result.advice}</p>
+                <h3 className="reveal-summary-title">สรุปคำทำนาย</h3>
+                <p>{result.summary}</p>
               </div>
             </section>
-          )}
 
-          <p className="reveal-disclaimer">
-            * คำทำนายนี้เป็นแนวทางเพื่อการพิจารณา ไม่สามารถยืนยันผลลัพธ์ได้แน่นอน
-          </p>
+            {result.advice && (
+              <section className="reveal-summary">
+                <div className="reveal-summary-icon">🕯️</div>
+                <div className="reveal-summary-body">
+                  <h3 className="reveal-summary-title">คำแนะนำจากจักรวาล</h3>
+                  <p>{result.advice}</p>
+                </div>
+              </section>
+            )}
+
+            <p className="reveal-disclaimer">
+              * คำทำนายนี้เป็นแนวทางเพื่อการพิจารณา ไม่สามารถยืนยันผลลัพธ์ได้แน่นอน
+            </p>
+          </div>
+
+          <div className="reveal-share">
+            <ReadingShareButtons
+              title={topic.title}
+              slug={topic.slug}
+              captureRef={captureRef}
+            />
+          </div>
+
+          <hr className="reveal-divider" />
 
           <div className="reveal-actions">
             <button type="button" className="btn-primary" onClick={reset}>
