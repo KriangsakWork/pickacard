@@ -167,7 +167,7 @@ export default function ReadingShareButtons({ title = '', slug = '', result }) {
           />
         )}
         <div className="share-topic">
-          <p>{topicLine ? `✦ ${topicLine} ✦` : ''}</p>
+          <p>{topicLine ? <><span className="spark">✦ </span>{topicLine}<span className="spark"> ✦</span></> : ''}</p>
         </div>
         <div className="share-prediction">
           <p>{predictionText}</p>

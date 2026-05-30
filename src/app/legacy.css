@@ -1761,9 +1761,11 @@ a.topic-card:hover .topic-cta { color: var(--c-primary-deep); }
   font-weight: 700;
   line-height: 1.5;
   margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
   white-space: nowrap;
   /* ตัด overflow:hidden + ellipsis ออก — หัวข้อทุกหน้าตอนนี้สั้นพอจะไม่ล้น */
 }
+#share-card .share-topic .spark { text-shadow: none; }
 #share-card .share-prediction {
   position: absolute;
   top: 1450px;
