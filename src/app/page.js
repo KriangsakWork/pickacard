@@ -63,10 +63,7 @@ export default async function HomePage() {
               </button>
             </div>
             <div className="stat-badge">
-              <span className="stat-badge-avatars" aria-hidden="true">
-                <span></span><span></span><span></span><span></span>
-              </span>
-              <span className="stat-badge-text">🌙 ค้นหาคำตอบที่ซ่อนอยู่ในไพ่ใบต่อไปของคุณ</span>
+              <span className="stat-badge-text">ค้นหาคำตอบที่ซ่อนอยู่ในไพ่ใบต่อไปของคุณ</span>
             </div>
           </div>
 
