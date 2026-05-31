@@ -1,3 +1,5 @@
+import JsonLd from '@/components/JsonLd';
+import { breadcrumbLd } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import {
   allCategoriesQuery,
@@ -33,8 +35,14 @@ export default async function ReadingsPage() {
   );
   const visibleCategories = categories.filter((c) => usedSlugs.has(c.slug));
 
+  const breadcrumbs = breadcrumbLd([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'ดูคำทำนายทั้งหมด', url: '/readings' },
+  ]);
+
   return (
     <main>
+      <JsonLd data={breadcrumbs} />
       <section className="section">
         <div className="container">
           <div className="section-head">

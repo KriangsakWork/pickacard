@@ -3,7 +3,31 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 import "./globals.css";
+
+const SITE_URL = "https://pickmystic.com";
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Pick Mystic",
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/logo.webp`,
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Pick Mystic",
+  url: SITE_URL,
+  inLanguage: "th-TH",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/blog?cat={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
 
 const prompt = Prompt({
   subsets: ["thai", "latin"],
@@ -34,6 +58,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="th" className={`${prompt.variable} ${playfair.variable}`}>
       <body>
+        <JsonLd data={organizationLd} />
+        <JsonLd data={websiteLd} />
         <Header />
         {children}
         <Footer />

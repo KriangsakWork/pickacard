@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 
+import JsonLd from '@/components/JsonLd';
+import { breadcrumbLd } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
 import {
@@ -55,8 +57,15 @@ export default async function ReadingTopicPage({ params }) {
   };
   const results = Array.isArray(data.results) ? data.results : [];
 
+  const breadcrumbs = breadcrumbLd([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'ดูคำทำนายทั้งหมด', url: '/readings' },
+    { name: data.title, url: `/reading/${slug}` },
+  ]);
+
   return (
     <main className="container">
+      <JsonLd data={breadcrumbs} />
       <ReadingClient topic={topic} results={results} />
     </main>
   );

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import JsonLd from '@/components/JsonLd';
 import { ALL_CARDS, getCardBySlug } from '@/lib/cards';
+import { breadcrumbLd } from '@/lib/seo';
 
 export function generateStaticParams() {
   return ALL_CARDS.map(c => ({ slug: c.slug }));
@@ -22,8 +24,15 @@ export default async function CardDetailPage({ params }) {
   const card = getCardBySlug(slug);
   if (!card) notFound();
 
+  const breadcrumbs = breadcrumbLd([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'ความหมายไพ่ทาโรต์', url: '/cards' },
+    { name: card.name, url: `/cards/${card.slug}` },
+  ]);
+
   return (
     <main className="container">
+      <JsonLd data={breadcrumbs} />
       <section className="card-detail">
         <Link href="/cards" className="back-link">← กลับห้องสมุดไพ่</Link>
 

@@ -2,6 +2,8 @@ import Image from 'next/image';
 
 import ArticleCard from '@/components/ArticleCard';
 import CategoryFilter from '@/components/CategoryFilter';
+import JsonLd from '@/components/JsonLd';
+import { breadcrumbLd } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { allArticlesQuery, allCategoriesQuery } from '@/sanity/queries';
 
@@ -26,8 +28,14 @@ export default async function BlogPage({ searchParams }) {
     ? articles.filter((a) => a.category?.slug === activeCat)
     : articles;
 
+  const breadcrumbs = breadcrumbLd([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'บทความ', url: '/blog' },
+  ]);
+
   return (
     <main>
+      <JsonLd data={breadcrumbs} />
       <section className="section">
         <div className="container">
           <div className="section-head">
