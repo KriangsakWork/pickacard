@@ -4,6 +4,7 @@ import { ALL_CARDS } from '@/lib/cards';
 export const metadata = {
   title: 'ความหมายไพ่ทาโรต์ทั้งหมด',
   description: 'รวมความหมายไพ่ทาโรต์ทุกใบ พร้อมคำอธิบายในด้านความรัก การงาน อนาคต และอื่นๆ',
+  alternates: { canonical: '/cards' },
 };
 
 const major = ALL_CARDS.filter(c => c.arcana === 'major');

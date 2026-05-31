@@ -14,6 +14,7 @@ export const metadata = {
   title: 'ดูคำทำนายทั้งหมด | Pick Mystic',
   description:
     'รวมคำทำนายไพ่ทาโรต์ทุกหัวข้อ — ความรัก การงาน การเงิน อนาคต ค้นหาตามหมวดหมู่ได้',
+  alternates: { canonical: '/readings' },
 };
 
 export default async function ReadingsPage() {

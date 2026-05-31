@@ -13,6 +13,7 @@ export const metadata = {
   title: 'บทความทั้งหมด',
   description:
     'ความรู้สายมู ไพ่ทาโรต์ และเรื่องน่ารู้เกี่ยวกับการดูดวง รวมบทความจาก Pick Mystic',
+  alternates: { canonical: '/blog' },
 };
 
 export default async function BlogPage({ searchParams }) {

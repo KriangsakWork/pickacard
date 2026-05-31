@@ -15,6 +15,7 @@ export async function generateMetadata({ params }) {
   return {
     title: `${card.name} (${card.nameTh}) — ความหมายไพ่ทาโรต์`,
     description: `ความหมายของไพ่ ${card.name} ${card.nameTh} ในด้านความรัก การงาน อนาคต และอื่นๆ`,
+    alternates: { canonical: `/cards/${slug}` },
     openGraph: { images: [card.image] },
   };
 }
