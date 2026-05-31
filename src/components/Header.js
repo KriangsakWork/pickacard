@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -37,7 +38,7 @@ export default function Header() {
     <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`}>
       <div className="nav-container">
         <Link href="/" className="nav-logo">
-          <img src="/images/logo.webp" alt="Pick Mystic logo" width="36" height="36" />
+          <Image src="/images/logo.webp" alt="Pick Mystic logo" width={36} height={36} priority />
           <span className="nav-brand">
             <span className="nav-brand-name">PICK MYSTIC</span>
             <span className="nav-brand-tagline">Pick a Card Tarot</span>

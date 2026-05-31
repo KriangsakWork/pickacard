@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { urlFor } from '@/sanity/image';
@@ -73,7 +74,7 @@ export default function ReadingsListClient({ topics, categories }) {
               >
                 <div className="topic-media">
                   {imgUrl ? (
-                    <img src={imgUrl} alt={t.title} loading="lazy" />
+                    <Image src={imgUrl} alt={t.title} width={800} height={500} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" />
                   ) : null}
                   {t.category?.title && (
                     <span className="topic-tag">{t.category.title}</span>

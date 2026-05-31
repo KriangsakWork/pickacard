@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
@@ -40,7 +41,7 @@ export default async function CardDetailPage({ params }) {
 
         <div className="card-detail-head">
           <div className="card-detail-image">
-            <img src={card.image} alt={card.name} />
+            <Image src={card.image} alt={`${card.name} (${card.nameTh}) ไพ่ทาโรต์`} width={400} height={600} priority sizes="(max-width: 640px) 60vw, 400px" />
           </div>
           <div className="card-detail-info">
             <span className="card-detail-arcana">{card.arcana === 'major' ? 'Major Arcana' : 'Minor Arcana'}</span>

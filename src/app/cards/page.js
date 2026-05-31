@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ALL_CARDS } from '@/lib/cards';
 
@@ -13,7 +14,7 @@ const minor = ALL_CARDS.filter(c => c.arcana !== 'major');
 function CardTile({ card }) {
   return (
     <Link href={`/cards/${card.slug}`} className="card-tile">
-      <img src={card.image} alt={card.name} loading="lazy" />
+      <Image src={card.image} alt={`${card.name} (${card.nameTh}) ไพ่ทาโรต์`} width={200} height={300} sizes="(max-width: 640px) 33vw, 200px" />
       <div className="card-tile-body">
         <h3>{card.name}</h3>
         {card.nameTh !== card.name && <p>{card.nameTh}</p>}
