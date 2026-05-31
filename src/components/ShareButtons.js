@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 
 function cardSlug(name) {
@@ -131,7 +132,7 @@ export default function ShareButtons({ topicTitle, reading, onReset }) {
         <button type="button" className="action-btn" onClick={onReset}>
           <span>↺</span> เปิดไพ่ใหม่
         </button>
-        <a href="/" className="action-btn">← กลับหน้าแรก</a>
+        <Link href="/" className="action-btn">← กลับหน้าแรก</Link>
       </div>
 
       {/* Hidden 1080x1920 share card rendered to canvas only */}

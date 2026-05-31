@@ -1,11 +1,12 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const NAV = [
   { href: '/', label: 'หน้าแรก' },
-  { href: '/blog/', label: 'บทความ', external: true },
+  { href: '/blog', label: 'บทความ' },
   { href: '/about', label: 'เกี่ยวกับเรา' },
   { href: '/how-to', label: 'วิธีการใช้งาน' },
   { href: '/faq', label: 'คำถามที่พบบ่อย' },
@@ -37,7 +38,7 @@ export default function Header() {
     <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`}>
       <div className="nav-container">
         <Link href="/" className="nav-logo">
-          <img src="/images/logo.webp" alt="Pick Mystic logo" width="36" height="36" />
+          <Image src="/images/logo.webp" alt="Pick Mystic logo" width={36} height={36} priority />
           <span className="nav-brand">
             <span className="nav-brand-name">PICK MYSTIC</span>
             <span className="nav-brand-tagline">Pick a Card Tarot</span>
@@ -47,9 +48,7 @@ export default function Header() {
           {NAV.map(item => {
             const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
             const className = `nav-link${isActive ? ' active' : ''}`;
-            return item.external ? (
-              <a key={item.href} href={item.href} className={className}>{item.label}</a>
-            ) : (
+            return (
               <Link key={item.href} href={item.href} className={className}>{item.label}</Link>
             );
           })}

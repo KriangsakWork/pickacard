@@ -1,6 +1,10 @@
+import JsonLd from '@/components/JsonLd';
+import { breadcrumbLd, faqPageLd, alternatesFor } from '@/lib/seo';
+
 export const metadata = {
   title: "คำถามที่พบบ่อย",
   description: "คำถามที่พบบ่อยเกี่ยวกับ Pick Mystic ดูดวงความรักออนไลน์ฟรี เลือกไพ่จากใจรับคำทำนายทันที",
+  alternates: alternatesFor('/faq'),
 };
 
 const FAQ_ITEMS = [
@@ -14,8 +18,15 @@ const FAQ_ITEMS = [
 ];
 
 export default function FAQPage() {
+  const faqLd = faqPageLd(FAQ_ITEMS.map((it) => ({ question: it.q, answer: it.a })));
+  const breadcrumbs = breadcrumbLd([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'คำถามที่พบบ่อย', url: '/faq' },
+  ]);
   return (
     <main className="container">
+      <JsonLd data={faqLd} />
+      <JsonLd data={breadcrumbs} />
       <div className="content-page faq-page">
         <h1>คำถามที่พบบ่อย</h1>
         <p className="subtitle">✦ คำถามยอดฮิตเกี่ยวกับการดูดวงด้วย Pick a Card ✦</p>

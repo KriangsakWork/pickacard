@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { detect } from '@/lib/category-detector';
@@ -170,10 +171,12 @@ export default function QuickReadingExperience() {
             >
               <div className="rc-media">
                 <span className="rc-num">{i + 1}</span>
-                <img
+                <Image
                   src={block.card.image || '/images/card-back.webp'}
                   alt={`ไพ่${block.card.nameTh || block.card.name}`}
-                  loading="lazy"
+                  width={200}
+                  height={300}
+                  sizes="(max-width: 640px) 28vw, 200px"
                 />
               </div>
               <div className="rc-info">
@@ -199,7 +202,7 @@ export default function QuickReadingExperience() {
           className="reveal-summary"
           style={{ animationDelay: `${reading.cards.length * 0.12 + 0.05}s` }}
         >
-          <div className="reveal-summary-icon"><img src="/images/reveal/summary.webp" alt="" /></div>
+          <div className="reveal-summary-icon"><Image src="/images/reveal/summary.webp" alt="" width={56} height={56} aria-hidden="true" /></div>
           <div className="reveal-summary-body">
             <h3 className="reveal-summary-title">สรุปคำทำนาย</h3>
             <p>{reading.summary}</p>
@@ -211,7 +214,7 @@ export default function QuickReadingExperience() {
             className="reveal-summary"
             style={{ animationDelay: `${reading.cards.length * 0.12 + 0.1}s` }}
           >
-            <div className="reveal-summary-icon"><img src="/images/reveal/advice.webp" alt="" /></div>
+            <div className="reveal-summary-icon"><Image src="/images/reveal/advice.webp" alt="" width={56} height={56} aria-hidden="true" /></div>
             <div className="reveal-summary-body">
               <h3 className="reveal-summary-title">คำแนะนำจากจักรวาล</h3>
               <p>{reading.advice}</p>
@@ -236,10 +239,12 @@ export default function QuickReadingExperience() {
     <>
       {stage === 'transitioning' && (
         <div className="reveal-overlay visible">
-          <img
+          <Image
             className="reveal-overlay-mascot"
             src="/images/fortune-rabbit-loading-mascot.webp"
             alt=""
+            width={240}
+            height={240}
             aria-hidden="true"
           />
           <div className="reveal-overlay-text">กำลังเปิดไพ่ของคุณ...</div>
@@ -256,9 +261,9 @@ export default function QuickReadingExperience() {
 
         <form className="quick-ask" onSubmit={onSubmit} noValidate>
           <div className="quick-deck" aria-hidden="true">
-            <img src="/images/card-back.webp" alt="" loading="lazy" />
-            <img src="/images/card-back.webp" alt="" loading="lazy" />
-            <img src="/images/card-back.webp" alt="" loading="lazy" />
+            <Image src="/images/card-back.webp" alt="" width={80} height={120} aria-hidden="true" />
+            <Image src="/images/card-back.webp" alt="" width={80} height={120} aria-hidden="true" />
+            <Image src="/images/card-back.webp" alt="" width={80} height={120} aria-hidden="true" />
           </div>
 
           <label className="quick-field-label" htmlFor="questionInput">คำถามของคุณ</label>
@@ -325,7 +330,7 @@ export default function QuickReadingExperience() {
         </section>
 
         <section className="mascot-section">
-          <img src="/images/mascot-pick.webp" alt="Pick Mystic mascot" className="mascot-img" />
+          <Image src="/images/mascot-pick.webp" alt="Pick Mystic mascot" className="mascot-img" width={180} height={180} />
           <p className="mascot-message">ทุกคำถาม มีคำตอบรออยู่เสมอ ✨</p>
         </section>
       </section>

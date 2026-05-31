@@ -3,8 +3,17 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import ArticleShareButtons from '@/components/ArticleShareButtons';
+import JsonLd from '@/components/JsonLd';
 import PortableTextRenderer from '@/components/PortableTextRenderer';
 import RelatedArticles from '@/components/RelatedArticles';
+import {
+  breadcrumbLd,
+  extractFaqFromBody,
+  faqPageLd,
+  META_DESC_MAX,
+  META_TITLE_MAX,
+  SITE_URL,
+  truncate, alternatesFor } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
 import {
@@ -58,8 +67,10 @@ export async function generateMetadata({ params }) {
     return { title: 'ไม่พบบทความ' };
   }
 
-  const title = article.seo?.metaTitle || article.title;
-  const description = article.seo?.metaDescription || article.excerpt || '';
+  const rawTitle = article.seo?.metaTitle || article.title;
+  const rawDescription = article.seo?.metaDescription || article.excerpt || '';
+  const title = truncate(rawTitle, META_TITLE_MAX);
+  const description = truncate(rawDescription, META_DESC_MAX);
   const ogSource = article.seo?.ogImage || article.coverImage;
   const ogImage = ogSource
     ? urlFor(ogSource).width(1200).height(630).fit('crop').url()
@@ -69,6 +80,7 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    alternates: alternatesFor(`/blog/${slug}`),
     openGraph: {
       title,
       description,
@@ -115,10 +127,46 @@ export default async function ArticlePage({ params }) {
     ? urlFor(coverImage).width(1600).height(800).fit('crop').url()
     : null;
 
+  const ogImageUrl = coverImage
+    ? urlFor(coverImage).width(1200).height(630).fit('crop').url()
+    : null;
+
   const minutes = readingMinutes(body);
+
+  const canonicalPath = `/blog/${article.slug}`;
+
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: excerpt || undefined,
+    image: ogImageUrl ? [ogImageUrl] : undefined,
+    datePublished: publishedAt,
+    dateModified: article._updatedAt || publishedAt,
+    author: { '@type': 'Person', name: author || 'Pick Mystic' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Pick Mystic',
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/images/logo.webp` },
+    },
+    mainEntityOfPage: `${SITE_URL}${canonicalPath}`,
+    articleSection: category?.title || undefined,
+  };
+
+  const breadcrumbs = breadcrumbLd([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'บทความ', url: '/blog' },
+    { name: title, url: canonicalPath },
+  ]);
+
+  const faqs = extractFaqFromBody(body);
+  const faqLd = faqs.length > 0 ? faqPageLd(faqs) : null;
 
   return (
     <main>
+      <JsonLd data={articleLd} />
+      <JsonLd data={breadcrumbs} />
+      {faqLd && <JsonLd data={faqLd} />}
       <article className="section">
         <div className="container max-w-3xl">
           {/* Back to list — ghost button */}

@@ -1,6 +1,9 @@
+import { alternatesFor } from '@/lib/seo';
+
 export const metadata = {
   title: "เกี่ยวกับเรา",
   description: "Pick Mystic เว็บไซต์ดูดวงความรักออนไลน์ฟรี ด้วยไพ่ทาโรต์ ค้นหาคำตอบในใจคุณผ่านการเลือกไพ่จากใจ",
+  alternates: alternatesFor('/about'),
 };
 
 export default function AboutPage() {

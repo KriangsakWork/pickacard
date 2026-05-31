@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import LuckyColors from '@/components/LuckyColors';
 import ArticleCard from '@/components/ArticleCard';
 import ViewAllCard from '@/components/ViewAllCard';
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
+import { alternatesFor } from '@/lib/seo';
 import {
   featuredPickTopicsQuery,
   latestArticlesQuery,
@@ -12,9 +14,12 @@ import {
 export const revalidate = 60; // ISR — keep the latest-articles block fresh
 
 export const metadata = {
-  title: 'Pick Mystic - ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายอนาคต',
+  title: {
+    absolute: 'Pick Mystic — ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายอนาคต',
+  },
   description:
     'ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายความรัก การงาน การเงิน แม่นยำ พร้อมคำทำนายละเอียดจากกระต่ายพ่อมด Pick Mystic',
+  alternates: alternatesFor('/'),
   openGraph: {
     type: 'website',
     url: 'https://pickmystic.com/',
@@ -42,7 +47,15 @@ export default async function HomePage() {
       {/* HERO */}
       <header className="hero">
         <div className="hero-bg" aria-hidden="true">
-          <video className="hero-video" autoPlay loop muted playsInline poster="/images/hero-bg.webp">
+          <video
+            className="hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/images/hero-bg.webp"
+          >
             <source src="/images/hero-bg.mp4" type="video/mp4" />
           </video>
           <div className="hero-overlay"></div>
@@ -68,7 +81,15 @@ export default async function HomePage() {
           </div>
 
           <div className="hero-art">
-            <img className="hero-mascot" src="/images/mascot-hero.webp" alt="กระต่ายพ่อมดนักพยากรณ์ Pick Mystic" />
+            <Image
+              className="hero-mascot"
+              src="/images/mascot-hero.webp"
+              alt="กระต่ายพ่อมดนักพยากรณ์ Pick Mystic"
+              width={560}
+              height={513}
+              priority
+              sizes="(max-width: 768px) 80vw, 560px"
+            />
           </div>
         </div>
       </header>
@@ -88,9 +109,9 @@ export default async function HomePage() {
                 <span className="btn btn-primary">พิมพ์คำถามของคุณ →</span>
               </div>
               <span className="quick-promo-cards" aria-hidden="true">
-                <img src="/images/card-back.webp" alt="" loading="lazy" />
-                <img src="/images/card-back.webp" alt="" loading="lazy" />
-                <img src="/images/card-back.webp" alt="" loading="lazy" />
+                <Image src="/images/card-back.webp" alt="" width={60} height={90} aria-hidden="true" />
+                <Image src="/images/card-back.webp" alt="" width={60} height={90} aria-hidden="true" />
+                <Image src="/images/card-back.webp" alt="" width={60} height={90} aria-hidden="true" />
               </span>
             </Link>
           </div>
@@ -118,7 +139,7 @@ export default async function HomePage() {
                   >
                     <div className="topic-media">
                       {imgUrl ? (
-                        <img src={imgUrl} alt={item.title} loading="lazy" />
+                        <Image src={imgUrl} alt={item.title} width={800} height={500} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" />
                       ) : null}
                       {item.category?.title && (
                         <span className="topic-tag">{item.category.title}</span>
@@ -157,7 +178,7 @@ export default async function HomePage() {
           <div className="container">
             <div className="feature-banner">
               <div className="feature-banner-visual">
-                <img src="/images/mascot-topics.webp" alt="หมอดูแนะนำจาก Pick Mystic" loading="lazy" />
+                <Image src="/images/mascot-topics.webp" alt="หมอดูแนะนำจาก Pick Mystic" width={420} height={420} sizes="(max-width: 768px) 60vw, 420px" />
               </div>
               <div className="feature-banner-content">
                 <span className="feature-banner-tag">หมอดูแนะนำ</span>
@@ -205,17 +226,17 @@ export default async function HomePage() {
 
             <div className="benefit-grid">
               <article className="benefit-card">
-                <div className="benefit-icon"><img src="/images/benefits/easy.webp" alt="" /></div>
+                <div className="benefit-icon"><Image src="/images/benefits/easy.webp" alt="" width={120} height={120} aria-hidden="true" /></div>
                 <h3 className="benefit-title">ใช้ง่าย</h3>
                 <p className="benefit-text">เลือกไพ่เพียง 1 ใบ รับคำแนะนำจากจักรวาลได้ทันที</p>
               </article>
               <article className="benefit-card">
-                <div className="benefit-icon"><img src="/images/benefits/private.webp" alt="" /></div>
+                <div className="benefit-icon"><Image src="/images/benefits/private.webp" alt="" width={120} height={120} aria-hidden="true" /></div>
                 <h3 className="benefit-title">เป็นส่วนตัว</h3>
                 <p className="benefit-text">คำทำนายของคุณ เป็นความลับเฉพาะคุณคนเดียว 100%</p>
               </article>
               <article className="benefit-card">
-                <div className="benefit-icon"><img src="/images/benefits/inspire.webp" alt="" /></div>
+                <div className="benefit-icon"><Image src="/images/benefits/inspire.webp" alt="" width={120} height={120} aria-hidden="true" /></div>
                 <h3 className="benefit-title">สร้างแรงบันดาลใจ</h3>
                 <p className="benefit-text">มองเห็นทางเลือกใหม่ ๆ และก้าวต่อไปอย่างมั่นใจ</p>
               </article>

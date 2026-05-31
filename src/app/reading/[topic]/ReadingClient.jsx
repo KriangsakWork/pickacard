@@ -63,7 +63,7 @@ export default function ReadingClient({ topic, results }) {
             </div>
 
             <section className="reveal-summary">
-              <div className="reveal-summary-icon"><img src="/images/reveal/summary.webp" alt="" /></div>
+              <div className="reveal-summary-icon"><Image src="/images/reveal/summary.webp" alt="" width={56} height={56} aria-hidden="true" /></div>
               <div className="reveal-summary-body">
                 <h3 className="reveal-summary-title">สรุปคำทำนาย</h3>
                 <p>{result.summary}</p>
@@ -72,7 +72,7 @@ export default function ReadingClient({ topic, results }) {
 
             {result.advice && (
               <section className="reveal-summary">
-                <div className="reveal-summary-icon"><img src="/images/reveal/advice.webp" alt="" /></div>
+                <div className="reveal-summary-icon"><Image src="/images/reveal/advice.webp" alt="" width={56} height={56} aria-hidden="true" /></div>
                 <div className="reveal-summary-body">
                   <h3 className="reveal-summary-title">คำแนะนำจากจักรวาล</h3>
                   <p>{result.advice}</p>
@@ -110,10 +110,12 @@ export default function ReadingClient({ topic, results }) {
     <>
       {stage === 'transitioning' && (
         <div className="reveal-overlay visible">
-          <img
+          <Image
             className="reveal-overlay-mascot"
             src="/images/fortune-rabbit-loading-mascot.webp"
             alt=""
+            width={240}
+            height={240}
             aria-hidden="true"
           />
           <div className="reveal-overlay-text">กำลังเปิดคำทำนาย...</div>
@@ -139,10 +141,12 @@ export default function ReadingClient({ topic, results }) {
               }`}
               onClick={() => pickPile(n)}
             >
-              <img
+              <Image
                 src="/images/card-back.webp"
                 alt={`ไพ่ที่ ${n}`}
-                loading="lazy"
+                width={140}
+                height={210}
+                sizes="(max-width: 640px) 22vw, 140px"
               />
               <div className="pile-num">{n}</div>
               <div className="pile-badge">✨ ไพ่ของคุณ</div>
@@ -155,10 +159,12 @@ export default function ReadingClient({ topic, results }) {
         </div>
 
         <section className="mascot-section">
-          <img
+          <Image
             src="/images/mascot-pick.webp"
             alt="Pick Mystic mascot"
             className="mascot-img"
+            width={180}
+            height={180}
           />
           <p className="mascot-message">ขอบคุณที่ใช้ Pick Mystic ✨</p>
         </section>

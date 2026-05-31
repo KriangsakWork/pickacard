@@ -3,7 +3,31 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 import "./globals.css";
+
+const SITE_URL = "https://pickmystic.com";
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Pick Mystic",
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/logo.webp`,
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Pick Mystic",
+  url: SITE_URL,
+  inLanguage: "th-TH",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/blog?cat={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
 
 const prompt = Prompt({
   subsets: ["thai", "latin"],
@@ -27,13 +51,38 @@ export const metadata = {
   },
   description:
     "ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายความรัก การงาน การเงิน แม่นยำ พร้อมคำทำนายละเอียดจากกระต่ายพ่อมด Pick Mystic",
-  icons: { icon: "/images/favicon.webp" },
+  alternates: {
+    languages: { 'th-TH': 'https://pickmystic.com' },
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Pick Mystic",
+    locale: "th_TH",
+    images: [{ url: "/images/og-image.webp", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@pickmystic",
+    creator: "@pickmystic",
+    images: ["/images/og-image.webp"],
+  },
+};
+
+export const viewport = {
+  themeColor: "#7E57C2",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="th" className={`${prompt.variable} ${playfair.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+      </head>
       <body>
+        <JsonLd data={organizationLd} />
+        <JsonLd data={websiteLd} />
         <Header />
         {children}
         <Footer />

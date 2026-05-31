@@ -2,6 +2,8 @@ import Image from 'next/image';
 
 import ArticleCard from '@/components/ArticleCard';
 import CategoryFilter from '@/components/CategoryFilter';
+import JsonLd from '@/components/JsonLd';
+import { breadcrumbLd, alternatesFor } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { allArticlesQuery, allCategoriesQuery } from '@/sanity/queries';
 
@@ -11,6 +13,7 @@ export const metadata = {
   title: 'บทความทั้งหมด',
   description:
     'ความรู้สายมู ไพ่ทาโรต์ และเรื่องน่ารู้เกี่ยวกับการดูดวง รวมบทความจาก Pick Mystic',
+  alternates: alternatesFor('/blog'),
 };
 
 export default async function BlogPage({ searchParams }) {
@@ -26,8 +29,14 @@ export default async function BlogPage({ searchParams }) {
     ? articles.filter((a) => a.category?.slug === activeCat)
     : articles;
 
+  const breadcrumbs = breadcrumbLd([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'บทความ', url: '/blog' },
+  ]);
+
   return (
     <main>
+      <JsonLd data={breadcrumbs} />
       <section className="section">
         <div className="container">
           <div className="section-head">

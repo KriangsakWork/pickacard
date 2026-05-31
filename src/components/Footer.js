@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -7,7 +8,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <Link href="/" className="footer-logo">
-              <img src="/images/logo.webp" alt="Pick Mystic logo" width="32" height="32" />
+              <Image src="/images/logo.webp" alt="Pick Mystic logo" width={32} height={32} />
               <span className="nav-brand">
                 <span className="nav-brand-name">PICK MYSTIC</span>
                 <span className="nav-brand-tagline">Pick a Card Tarot</span>
@@ -18,7 +19,7 @@ export default function Footer() {
             </p>
           </div>
           <nav className="footer-nav" aria-label="ลิงก์ส่วนท้าย">
-            <a href="/blog/">บทความ</a>
+            <Link href="/blog">บทความ</Link>
             <Link href="/cards">ความหมายไพ่</Link>
             <Link href="/about">เกี่ยวกับเรา</Link>
             <Link href="/how-to">วิธีการใช้งาน</Link>

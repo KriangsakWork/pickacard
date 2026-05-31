@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const STORAGE_KEY = 'user_birthday_day';
@@ -91,7 +92,7 @@ export default function LuckyColors() {
         {hydrated && !day && (
           <div className="lucky-placeholder">
             <div className="lucky-placeholder-visual">
-              <img src="/images/bunny-wardrobe.webp" alt="กระต่ายกับเสื้อคลุมหลากสี" loading="lazy" />
+              <Image src="/images/bunny-wardrobe.webp" alt="กระต่ายกับเสื้อคลุมหลากสี" width={600} height={400} sizes="(max-width: 768px) 80vw, 480px" />
             </div>
             <div className="lucky-placeholder-body">
               <h3 className="lucky-placeholder-title">บอกเราหน่อยว่าคุณเกิดวันอะไร</h3>
@@ -109,7 +110,7 @@ export default function LuckyColors() {
               <span className="lucky-day-pill"><strong>{info.label}</strong></span>
               <div className="lucky-head-right">
                 <button type="button" className="lucky-change-btn" onClick={openModal}>เปลี่ยนวันเกิด</button>
-                <img className="lucky-head-bunny" src="/images/bunny-wardrobe.webp" alt="" aria-hidden="true" loading="lazy" />
+                <Image className="lucky-head-bunny" src="/images/bunny-wardrobe.webp" alt="" width={120} height={80} aria-hidden="true" />
               </div>
             </div>
 
