@@ -21,11 +21,18 @@ const nextConfig = {
         destination: '/reading/:slug',
         permanent: true,
       },
+      {
+        source: '/blog/index.html',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug.html',
+        destination: '/blog/:slug',
+        permanent: true,
+      },
     ];
   },
-  // Note: the old /blog -> /blog/index.html rewrite was removed so the new
-  // Sanity-powered app/blog/page.js serves /blog. The legacy article HTML in
-  // public/blog/*.html is still reachable directly and will be migrated in B1.
 };
 
 export default nextConfig;
