@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 const NAV = [
   { href: '/', label: 'หน้าแรก' },
-  { href: '/blog/', label: 'บทความ', external: true },
+  { href: '/blog', label: 'บทความ' },
   { href: '/about', label: 'เกี่ยวกับเรา' },
   { href: '/how-to', label: 'วิธีการใช้งาน' },
   { href: '/faq', label: 'คำถามที่พบบ่อย' },
@@ -47,9 +47,7 @@ export default function Header() {
           {NAV.map(item => {
             const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
             const className = `nav-link${isActive ? ' active' : ''}`;
-            return item.external ? (
-              <a key={item.href} href={item.href} className={className}>{item.label}</a>
-            ) : (
+            return (
               <Link key={item.href} href={item.href} className={className}>{item.label}</Link>
             );
           })}

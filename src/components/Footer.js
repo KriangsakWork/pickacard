@@ -18,7 +18,7 @@ export default function Footer() {
             </p>
           </div>
           <nav className="footer-nav" aria-label="ลิงก์ส่วนท้าย">
-            <a href="/blog/">บทความ</a>
+            <Link href="/blog">บทความ</Link>
             <Link href="/cards">ความหมายไพ่</Link>
             <Link href="/about">เกี่ยวกับเรา</Link>
             <Link href="/how-to">วิธีการใช้งาน</Link>
