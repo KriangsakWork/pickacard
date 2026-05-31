@@ -83,7 +83,19 @@ export const articleBySlugQuery = groq`
       currency,
       shopeeUrl
     },
-    relatedCards
+    relatedCards,
+    relatedPickTopic->{
+      _id,
+      title,
+      "slug": slug.current,
+      shortDescription,
+      coverImage,
+      category->{
+        title,
+        "slug": slug.current,
+        icon
+      }
+    }
   }
 `;
 
@@ -145,7 +157,46 @@ export const pickTopicBySlugQuery = groq`
         }
       }
     },
-    seo
+    seo,
+    "relatedArticles": *[_type == "article"
+      && defined(publishedAt) && publishedAt <= now()
+      && (
+        relatedPickTopic._ref == ^._id
+        || (!defined(relatedPickTopic) && category._ref == ^.category._ref)
+      )
+    ] | order(publishedAt desc) [0...3] {
+      _id,
+      title,
+      "slug": slug.current,
+      excerpt,
+      coverImage,
+      publishedAt,
+      category->{
+        title,
+        "slug": slug.current,
+        icon
+      }
+    }
+  }
+`;
+
+// Auto-match fallback: newest pickTopic in the same category (used when
+// an article has no explicit relatedPickTopic set).
+export const pickTopicByCategoryQuery = groq`
+  *[_type == "pickTopic"
+    && defined(slug.current)
+    && category._ref == $categoryId
+  ] | order(publishedAt desc) [0] {
+    _id,
+    title,
+    "slug": slug.current,
+    shortDescription,
+    coverImage,
+    category->{
+      title,
+      "slug": slug.current,
+      icon
+    }
   }
 `;
 

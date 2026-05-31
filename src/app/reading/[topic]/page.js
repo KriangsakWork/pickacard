@@ -69,6 +69,7 @@ export default async function ReadingTopicPage({ params }) {
     shortDescription: data.shortDescription,
   };
   const results = Array.isArray(data.results) ? data.results : [];
+  const relatedArticles = Array.isArray(data.relatedArticles) ? data.relatedArticles : [];
 
   const breadcrumbs = breadcrumbLd([
     { name: 'หน้าแรก', url: '/' },
@@ -79,7 +80,7 @@ export default async function ReadingTopicPage({ params }) {
   return (
     <main className="container">
       <JsonLd data={breadcrumbs} />
-      <ReadingClient topic={topic} results={results} />
+      <ReadingClient topic={topic} results={results} relatedArticles={relatedArticles} />
     </main>
   );
 }

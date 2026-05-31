@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 import ArticleShareButtons from '@/components/ArticleShareButtons';
 import JsonLd from '@/components/JsonLd';
+import PickTopicPromo from '@/components/PickTopicPromo';
 import PortableTextRenderer from '@/components/PortableTextRenderer';
 import RelatedArticles from '@/components/RelatedArticles';
 import {
@@ -19,6 +20,7 @@ import { urlFor } from '@/sanity/image';
 import {
   articleBySlugQuery,
   articleSlugsQuery,
+  pickTopicByCategoryQuery,
   relatedArticlesQuery,
 } from '@/sanity/queries';
 
@@ -113,15 +115,19 @@ export default async function ArticlePage({ params }) {
     category,
     categoryId,
     relatedProducts,
+    relatedPickTopic,
   } = article;
 
-  const related = categoryId
-    ? await client.fetch(
-        relatedArticlesQuery,
-        { id: article._id, categoryId },
-        fetchOpts
-      )
-    : [];
+  const [related, pickTopic] = await Promise.all([
+    categoryId
+      ? client.fetch(relatedArticlesQuery, { id: article._id, categoryId }, fetchOpts)
+      : [],
+    relatedPickTopic
+      ? relatedPickTopic
+      : categoryId
+        ? client.fetch(pickTopicByCategoryQuery, { categoryId }, fetchOpts)
+        : null,
+  ]);
 
   const coverUrl = coverImage
     ? urlFor(coverImage).width(1600).height(800).fit('crop').url()
@@ -276,6 +282,9 @@ export default async function ArticlePage({ params }) {
           <div className="mt-12 border-t border-primary/10 pt-6">
             <ArticleShareButtons title={title} />
           </div>
+
+          {/* Pick a Card promo */}
+          <PickTopicPromo topic={pickTopic} />
           </div>
           {/* /Article card */}
 

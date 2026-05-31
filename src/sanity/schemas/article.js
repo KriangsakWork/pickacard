@@ -86,6 +86,14 @@ export default defineType({
       description: 'สินค้าแนะนำในบทความ',
     }),
     defineField({
+      name: 'relatedPickTopic',
+      title: 'Related Pick a Card topic',
+      type: 'reference',
+      to: [{ type: 'pickTopic' }],
+      description:
+        'เชื่อมบทความกับหัวข้อ Pick a Card (ถ้าไม่เลือก ระบบจะ auto-match จาก category เดียวกัน)',
+    }),
+    defineField({
       name: 'relatedCards',
       title: 'Related tarot cards',
       type: 'array',

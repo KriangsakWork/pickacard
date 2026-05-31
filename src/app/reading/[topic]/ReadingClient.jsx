@@ -8,7 +8,7 @@ import { PortableText } from '@portabletext/react';
 import ReadingShareButtons from '@/components/ReadingShareButtons';
 import { urlFor } from '@/sanity/image';
 
-export default function ReadingClient({ topic, results }) {
+export default function ReadingClient({ topic, results, relatedArticles = [] }) {
   const [stage, setStage] = useState('pick'); // pick | selected | transitioning | reading
   const [selectedPile, setSelectedPile] = useState(null);
   const [result, setResult] = useState(null);
@@ -101,6 +101,10 @@ export default function ReadingClient({ topic, results }) {
               กลับหน้าเลือกหัวข้อ
             </Link>
           </div>
+
+          {relatedArticles.length > 0 && (
+            <RelatedArticlesOnReading articles={relatedArticles} />
+          )}
         </div>
       </section>
     );
@@ -170,6 +174,58 @@ export default function ReadingClient({ topic, results }) {
         </section>
       </section>
     </>
+  );
+}
+
+function RelatedArticlesOnReading({ articles }) {
+  return (
+    <section className="mt-10 border-t border-primary/10 pt-8">
+      <h3 className="mb-4 text-center text-lg font-semibold text-dark-purple">
+        📖 บทความที่เกี่ยวข้อง
+      </h3>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {articles.map((a) => {
+          const imgUrl = a.coverImage
+            ? urlFor(a.coverImage).width(400).height(220).fit('crop').url()
+            : null;
+          return (
+            <Link
+              key={a._id}
+              href={`/blog/${a.slug}`}
+              className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md"
+            >
+              {imgUrl && (
+                <div className="relative aspect-[16/9] overflow-hidden bg-primary-50">
+                  <Image
+                    src={imgUrl}
+                    alt={a.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform group-hover:scale-105"
+                  />
+                </div>
+              )}
+              <div className="p-4">
+                {a.category?.title && (
+                  <span className="text-xs font-medium text-primary">
+                    {a.category.icon ? `${a.category.icon} ` : ''}
+                    {a.category.title}
+                  </span>
+                )}
+                <p className="mt-1 line-clamp-2 text-sm font-semibold text-dark-purple">
+                  {a.title}
+                </p>
+                {a.excerpt && (
+                  <p className="mt-1 line-clamp-2 text-xs text-muted-purple">
+                    {a.excerpt}
+                  </p>
+                )}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
