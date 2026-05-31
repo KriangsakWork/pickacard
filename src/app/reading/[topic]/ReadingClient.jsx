@@ -63,7 +63,7 @@ export default function ReadingClient({ topic, results }) {
             </div>
 
             <section className="reveal-summary">
-              <div className="reveal-summary-icon">🌙</div>
+              <div className="reveal-summary-icon"><img src="/images/reveal/summary.webp" alt="" /></div>
               <div className="reveal-summary-body">
                 <h3 className="reveal-summary-title">สรุปคำทำนาย</h3>
                 <p>{result.summary}</p>
@@ -72,7 +72,7 @@ export default function ReadingClient({ topic, results }) {
 
             {result.advice && (
               <section className="reveal-summary">
-                <div className="reveal-summary-icon">🕯️</div>
+                <div className="reveal-summary-icon"><img src="/images/reveal/advice.webp" alt="" /></div>
                 <div className="reveal-summary-body">
                   <h3 className="reveal-summary-title">คำแนะนำจากจักรวาล</h3>
                   <p>{result.advice}</p>
