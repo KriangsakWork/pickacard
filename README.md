@@ -1,67 +1,126 @@
-# Pick a Card — เว็บดูดวงออนไลน์
+# Pick Mystic — เว็บดูดวงไพ่ทาโรต์ออนไลน์
 
-โครงสร้าง Content Hub: หน้าแรกเลือกหัวข้อดูดวง → คลิกการ์ดเข้าหน้า Pick a Card
+**pickmystic.com** — ดูดวงไพ่ทาโรต์ฟรี ทำนายความรัก การงาน การเงิน
+
+## Tech Stack
+
+- **Next.js 16** (App Router) + React 19
+- **Sanity CMS** — จัดการ content: บทความ, Pick Topics, ไพ่ทาโรต์
+- **Tailwind CSS v4**
+- **Vercel** — deploy + ISR
 
 ## โครงสร้างไฟล์
 
 ```
-duangjai/
-├── index.html                       (หน้าแรก: Hero + Tabs + Topic cards)
-├── about.html                       (เกี่ยวกับเรา)
-├── how-to.html                      (วิธีการใช้งาน)
-├── faq.html                         (คำถามที่พบบ่อย)
+src/
+├── app/
+│   ├── page.js                        (หน้าแรก)
+│   ├── layout.js                      (root layout)
+│   ├── about/page.js
+│   ├── faq/page.js
+│   ├── how-to/page.js
+│   ├── quick-reading/page.js          (ดูดวงจากคำถาม)
+│   ├── reading/[topic]/               (หน้า Pick a Card แยกตามหัวข้อ)
+│   │   ├── page.js
+│   │   └── ReadingClient.jsx
+│   ├── readings/                      (หน้ารวมหัวข้อทั้งหมด)
+│   │   ├── page.js
+│   │   └── ReadingsListClient.jsx
+│   ├── blog/
+│   │   ├── page.js                    (หน้ารวมบทความ)
+│   │   └── [slug]/page.js             (บทความแต่ละชิ้น)
+│   ├── cards/
+│   │   ├── page.js                    (คลังไพ่ทาโรต์)
+│   │   └── [slug]/page.js             (ไพ่แต่ละใบ)
+│   ├── sitemap.js
+│   ├── robots.js
+│   └── studio/[[...tool]]/page.js     (Sanity Studio)
 │
-├── reading/
-│   └── missing-you.html             (Pick a Card: คนนั้นคิดถึงคุณมั้ย)
+├── components/
+│   ├── Header.js / Footer.js
+│   ├── ArticleCard.js
+│   ├── CategoryFilter.js
+│   ├── QuickReadingExperience.js
+│   ├── LuckyColors.js
+│   ├── PickTopicPromo.js
+│   ├── RelatedArticles.js
+│   ├── ReadingShareButtons.jsx
+│   └── ...
 │
-├── blog/
-│   ├── index.html                   (หน้ารวมบทความ)
-│   ├── how-to-pick-a-card.html      (บทความ: Pick a Card คืออะไร)
-│   └── tarot-love-meaning.html      (บทความ: ความหมายไพ่ทาโรต์ความรัก)
+├── sanity/
+│   ├── client.js
+│   ├── queries.js                     (GROQ queries ทั้งหมด)
+│   ├── schemas/
+│   │   ├── article.js
+│   │   ├── pickTopic.js
+│   │   ├── tarotCard.js
+│   │   ├── category.js
+│   │   └── homepagePicks.js
+│   └── image.js
 │
-├── quick-reading.html               (ดูดวงจากคำถาม: พิมพ์คำถาม → เปิดไพ่ 3 ใบ)
+├── lib/
+│   ├── cards.js
+│   ├── tarot-meaning.js
+│   ├── spread-generator.js
+│   ├── category-detector.js
+│   └── seo.js
 │
-├── data/
-│   ├── tarot-meanings.json          (คลังความหมายไพ่ทาโรต์ — แยกเนื้อหาจาก UI)
-│   └── intent-keywords.json         (คีย์เวิร์ดตรวจจับหมวดคำถาม + เทมเพลตคำทำนาย)
-│
-├── css/style.css                    (สไตล์ทั้งหมด)
-├── js/
-│   ├── home.js                      (tabs filtering หน้าแรก)
-│   ├── reading.js                   (logic หน้า reading)
-│   ├── tarot-engine.js              (interpretation engine — ใช้ซ้ำได้ ไม่ผูกกับ DOM)
-│   ├── quick-reading.js             (page controller ของ quick-reading.html)
-│   └── readings-missing-you.js      (ข้อมูลคำทำนาย)
-│
-└── images/                          (รูปทั้งหมด)
+└── data/tarot/
+    ├── tarot-meanings.json
+    ├── tarot-meanings-v2.json
+    ├── spreads.json
+    ├── category-keywords.json
+    └── intent-keywords.json
+
+scripts/
+├── seed-tarot-cards.mjs               (seed ไพ่เข้า Sanity)
+├── migrate-pick-topics.mjs            (migrate Pick Topics เข้า Sanity)
+└── import-legacy-articles.mjs         (import บทความเก่าเข้า Sanity)
+
+public/images/
+├── tarot/                             (รูปไพ่ทั้งหมด .webp)
+├── banners/                           (banner แต่ละหัวข้อดูดวง)
+├── blog/                              (รูป thumbnail บทความ)
+└── ...
 ```
 
-## ฟีเจอร์ "ดูดวงจากคำถาม" (Quick Reading 3 ใบ)
+## Sanity Content Types
 
-ผู้ใช้พิมพ์คำถาม → ตรวจจับหมวด (keyword matching) → สุ่มไพ่ 3 ใบ → ประกอบคำทำนายจากความหมายที่เตรียมไว้ ไม่มีการเรียก API หรือใช้ AI ทำงานฝั่ง client ทั้งหมด
+| Schema | ใช้สำหรับ |
+|---|---|
+| `article` | บทความบล็อก |
+| `pickTopic` | หัวข้อ Pick a Card (เช่น "คนนั้นคิดถึงคุณมั้ย") |
+| `tarotCard` | ไพ่ทาโรต์แต่ละใบ + ความหมาย |
+| `category` | หมวดหมู่บทความ |
+| `homepagePicks` | ควบคุมการ์ดที่แสดงหน้าแรก |
 
-**กฎสำคัญ:** ห้าม hardcode ความหมายไพ่ไว้ใน component — เก็บทุกอย่างใน `data/*.json`
+## วิธีพัฒนา
 
-วิธีขยายระบบ:
-- **เพิ่มไพ่ใหม่** → เพิ่ม object ใน `cards` ของ `data/tarot-meanings.json` (ใส่ความหมายครบทุกหมวด + วางรูปใน `images/tarot/`)
-- **เพิ่มหมวดคำถาม** → เพิ่ม category ใน `data/intent-keywords.json` พร้อม `keywords` แล้วเพิ่ม key หมวดนั้นใน `meanings` ของไพ่ทุกใบ
-- **เพิ่มไพ่กลับหัว (reversed)** → เพิ่ม key `reversed` ในแต่ละหมวดของ `meanings` (schema รองรับไว้แล้ว)
+```bash
+npm install
+npm run dev          # http://localhost:3000
+```
 
-## วิธีเพิ่มหัวข้อดูดวงใหม่ในอนาคต
+Sanity Studio อยู่ที่ `/studio`
 
-1. สร้างไฟล์ `js/readings-[topic-name].js` เก็บคำทำนาย
-2. Copy `reading/missing-you.html` เป็น `reading/[topic-name].html`
-3. ใน HTML เปลี่ยน script ที่ load ให้ตรงกับชื่อไฟล์ใหม่
-4. แก้ `index.html` ที่ topic card ของหัวข้อนั้น เปลี่ยน `class="topic-card disabled"` เป็น `<a href="/reading/[topic-name].html" class="topic-card">` พร้อมลบ `<div class="topic-soon">เร็วๆ นี้</div>`
+## Scripts
+
+```bash
+npm run seed:tarot        # seed ข้อมูลไพ่ทาโรต์เข้า Sanity
+npm run migrate:pick      # migrate Pick Topics เข้า Sanity
+```
+
+## วิธีเพิ่มหัวข้อดูดวงใหม่
+
+1. เพิ่ม `pickTopic` document ใน Sanity Studio
+2. ใส่ `slug` ที่ต้องการ (เช่น `love-return`)
+3. หน้า `/reading/[slug]` จะ render ให้อัตโนมัติ
 
 ## วิธีเพิ่มบทความใหม่
 
-1. Copy `blog/how-to-pick-a-card.html` เป็น `blog/[article-slug].html`
-2. แก้เนื้อหา + meta tags
-3. เพิ่ม link ใน `blog/index.html` และ `index.html` (ส่วน latest articles)
+1. เขียนใน Sanity Studio → Articles
+2. กด Publish — หน้า `/blog/[slug]` จะขึ้นภายใน 60 วินาที (ISR)
 
 ## Deploy
 
-Static site - ใช้กับ Vercel ได้ทันที (auto-deploy เมื่อ push GitHub)
-
-chore: trigger rebuild
+Vercel — auto-deploy เมื่อ push ไป `main`
