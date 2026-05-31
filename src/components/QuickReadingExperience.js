@@ -199,7 +199,7 @@ export default function QuickReadingExperience() {
           className="reveal-summary"
           style={{ animationDelay: `${reading.cards.length * 0.12 + 0.05}s` }}
         >
-          <div className="reveal-summary-icon">🌙</div>
+          <div className="reveal-summary-icon"><img src="/images/reveal/summary.webp" alt="" /></div>
           <div className="reveal-summary-body">
             <h3 className="reveal-summary-title">สรุปคำทำนาย</h3>
             <p>{reading.summary}</p>
@@ -211,7 +211,7 @@ export default function QuickReadingExperience() {
             className="reveal-summary"
             style={{ animationDelay: `${reading.cards.length * 0.12 + 0.1}s` }}
           >
-            <div className="reveal-summary-icon">🕯️</div>
+            <div className="reveal-summary-icon"><img src="/images/reveal/advice.webp" alt="" /></div>
             <div className="reveal-summary-body">
               <h3 className="reveal-summary-title">คำแนะนำจากจักรวาล</h3>
               <p>{reading.advice}</p>
