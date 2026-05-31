@@ -69,6 +69,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="th" className={`${prompt.variable} ${playfair.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+      </head>
       <body>
         <JsonLd data={organizationLd} />
         <JsonLd data={websiteLd} />
