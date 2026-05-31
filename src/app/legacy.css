@@ -40,7 +40,7 @@
 
   /* Layout */
   --container: 1140px;
-  --section-y: clamp(52px, 8vw, 88px);
+  --section-y: clamp(40px, 6vw, 64px);
 
   /* Type */
   --t-display: 'Playfair Display', serif;
