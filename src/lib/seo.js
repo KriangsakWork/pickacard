@@ -1,5 +1,20 @@
 export const SITE_URL = 'https://pickmystic.com';
 
+// Truncate at the last whitespace before max, append ellipsis.
+// Thai text often has no spaces, so we hard-cut as a last resort.
+export function truncate(str, max) {
+  if (!str) return '';
+  const s = String(str).trim();
+  if (s.length <= max) return s;
+  const sliced = s.slice(0, max);
+  const lastSpace = sliced.lastIndexOf(' ');
+  const cut = lastSpace > max * 0.6 ? sliced.slice(0, lastSpace) : sliced;
+  return `${cut.trimEnd()}…`;
+}
+
+export const META_TITLE_MAX = 60;
+export const META_DESC_MAX = 160;
+
 export function breadcrumbLd(items) {
   return {
     '@context': 'https://schema.org',

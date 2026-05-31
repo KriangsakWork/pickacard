@@ -6,7 +6,15 @@ import ArticleShareButtons from '@/components/ArticleShareButtons';
 import JsonLd from '@/components/JsonLd';
 import PortableTextRenderer from '@/components/PortableTextRenderer';
 import RelatedArticles from '@/components/RelatedArticles';
-import { breadcrumbLd, extractFaqFromBody, faqPageLd, SITE_URL } from '@/lib/seo';
+import {
+  breadcrumbLd,
+  extractFaqFromBody,
+  faqPageLd,
+  META_DESC_MAX,
+  META_TITLE_MAX,
+  SITE_URL,
+  truncate,
+} from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
 import {
@@ -60,8 +68,10 @@ export async function generateMetadata({ params }) {
     return { title: 'ไม่พบบทความ' };
   }
 
-  const title = article.seo?.metaTitle || article.title;
-  const description = article.seo?.metaDescription || article.excerpt || '';
+  const rawTitle = article.seo?.metaTitle || article.title;
+  const rawDescription = article.seo?.metaDescription || article.excerpt || '';
+  const title = truncate(rawTitle, META_TITLE_MAX);
+  const description = truncate(rawDescription, META_DESC_MAX);
   const ogSource = article.seo?.ogImage || article.coverImage;
   const ogImage = ogSource
     ? urlFor(ogSource).width(1200).height(630).fit('crop').url()
