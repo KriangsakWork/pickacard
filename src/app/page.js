@@ -5,6 +5,7 @@ import ArticleCard from '@/components/ArticleCard';
 import ViewAllCard from '@/components/ViewAllCard';
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
+import { alternatesFor } from '@/lib/seo';
 import {
   featuredPickTopicsQuery,
   latestArticlesQuery,
@@ -18,7 +19,7 @@ export const metadata = {
   },
   description:
     'ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายความรัก การงาน การเงิน แม่นยำ พร้อมคำทำนายละเอียดจากกระต่ายพ่อมด Pick Mystic',
-  alternates: { canonical: '/' },
+  alternates: alternatesFor('/'),
   openGraph: {
     type: 'website',
     url: 'https://pickmystic.com/',

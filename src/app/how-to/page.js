@@ -1,7 +1,9 @@
+import { alternatesFor } from '@/lib/seo';
+
 export const metadata = {
   title: "วิธีการใช้งาน",
   description: "วิธีใช้งาน Pick Mystic ดูดวงความรักออนไลน์ฟรี 3 ขั้นตอนง่ายๆ เลือกไพ่จากใจ รับคำทำนายทันที",
-  alternates: { canonical: '/how-to' },
+  alternates: alternatesFor('/how-to'),
 };
 
 const STEPS = [

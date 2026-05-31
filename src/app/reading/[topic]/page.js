@@ -5,8 +5,7 @@ import {
   breadcrumbLd,
   META_DESC_MAX,
   META_TITLE_MAX,
-  truncate,
-} from '@/lib/seo';
+  truncate, alternatesFor } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
 import {
@@ -44,7 +43,7 @@ export async function generateMetadata({ params }) {
   return {
     title: metaTitle,
     description: metaDescription,
-    alternates: { canonical: `/reading/${slug}` },
+    alternates: alternatesFor(`/reading/${slug}`),
     openGraph: {
       title: data.title,
       description: metaDescription,

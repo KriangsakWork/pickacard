@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
 import { ALL_CARDS, getCardBySlug } from '@/lib/cards';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, alternatesFor } from '@/lib/seo';
 
 export function generateStaticParams() {
   return ALL_CARDS.map(c => ({ slug: c.slug }));
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   return {
     title: `${card.name} (${card.nameTh}) — ความหมายไพ่ทาโรต์`,
     description: `ความหมายของไพ่ ${card.name} ${card.nameTh} ในด้านความรัก การงาน อนาคต และอื่นๆ`,
-    alternates: { canonical: `/cards/${slug}` },
+    alternates: alternatesFor(`/cards/${slug}`),
     openGraph: { images: [card.image] },
     twitter: { card: 'summary_large_image', images: [card.image] },
   };

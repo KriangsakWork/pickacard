@@ -13,8 +13,7 @@ import {
   META_DESC_MAX,
   META_TITLE_MAX,
   SITE_URL,
-  truncate,
-} from '@/lib/seo';
+  truncate, alternatesFor } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
 import {
@@ -81,7 +80,7 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
-    alternates: { canonical: `/blog/${slug}` },
+    alternates: alternatesFor(`/blog/${slug}`),
     openGraph: {
       title,
       description,

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import ArticleCard from '@/components/ArticleCard';
 import CategoryFilter from '@/components/CategoryFilter';
 import JsonLd from '@/components/JsonLd';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, alternatesFor } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { allArticlesQuery, allCategoriesQuery } from '@/sanity/queries';
 
@@ -13,7 +13,7 @@ export const metadata = {
   title: 'บทความทั้งหมด',
   description:
     'ความรู้สายมู ไพ่ทาโรต์ และเรื่องน่ารู้เกี่ยวกับการดูดวง รวมบทความจาก Pick Mystic',
-  alternates: { canonical: '/blog' },
+  alternates: alternatesFor('/blog'),
 };
 
 export default async function BlogPage({ searchParams }) {

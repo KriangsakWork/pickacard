@@ -1,10 +1,10 @@
 import JsonLd from '@/components/JsonLd';
-import { breadcrumbLd, faqPageLd } from '@/lib/seo';
+import { breadcrumbLd, faqPageLd, alternatesFor } from '@/lib/seo';
 
 export const metadata = {
   title: "คำถามที่พบบ่อย",
   description: "คำถามที่พบบ่อยเกี่ยวกับ Pick Mystic ดูดวงความรักออนไลน์ฟรี เลือกไพ่จากใจรับคำทำนายทันที",
-  alternates: { canonical: '/faq' },
+  alternates: alternatesFor('/faq'),
 };
 
 const FAQ_ITEMS = [

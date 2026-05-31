@@ -15,6 +15,15 @@ export function truncate(str, max) {
 export const META_TITLE_MAX = 60;
 export const META_DESC_MAX = 160;
 
+// Build a Next metadata.alternates object that sets both canonical and
+// the th-TH hreflang to the same path. metadataBase resolves relative paths.
+export function alternatesFor(path) {
+  return {
+    canonical: path,
+    languages: { 'th-TH': path },
+  };
+}
+
 export function breadcrumbLd(items) {
   return {
     '@context': 'https://schema.org',

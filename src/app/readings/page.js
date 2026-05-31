@@ -1,5 +1,5 @@
 import JsonLd from '@/components/JsonLd';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, alternatesFor } from '@/lib/seo';
 import { client } from '@/sanity/client';
 import {
   allCategoriesQuery,
@@ -14,7 +14,7 @@ export const metadata = {
   title: 'ดูคำทำนายทั้งหมด',
   description:
     'รวมคำทำนายไพ่ทาโรต์ทุกหัวข้อ — ความรัก การงาน การเงิน อนาคต ค้นหาตามหมวดหมู่ได้',
-  alternates: { canonical: '/readings' },
+  alternates: alternatesFor('/readings'),
 };
 
 export default async function ReadingsPage() {
