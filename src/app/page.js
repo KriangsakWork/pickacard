@@ -46,7 +46,15 @@ export default async function HomePage() {
       {/* HERO */}
       <header className="hero">
         <div className="hero-bg" aria-hidden="true">
-          <video className="hero-video" autoPlay loop muted playsInline poster="/images/hero-bg.webp">
+          <video
+            className="hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/images/hero-bg.webp"
+          >
             <source src="/images/hero-bg.mp4" type="video/mp4" />
           </video>
           <div className="hero-overlay"></div>
