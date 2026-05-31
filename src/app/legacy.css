@@ -40,7 +40,7 @@
 
   /* Layout */
   --container: 1140px;
-  --section-y: clamp(40px, 6vw, 64px);
+  --section-y: clamp(32px, 4vw, 44px);
 
   /* Type */
   --t-display: 'Playfair Display', serif;
@@ -239,7 +239,7 @@ h1, h2, h3 { line-height: 1.3; }
   gap: 8px;
   text-align: center;
   max-width: 620px;
-  margin: 0 auto var(--sp-6);
+  margin: 0 auto var(--sp-5);
 }
 
 .eyebrow {
@@ -273,7 +273,7 @@ h1, h2, h3 { line-height: 1.3; }
 /* "view all" link below a grid */
 .section-more {
   text-align: center;
-  margin-top: var(--sp-6);
+  margin-top: var(--sp-5);
 }
 .section-more a {
   display: inline-flex;
