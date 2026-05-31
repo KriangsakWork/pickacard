@@ -205,17 +205,17 @@ export default async function HomePage() {
 
             <div className="benefit-grid">
               <article className="benefit-card">
-                <div className="benefit-icon">💜</div>
+                <div className="benefit-icon"><img src="/images/benefits/easy.webp" alt="" /></div>
                 <h3 className="benefit-title">ใช้ง่าย</h3>
                 <p className="benefit-text">เลือกไพ่เพียง 1 ใบ รับคำแนะนำจากจักรวาลได้ทันที</p>
               </article>
               <article className="benefit-card">
-                <div className="benefit-icon">🔒</div>
+                <div className="benefit-icon"><img src="/images/benefits/private.webp" alt="" /></div>
                 <h3 className="benefit-title">เป็นส่วนตัว</h3>
                 <p className="benefit-text">คำทำนายของคุณ เป็นความลับเฉพาะคุณคนเดียว 100%</p>
               </article>
               <article className="benefit-card">
-                <div className="benefit-icon">✨</div>
+                <div className="benefit-icon"><img src="/images/benefits/inspire.webp" alt="" /></div>
                 <h3 className="benefit-title">สร้างแรงบันดาลใจ</h3>
                 <p className="benefit-text">มองเห็นทางเลือกใหม่ ๆ และก้าวต่อไปอย่างมั่นใจ</p>
               </article>
