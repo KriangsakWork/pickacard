@@ -17,6 +17,7 @@ export async function generateMetadata({ params }) {
     description: `ความหมายของไพ่ ${card.name} ${card.nameTh} ในด้านความรัก การงาน อนาคต และอื่นๆ`,
     alternates: { canonical: `/cards/${slug}` },
     openGraph: { images: [card.image] },
+    twitter: { card: 'summary_large_image', images: [card.image] },
   };
 }
 

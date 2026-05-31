@@ -50,6 +50,12 @@ export async function generateMetadata({ params }) {
       description: metaDescription,
       images: ogImage ? [ogImage] : undefined,
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: data.title,
+      description: metaDescription,
+      images: ogImage ? [ogImage] : undefined,
+    },
   };
 }
 
