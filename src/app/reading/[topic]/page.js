@@ -1,7 +1,12 @@
 import { notFound } from 'next/navigation';
 
 import JsonLd from '@/components/JsonLd';
-import { breadcrumbLd } from '@/lib/seo';
+import {
+  breadcrumbLd,
+  META_DESC_MAX,
+  META_TITLE_MAX,
+  truncate,
+} from '@/lib/seo';
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
 import {
@@ -26,10 +31,12 @@ export async function generateMetadata({ params }) {
   const { topic: slug } = await params;
   const data = await getTopic(slug);
   if (!data) return {};
-  const metaTitle =
-    data.seo?.metaTitle || `${data.title} | ดูดวงด้วยไพ่ทาโรต์ฟรี`;
-  const metaDescription =
-    data.seo?.metaDescription || data.shortDescription || '';
+  const rawTitle =
+    data.seo?.metaTitle || `${data.title} - Pick a Card ${data.title}`;
+  const rawDescription =
+    data.seo?.metaDescription || data.shortDescription || data.excerpt || '';
+  const metaTitle = truncate(rawTitle, META_TITLE_MAX);
+  const metaDescription = truncate(rawDescription, META_DESC_MAX);
   const ogImage =
     (data.seo?.ogImage && urlFor(data.seo.ogImage).width(1200).url()) ||
     (data.coverImage && urlFor(data.coverImage).width(1200).url()) ||
