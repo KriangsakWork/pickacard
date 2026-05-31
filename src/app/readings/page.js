@@ -11,7 +11,7 @@ import ReadingsListClient from './ReadingsListClient';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'ดูคำทำนายทั้งหมด | Pick Mystic',
+  title: 'ดูคำทำนายทั้งหมด',
   description:
     'รวมคำทำนายไพ่ทาโรต์ทุกหัวข้อ — ความรัก การงาน การเงิน อนาคต ค้นหาตามหมวดหมู่ได้',
   alternates: { canonical: '/readings' },

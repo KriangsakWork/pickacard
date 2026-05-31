@@ -12,7 +12,9 @@ import {
 export const revalidate = 60; // ISR — keep the latest-articles block fresh
 
 export const metadata = {
-  title: 'Pick Mystic - ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายอนาคต',
+  title: {
+    absolute: 'Pick Mystic — ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายอนาคต',
+  },
   description:
     'ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายความรัก การงาน การเงิน แม่นยำ พร้อมคำทำนายละเอียดจากกระต่ายพ่อมด Pick Mystic',
   alternates: { canonical: '/' },
