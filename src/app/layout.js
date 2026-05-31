@@ -51,7 +51,6 @@ export const metadata = {
   },
   description:
     "ดูดวงไพ่ทาโรต์ออนไลน์ฟรี เปิดไพ่ทำนายความรัก การงาน การเงิน แม่นยำ พร้อมคำทำนายละเอียดจากกระต่ายพ่อมด Pick Mystic",
-  icons: { icon: "/images/favicon.webp" },
   openGraph: {
     type: "website",
     siteName: "Pick Mystic",
@@ -64,6 +63,11 @@ export const metadata = {
     creator: "@pickmystic",
     images: ["/images/og-image.webp"],
   },
+};
+
+export const viewport = {
+  themeColor: "#7E57C2",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }) {
