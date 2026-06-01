@@ -93,6 +93,15 @@ const resultItem = defineArrayMember({
       title: 'Related products',
       type: 'array',
       of: [defineArrayMember({ type: 'reference', to: [{ type: 'product' }] })],
+      description: 'สูงสุด 3 — desktop โชว์ครบ, mobile สุ่มโชว์ 1',
+      validation: (Rule) => Rule.max(3),
+    }),
+    defineField({
+      name: 'productsHeading',
+      title: 'Products section heading',
+      type: 'string',
+      description:
+        'หัวเรื่องเหนือกล่องสินค้าของผลลัพธ์นี้ เช่น "ของแนะนำเสริมดวง" / "ของแก้เคล็ดดวงตก" (ถ้าไม่กรอก จะใช้ค่าเริ่มต้น)',
     }),
   ],
   preview: {

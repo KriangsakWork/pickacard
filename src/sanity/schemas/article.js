@@ -83,7 +83,15 @@ export default defineType({
       title: 'Related products',
       type: 'array',
       of: [defineArrayMember({ type: 'reference', to: [{ type: 'product' }] })],
-      description: 'สินค้าแนะนำในบทความ',
+      description: 'สินค้าแนะนำในบทความ (สูงสุด 3 — desktop โชว์ครบ, mobile สุ่มโชว์ 1)',
+      validation: (Rule) => Rule.max(3),
+    }),
+    defineField({
+      name: 'productsHeading',
+      title: 'Products section heading',
+      type: 'string',
+      description:
+        'ข้อความหัวเรื่องเหนือกล่องสินค้า เช่น "ของแนะนำสำหรับคุณ" (ถ้าไม่กรอก จะใช้ค่าเริ่มต้น)',
     }),
     defineField({
       name: 'relatedPickTopic',
