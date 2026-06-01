@@ -200,6 +200,24 @@ export const pickTopicByCategoryQuery = groq`
   }
 `;
 
+// Ultimate fallback: newest featured pickTopic regardless of category.
+// Used when an article's category has no matching pickTopic at all.
+export const anyFeaturedPickTopicQuery = groq`
+  *[_type == "pickTopic" && defined(slug.current) && isFeatured == true]
+    | order(publishedAt desc) [0] {
+    _id,
+    title,
+    "slug": slug.current,
+    shortDescription,
+    coverImage,
+    category->{
+      title,
+      "slug": slug.current,
+      icon
+    }
+  }
+`;
+
 // All published pick topic slugs — for generateStaticParams.
 export const allPickTopicSlugsQuery = groq`
   *[_type == "pickTopic" && defined(slug.current)]{

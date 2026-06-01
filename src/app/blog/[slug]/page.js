@@ -18,6 +18,7 @@ import {
 import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
 import {
+  anyFeaturedPickTopicQuery,
   articleBySlugQuery,
   articleSlugsQuery,
   pickTopicByCategoryQuery,
@@ -118,16 +119,19 @@ export default async function ArticlePage({ params }) {
     relatedPickTopic,
   } = article;
 
-  const [related, pickTopic] = await Promise.all([
+  const [related, pickTopicByCategory] = await Promise.all([
     categoryId
       ? client.fetch(relatedArticlesQuery, { id: article._id, categoryId }, fetchOpts)
       : [],
-    relatedPickTopic
-      ? relatedPickTopic
-      : categoryId
-        ? client.fetch(pickTopicByCategoryQuery, { categoryId }, fetchOpts)
-        : null,
+    !relatedPickTopic && categoryId
+      ? client.fetch(pickTopicByCategoryQuery, { categoryId }, fetchOpts)
+      : null,
   ]);
+
+  const pickTopic =
+    relatedPickTopic ||
+    pickTopicByCategory ||
+    (await client.fetch(anyFeaturedPickTopicQuery, {}, fetchOpts));
 
   const coverUrl = coverImage
     ? urlFor(coverImage).width(1600).height(800).fit('crop').url()
