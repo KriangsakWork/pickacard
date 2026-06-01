@@ -7,20 +7,20 @@ export default function PickTopicPromo({ topic }) {
   if (!topic) return null;
 
   const imgUrl = topic.coverImage
-    ? urlFor(topic.coverImage).width(800).height(300).fit('crop').url()
+    ? urlFor(topic.coverImage).width(800).height(450).fit('crop').url()
     : null;
 
   return (
     <section className="mt-10 overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary-50 via-white to-purple-50 shadow-[0_4px_20px_rgba(126,87,194,0.10)]">
       <div className="flex flex-col sm:flex-row sm:items-stretch">
-        {/* Mobile: banner on top | Desktop: image on left */}
+        {/* Mobile: 16:9 banner top | Desktop: 16:9 image left */}
         {imgUrl && (
-          <div className="relative h-36 w-full shrink-0 sm:h-auto sm:w-44">
+          <div className="relative aspect-video w-full shrink-0 sm:w-64">
             <Image
               src={imgUrl}
               alt={topic.title}
               fill
-              sizes="(max-width: 640px) 100vw, 176px"
+              sizes="(max-width: 640px) 100vw, 256px"
               className="object-cover"
             />
           </div>
