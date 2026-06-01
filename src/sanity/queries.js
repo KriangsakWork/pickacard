@@ -158,25 +158,40 @@ export const pickTopicBySlugQuery = groq`
       }
     },
     seo,
-    "relatedArticles": *[_type == "article"
-      && defined(publishedAt) && publishedAt <= now()
-      && (
-        relatedPickTopic._ref == ^._id
-        || (!defined(relatedPickTopic) && category._ref == ^.category._ref)
-      )
-    ] | order(publishedAt desc) [0...3] {
-      _id,
-      title,
-      "slug": slug.current,
-      excerpt,
-      coverImage,
-      publishedAt,
-      category->{
+    "relatedArticles": select(
+      count(relatedArticles) > 0 => relatedArticles[]->{
+        _id,
         title,
         "slug": slug.current,
-        icon
+        excerpt,
+        coverImage,
+        publishedAt,
+        category->{
+          title,
+          "slug": slug.current,
+          icon
+        }
+      },
+      *[_type == "article"
+        && defined(publishedAt) && publishedAt <= now()
+        && (
+          relatedPickTopic._ref == ^._id
+          || (!defined(relatedPickTopic) && category._ref == ^.category._ref)
+        )
+      ] | order(publishedAt desc) [0...3] {
+        _id,
+        title,
+        "slug": slug.current,
+        excerpt,
+        coverImage,
+        publishedAt,
+        category->{
+          title,
+          "slug": slug.current,
+          icon
+        }
       }
-    }
+    )
   }
 `;
 

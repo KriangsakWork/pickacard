@@ -174,6 +174,15 @@ export default defineType({
       validation: (Rule) => Rule.required().min(4).max(4),
     }),
     defineField({
+      name: 'relatedArticles',
+      title: 'Related articles',
+      type: 'array',
+      of: [defineArrayMember({ type: 'reference', to: [{ type: 'article' }] })],
+      description:
+        'บทความที่เกี่ยวข้อง (ถ้าไม่เลือก ระบบจะ auto-match จาก category เดียวกัน)',
+      validation: (Rule) => Rule.max(3),
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
