@@ -51,7 +51,7 @@
     "The Moon": {
       "arcana": "major",
       "image": "/images/tarot/the-moon.webp",
-      "nameTh": "พระจันทร์",
+      "nameTh": "เดอะ มูน",
       "love": {
         "upright": {
           "keywords": [
@@ -136,7 +136,7 @@
     "The Star": {
       "arcana": "major",
       "image": "/images/tarot/the-star.webp",
-      "nameTh": "ดาว",
+      "nameTh": "เดอะ สตาร์",
       "love": {
         "upright": {
           "keywords": [
@@ -221,7 +221,7 @@
     "The Lovers": {
       "arcana": "major",
       "image": "/images/tarot/the-lovers.webp",
-      "nameTh": "คู่รัก",
+      "nameTh": "เดอะ เลิฟเวอร์ส",
       "love": {
         "upright": {
           "keywords": [
@@ -306,7 +306,7 @@
     "Two of Cups": {
       "arcana": "minor",
       "image": "/images/tarot/two-of-cups.webp",
-      "nameTh": "ถ้วยสองใบ",
+      "nameTh": "สองถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -391,7 +391,7 @@
     "The High Priestess": {
       "arcana": "major",
       "image": "/images/tarot/the-high-priestess.webp",
-      "nameTh": "นักบวชหญิง",
+      "nameTh": "เดอะ ไฮ พรีสเทส",
       "love": {
         "upright": {
           "keywords": [
@@ -476,7 +476,7 @@
     "The Hermit": {
       "arcana": "major",
       "image": "/images/tarot/the-hermit.webp",
-      "nameTh": "ฤาษี",
+      "nameTh": "เดอะ เฮอร์มิต",
       "love": {
         "upright": {
           "keywords": [
@@ -561,7 +561,7 @@
     "Wheel of Fortune": {
       "arcana": "major",
       "image": "/images/tarot/wheel-of-fortune.webp",
-      "nameTh": "กงล้อแห่งโชคชะตา",
+      "nameTh": "วีล ออฟ ฟอร์จูน",
       "love": {
         "upright": {
           "keywords": [
@@ -654,7 +654,7 @@
     "Death": {
       "arcana": "major",
       "image": "/images/tarot/death.webp",
-      "nameTh": "ความตาย",
+      "nameTh": "เดธ",
       "love": {
         "upright": {
           "keywords": [
@@ -714,7 +714,7 @@
     "The Sun": {
       "arcana": "major",
       "image": "/images/tarot/the-sun.webp",
-      "nameTh": "ดวงอาทิตย์",
+      "nameTh": "เดอะ ซัน",
       "love": {
         "upright": {
           "keywords": [
@@ -774,7 +774,7 @@
     "The Devil": {
       "arcana": "major",
       "image": "/images/tarot/the-devil.webp",
-      "nameTh": "ปีศาจ",
+      "nameTh": "เดอะ เดวิล",
       "love": {
         "upright": {
           "keywords": [
@@ -834,7 +834,7 @@
     "The Fool": {
       "arcana": "major",
       "image": "/images/tarot/the-fool.webp",
-      "nameTh": "คนโง่ผู้กล้า",
+      "nameTh": "เดอะ ฟูล",
       "love": {
         "upright": {
           "keywords": [
@@ -895,6 +895,7 @@
       "arcana": "minor",
       "image": "/images/tarot/ace-of-cups.webp",
       "slug": "ace-of-cups",
+      "nameTh": "เอซถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -980,6 +981,7 @@
       "arcana": "major",
       "image": "/images/tarot/the-magician.webp",
       "slug": "the-magician",
+      "nameTh": "เดอะ เมจิเชี่ยน",
       "love": {
         "upright": {
           "keywords": [
@@ -1070,6 +1072,7 @@
       "arcana": "major",
       "image": "/images/tarot/the-empress.webp",
       "slug": "the-empress",
+      "nameTh": "เดอะ เอ็มเพรส",
       "love": {
         "upright": {
           "keywords": [
@@ -1160,6 +1163,7 @@
       "arcana": "major",
       "image": "/images/tarot/the-emperor.webp",
       "slug": "the-emperor",
+      "nameTh": "เดอะ เอ็มเพอเรอร์",
       "love": {
         "upright": {
           "keywords": [
@@ -1250,6 +1254,7 @@
       "arcana": "major",
       "image": "/images/tarot/the-hierophant.webp",
       "slug": "the-hierophant",
+      "nameTh": "เดอะ ไฮโรแฟนต์",
       "love": {
         "upright": {
           "keywords": [
@@ -1340,6 +1345,7 @@
       "arcana": "major",
       "image": "/images/tarot/the-chariot.webp",
       "slug": "the-chariot",
+      "nameTh": "เดอะ แชริออท",
       "love": {
         "upright": {
           "keywords": [
@@ -1430,6 +1436,7 @@
       "arcana": "major",
       "image": "/images/tarot/strength.webp",
       "slug": "strength",
+      "nameTh": "สเตรงท์",
       "love": {
         "upright": {
           "keywords": [
@@ -1520,6 +1527,7 @@
       "arcana": "major",
       "image": "/images/tarot/justice.webp",
       "slug": "justice",
+      "nameTh": "จัสติส",
       "love": {
         "upright": {
           "keywords": [
@@ -1610,6 +1618,7 @@
       "arcana": "major",
       "image": "/images/tarot/the-hanged-man.webp",
       "slug": "the-hanged-man",
+      "nameTh": "เดอะ แฮงด์แมน",
       "love": {
         "upright": {
           "keywords": [
@@ -1700,6 +1709,7 @@
       "arcana": "major",
       "image": "/images/tarot/temperance.webp",
       "slug": "temperance",
+      "nameTh": "เทมเพอแรนซ์",
       "love": {
         "upright": {
           "keywords": [
@@ -1790,6 +1800,7 @@
       "arcana": "major",
       "image": "/images/tarot/the-tower.webp",
       "slug": "the-tower",
+      "nameTh": "เดอะ ทาวเวอร์",
       "love": {
         "upright": {
           "keywords": [
@@ -1880,6 +1891,7 @@
       "arcana": "major",
       "image": "/images/tarot/judgement.webp",
       "slug": "judgement",
+      "nameTh": "จัดจ์เมนต์",
       "love": {
         "upright": {
           "keywords": [
@@ -1970,6 +1982,7 @@
       "arcana": "major",
       "image": "/images/tarot/the-world.webp",
       "slug": "the-world",
+      "nameTh": "เดอะ เวิลด์",
       "love": {
         "upright": {
           "keywords": [
@@ -2060,6 +2073,7 @@
       "arcana": "minor",
       "image": "/images/tarot/five-of-cups.webp",
       "slug": "five-of-cups",
+      "nameTh": "ห้าถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -2145,6 +2159,7 @@
       "arcana": "minor",
       "image": "/images/tarot/knight-of-cups.webp",
       "slug": "knight-of-cups",
+      "nameTh": "อัศวินถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -2230,6 +2245,7 @@
       "arcana": "minor",
       "image": "/images/tarot/page-of-cups.webp",
       "slug": "page-of-cups",
+      "nameTh": "เพจถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -2315,6 +2331,7 @@
       "arcana": "minor",
       "image": "/images/tarot/three-of-swords.webp",
       "slug": "three-of-swords",
+      "nameTh": "สามดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -2400,6 +2417,7 @@
       "arcana": "minor",
       "image": "/images/tarot/ace-of-wands.webp",
       "slug": "ace-of-wands",
+      "nameTh": "เอซไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -2485,6 +2503,7 @@
       "arcana": "minor",
       "image": "/images/tarot/ace-of-swords.webp",
       "slug": "ace-of-swords",
+      "nameTh": "เอซดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -2570,6 +2589,7 @@
       "arcana": "minor",
       "image": "/images/tarot/ace-of-pentacles.webp",
       "slug": "ace-of-pentacles",
+      "nameTh": "เอซเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -2655,6 +2675,7 @@
       "arcana": "minor",
       "image": "/images/tarot/queen-of-cups.webp",
       "slug": "queen-of-cups",
+      "nameTh": "ราชินีถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -2748,6 +2769,7 @@
       "arcana": "minor",
       "image": "/images/tarot/queen-of-wands.webp",
       "slug": "queen-of-wands",
+      "nameTh": "ราชินีไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -2841,6 +2863,7 @@
       "arcana": "minor",
       "image": "/images/tarot/queen-of-swords.webp",
       "slug": "queen-of-swords",
+      "nameTh": "ราชินีดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -2934,6 +2957,7 @@
       "arcana": "minor",
       "image": "/images/tarot/queen-of-pentacles.webp",
       "slug": "queen-of-pentacles",
+      "nameTh": "ราชินีเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -3027,6 +3051,7 @@
       "arcana": "minor",
       "image": "/images/tarot/three-of-cups.webp",
       "slug": "three-of-cups",
+      "nameTh": "สามถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -3112,6 +3137,7 @@
       "arcana": "minor",
       "image": "/images/tarot/four-of-cups.webp",
       "slug": "four-of-cups",
+      "nameTh": "สี่ถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -3197,6 +3223,7 @@
       "arcana": "minor",
       "image": "/images/tarot/six-of-cups.webp",
       "slug": "six-of-cups",
+      "nameTh": "หกถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -3283,6 +3310,7 @@
       "arcana": "minor",
       "image": "/images/tarot/seven-of-cups.webp",
       "slug": "seven-of-cups",
+      "nameTh": "เจ็ดถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -3368,6 +3396,7 @@
       "arcana": "minor",
       "image": "/images/tarot/eight-of-cups.webp",
       "slug": "eight-of-cups",
+      "nameTh": "แปดถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -3453,6 +3482,7 @@
       "arcana": "minor",
       "image": "/images/tarot/nine-of-cups.webp",
       "slug": "nine-of-cups",
+      "nameTh": "เก้าถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -3538,6 +3568,7 @@
       "arcana": "minor",
       "image": "/images/tarot/ten-of-cups.webp",
       "slug": "ten-of-cups",
+      "nameTh": "สิบถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -3623,6 +3654,7 @@
       "arcana": "minor",
       "image": "/images/tarot/king-of-cups.webp",
       "slug": "king-of-cups",
+      "nameTh": "ราชาถ้วย",
       "love": {
         "upright": {
           "keywords": [
@@ -3708,6 +3740,7 @@
       "arcana": "minor",
       "image": "/images/tarot/two-of-wands.webp",
       "slug": "two-of-wands",
+      "nameTh": "สองไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -3795,6 +3828,7 @@
       "arcana": "minor",
       "image": "/images/tarot/three-of-wands.webp",
       "slug": "three-of-wands",
+      "nameTh": "สามไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -3881,6 +3915,7 @@
       "arcana": "minor",
       "image": "/images/tarot/four-of-wands.webp",
       "slug": "four-of-wands",
+      "nameTh": "สี่ไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -3970,6 +4005,7 @@
       "arcana": "minor",
       "image": "/images/tarot/five-of-wands.webp",
       "slug": "five-of-wands",
+      "nameTh": "ห้าไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4058,6 +4094,7 @@
       "arcana": "minor",
       "image": "/images/tarot/six-of-wands.webp",
       "slug": "six-of-wands",
+      "nameTh": "หกไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4145,6 +4182,7 @@
       "arcana": "minor",
       "image": "/images/tarot/seven-of-wands.webp",
       "slug": "seven-of-wands",
+      "nameTh": "เจ็ดไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4232,6 +4270,7 @@
       "arcana": "minor",
       "image": "/images/tarot/eight-of-wands.webp",
       "slug": "eight-of-wands",
+      "nameTh": "แปดไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4321,6 +4360,7 @@
       "arcana": "minor",
       "image": "/images/tarot/nine-of-wands.webp",
       "slug": "nine-of-wands",
+      "nameTh": "เก้าไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4409,6 +4449,7 @@
       "arcana": "minor",
       "image": "/images/tarot/ten-of-wands.webp",
       "slug": "ten-of-wands",
+      "nameTh": "สิบไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4497,6 +4538,7 @@
       "arcana": "minor",
       "image": "/images/tarot/page-of-wands.webp",
       "slug": "page-of-wands",
+      "nameTh": "เพจไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4586,6 +4628,7 @@
       "arcana": "minor",
       "image": "/images/tarot/knight-of-wands.webp",
       "slug": "knight-of-wands",
+      "nameTh": "อัศวินไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4676,6 +4719,7 @@
       "arcana": "minor",
       "image": "/images/tarot/king-of-wands.webp",
       "slug": "king-of-wands",
+      "nameTh": "ราชาไม้เท้า",
       "love": {
         "upright": {
           "keywords": [
@@ -4766,6 +4810,7 @@
       "arcana": "minor",
       "image": "/images/tarot/two-of-swords.webp",
       "slug": "two-of-swords",
+      "nameTh": "สองดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -4857,6 +4902,7 @@
       "arcana": "minor",
       "image": "/images/tarot/four-of-swords.webp",
       "slug": "four-of-swords",
+      "nameTh": "สี่ดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -4948,6 +4994,7 @@
       "arcana": "minor",
       "image": "/images/tarot/five-of-swords.webp",
       "slug": "five-of-swords",
+      "nameTh": "ห้าดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5040,6 +5087,7 @@
       "arcana": "minor",
       "image": "/images/tarot/six-of-swords.webp",
       "slug": "six-of-swords",
+      "nameTh": "หกดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5130,6 +5178,7 @@
       "arcana": "minor",
       "image": "/images/tarot/seven-of-swords.webp",
       "slug": "seven-of-swords",
+      "nameTh": "เจ็ดดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5223,6 +5272,7 @@
       "arcana": "minor",
       "image": "/images/tarot/eight-of-swords.webp",
       "slug": "eight-of-swords",
+      "nameTh": "แปดดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5314,6 +5364,7 @@
       "arcana": "minor",
       "image": "/images/tarot/nine-of-swords.webp",
       "slug": "nine-of-swords",
+      "nameTh": "เก้าดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5405,6 +5456,7 @@
       "arcana": "minor",
       "image": "/images/tarot/ten-of-swords.webp",
       "slug": "ten-of-swords",
+      "nameTh": "สิบดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5495,6 +5547,7 @@
       "arcana": "minor",
       "image": "/images/tarot/page-of-swords.webp",
       "slug": "page-of-swords",
+      "nameTh": "เพจดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5585,6 +5638,7 @@
       "arcana": "minor",
       "image": "/images/tarot/knight-of-swords.webp",
       "slug": "knight-of-swords",
+      "nameTh": "อัศวินดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5675,6 +5729,7 @@
       "arcana": "minor",
       "image": "/images/tarot/king-of-swords.webp",
       "slug": "king-of-swords",
+      "nameTh": "ราชาดาบ",
       "love": {
         "upright": {
           "keywords": [
@@ -5766,6 +5821,7 @@
       "arcana": "minor",
       "image": "/images/tarot/two-of-pentacles.webp",
       "slug": "two-of-pentacles",
+      "nameTh": "สองเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -5857,6 +5913,7 @@
       "arcana": "minor",
       "image": "/images/tarot/three-of-pentacles.webp",
       "slug": "three-of-pentacles",
+      "nameTh": "สามเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -5948,6 +6005,7 @@
       "arcana": "minor",
       "image": "/images/tarot/four-of-pentacles.webp",
       "slug": "four-of-pentacles",
+      "nameTh": "สี่เหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6039,6 +6097,7 @@
       "arcana": "minor",
       "image": "/images/tarot/five-of-pentacles.webp",
       "slug": "five-of-pentacles",
+      "nameTh": "ห้าเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6130,6 +6189,7 @@
       "arcana": "minor",
       "image": "/images/tarot/six-of-pentacles.webp",
       "slug": "six-of-pentacles",
+      "nameTh": "หกเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6221,6 +6281,7 @@
       "arcana": "minor",
       "image": "/images/tarot/seven-of-pentacles.webp",
       "slug": "seven-of-pentacles",
+      "nameTh": "เจ็ดเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6312,6 +6373,7 @@
       "arcana": "minor",
       "image": "/images/tarot/eight-of-pentacles.webp",
       "slug": "eight-of-pentacles",
+      "nameTh": "แปดเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6404,6 +6466,7 @@
       "arcana": "minor",
       "image": "/images/tarot/nine-of-pentacles.webp",
       "slug": "nine-of-pentacles",
+      "nameTh": "เก้าเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6495,6 +6558,7 @@
       "arcana": "minor",
       "image": "/images/tarot/ten-of-pentacles.webp",
       "slug": "ten-of-pentacles",
+      "nameTh": "สิบเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6585,6 +6649,7 @@
       "arcana": "minor",
       "image": "/images/tarot/page-of-pentacles.webp",
       "slug": "page-of-pentacles",
+      "nameTh": "เพจเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6676,6 +6741,7 @@
       "arcana": "minor",
       "image": "/images/tarot/knight-of-pentacles.webp",
       "slug": "knight-of-pentacles",
+      "nameTh": "อัศวินเหรียญ",
       "love": {
         "upright": {
           "keywords": [
@@ -6767,6 +6833,7 @@
       "arcana": "minor",
       "image": "/images/tarot/king-of-pentacles.webp",
       "slug": "king-of-pentacles",
+      "nameTh": "ราชาเหรียญ",
       "love": {
         "upright": {
           "keywords": [
