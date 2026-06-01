@@ -7,6 +7,7 @@ import JsonLd from '@/components/JsonLd';
 import PickTopicPromo from '@/components/PickTopicPromo';
 import PortableTextRenderer from '@/components/PortableTextRenderer';
 import RelatedArticles from '@/components/RelatedArticles';
+import RelatedProducts from '@/components/RelatedProducts';
 import {
   breadcrumbLd,
   extractFaqFromBody,
@@ -116,6 +117,7 @@ export default async function ArticlePage({ params }) {
     category,
     categoryId,
     relatedProducts,
+    productsHeading,
     relatedPickTopic,
   } = article;
 
@@ -235,52 +237,13 @@ export default async function ArticlePage({ params }) {
             <PortableTextRenderer value={body} />
           </div>
 
-          {/* Related products (shown only when present) */}
-          {relatedProducts?.length > 0 && (
-            <section className="mt-12 rounded-2xl bg-primary-50 p-6">
-              <h2 className="mb-4 text-xl font-semibold text-dark-purple">
-                ของแนะนำสำหรับคุณ
-              </h2>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-                {relatedProducts.map((p) => {
-                  const img = p.image
-                    ? urlFor(p.image).width(300).height(300).fit('crop').url()
-                    : null;
-                  return (
-                    <a
-                      key={p._id}
-                      href={p.shopeeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer sponsored"
-                      className="group block overflow-hidden rounded-xl bg-white shadow-sm transition-transform hover:-translate-y-0.5"
-                    >
-                      <div className="relative aspect-square bg-white">
-                        {img && (
-                          <Image
-                            src={img}
-                            alt={p.name}
-                            fill
-                            sizes="(max-width: 640px) 50vw, 200px"
-                            className="object-cover"
-                          />
-                        )}
-                      </div>
-                      <div className="p-3">
-                        <p className="line-clamp-2 text-sm font-medium text-dark-purple">
-                          {p.name}
-                        </p>
-                        {p.price != null && (
-                          <p className="mt-1 text-sm font-semibold text-primary">
-                            {p.price} {p.currency || 'THB'}
-                          </p>
-                        )}
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </section>
-          )}
+          <RelatedProducts
+            products={relatedProducts}
+            heading={productsHeading}
+            mobileIdx={Math.floor(
+              Math.random() * Math.max(relatedProducts?.length || 1, 1),
+            )}
+          />
 
           {/* Share */}
           <div className="mt-12 border-t border-primary/10 pt-6">

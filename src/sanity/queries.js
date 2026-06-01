@@ -83,6 +83,7 @@ export const articleBySlugQuery = groq`
       currency,
       shopeeUrl
     },
+    productsHeading,
     relatedCards,
     relatedPickTopic->{
       _id,
@@ -142,6 +143,16 @@ export const pickTopicBySlugQuery = groq`
       subtitle,
       summary,
       advice,
+      productsHeading,
+      relatedProducts[]->{
+        _id,
+        name,
+        "slug": slug.current,
+        image,
+        price,
+        currency,
+        shopeeUrl
+      },
       cards[]{
         position,
         tags,

@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 
 import ReadingShareButtons from '@/components/ReadingShareButtons';
+import RelatedProducts from '@/components/RelatedProducts';
 import { urlFor } from '@/sanity/image';
 
 export default function ReadingClient({ topic, results, relatedArticles = [] }) {
@@ -41,6 +42,11 @@ export default function ReadingClient({ topic, results, relatedArticles = [] }) 
         ?.scrollIntoView({ behavior: 'smooth' });
     }, 80);
   }
+
+  const productsMobileIdx = useMemo(() => {
+    const n = result?.relatedProducts?.length || 0;
+    return n > 0 ? Math.floor(Math.random() * n) : 0;
+  }, [result]);
 
   if (stage === 'reading' && result) {
     return (
@@ -83,6 +89,12 @@ export default function ReadingClient({ topic, results, relatedArticles = [] }) 
             <p className="reveal-disclaimer">
               * คำทำนายนี้เป็นแนวทางเพื่อการพิจารณา ไม่สามารถยืนยันผลลัพธ์ได้แน่นอน
             </p>
+
+            <RelatedProducts
+              products={result.relatedProducts}
+              heading={result.productsHeading}
+              mobileIdx={productsMobileIdx}
+            />
           </div>
 
           <div className="reveal-share-card">
